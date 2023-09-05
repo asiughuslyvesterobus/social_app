@@ -38,6 +38,8 @@ const userSchema = new mongoose.Schema(
     },
     AccountactivativationToken: String,
     AccountTokenExpires: Date,
+    passwordRestToken: String,
+    passwordRestExpired: Date
   },
   { timestamps: true }
 );

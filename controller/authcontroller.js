@@ -1,9 +1,17 @@
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const User = require("../models/user");
-const { validateSignup } = require("../lib/validation/userValidation");
+const {
+  validateSignup,
+  validateLogin
+} = require("../lib/validation/userValidation");
 const { BadRequestError } = require("../lib/error");
-
+const {
+  sendAccountActivation
+} = require("../lib/message/account-activation-message");
+const {
+  sendSuccessfulPasswordReset
+} = require("../lib/message/password-rest-successful");
 //@Method:POST /auth/signup
 //@Desc:To signup a user
 //@Access:Public
@@ -14,9 +22,9 @@ const signup = async (req, res, next) => {
   }
   const { firstName, lastName, email, phone, password } = req.body;
 
-  const userExists = await User.findone({ email });
+  const userExists = await User.findOne({ email });
   if (userExists) {
-    throw new BadRequestError("email already exist");
+    throw new BadRequestError("user already exist");
   }
   const phoneExists = await User.findOne({ phone });
   if (phoneExists) {
@@ -36,7 +44,7 @@ const signup = async (req, res, next) => {
 
   await user.save();
 
-  const token = await bcryptjs.hash(email.tostring(), 10);
+  const token = await bcryptjs.hash(email.toString(), 10);
   const thirtyMinutes = 30 * 60 * 1000;
 
   user.AccountactivativationToken = token;
@@ -66,5 +74,114 @@ const activateAccount = async (req, res) => {
   res.status(200).json({ success: true, msg: "Account activated" });
 };
 
+const Login = async (req, res) => {
+  const error = await validateLogin(req.body);
+  if (error) {
+    throw new BadRequestError(error);
+  }
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new BadRequestError("invalid email or password");
+  }
+
+  const valid = await bcryptjs.compare(password, user.password);
+  if (!valid) {
+    throw new BadRequestError("invalid email or password");
+  }
+  if (!user.isActivated) {
+    if (user.AccountTokenExpires < Date.now()) {
+      const token = await bcryptjs.hash(email.toString(), 10);
+      const thirtyMinutes = 30 * 60 * 1000;
+
+      user.AccountactivativationToken = token;
+      user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
+
+      await sendAccountActivation({ email, token });
+      res.json({
+        msg: "account not activated. click the link your email to activate your account "
+      });
+    }
+    res.json({
+      msg: "account not activated. click the link on your email to activate your account"
+    });
+  }
+  const payload = {
+    _id: user._id,
+    email: user.email
+  };
+
+  const token = jwt.sign(payload, process.env.JWT_PRIVATE_KEY);
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  res.cookie("accessToken", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    signed: true,
+    expires: new Date(Date.now() + oneDay)
+  });
+  res.status(200).json({ success: true, msg: "login sucessful" });
+};
+//@Method:POST auth/forgot-password
+//@Access:Private
+//@Desc: to request for password reset
+const forgetPassword = async (req, res, next) => {
+  const { email } = req.body;
+  if (!email) {
+    throw new BadRequestError("invalid email");
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new BadRequestError("user does not exist");
+  }
+  const token = await bcryptjs.hash(email.toString(), 10);
+  const thirtyMinutes = 30 * 60 * 1000;
+
+  user.passwordRestToken = token;
+  user.passwordRestExpired = new Date(Date.now() + thirtyMinutes);
+
+  await user.save();
+
+  await sendPasswordReset({ email, token });
+
+  res.status(200).json({
+    success: true,
+    message: "check your email for password reset link"
+  });
+};
+
+// Method: GET auth/reset-password
+//@Desc: reset password
+//@Access: Private
+const restPassword = async (req, res, next) => {
+  const token = req.url.token;
+  const user = await User.findOne({
+    passwordRestToken: token,
+    passwordRestExpired: { $gt: Date.now() }
+  });
+  if (!user) {
+    throw new BadRequestError("link has expired, please request a new link");
+  }
+  const { newPassword } = req.body;
+  const salt = await bcryptjs.genSalt(10);
+  const hashedPassword = await bcryptjs.hash(newPassword, salt);
+
+  user.password = hashedPassword;
+  user.passwordRestToken = undefined;
+  user.passwordRestExpired = undefined;
+  const email = user.email;
+  const firstName = user.firstName;
+
+  await user.save();
+
+  await sendSuccessfulPasswordReset({ email, firstName });
+
+  res.status(200).json({ success: true, msg: "account activated" });
+};
+
 module.exports.signUp = signup;
+module.exports.Login = Login;
 module.exports.activateAccount = activateAccount;
+module.exports.forgetPassword = forgetPassword;
+module.exports.restPassword = restPassword;

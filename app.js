@@ -18,5 +18,5 @@ app.use(notFound);
 app.use(errorHandler);
 dbconnect();
 
-const port = process.env.PORT || 5400;
+const port = process.env.PORT || 4400;
 app.listen(port, () => console.log(`server listerning on port ${port}...`));
