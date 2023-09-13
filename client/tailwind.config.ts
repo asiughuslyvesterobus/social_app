@@ -12,7 +12,7 @@ const config: Config = {
       colors: {
         primary: "#1877F2",
         basegray: "#65676B",
-        btngray:"#E4E6EB",
+        btngray: "#E4E6EB",
         bodybg: "#F0F0F0",
       },
     },
