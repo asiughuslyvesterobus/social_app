@@ -10,7 +10,7 @@ const Navbar = ({ title }: { title: String }) => {
           content="Connecting People, One Post at a Time"
         />
       </Head>
-      <nav>Navbar</nav>
+      <nav className="w-full h-20 bg-white"></nav>
     </>
   );
 };
