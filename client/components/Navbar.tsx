@@ -1,3 +1,5 @@
+import { NavIcons } from "@/data";
+import { NavIconType } from "@/type";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,10 +29,20 @@ const Navbar = ({ title }: { title: String }) => {
             <span className="cursor-pointer">
               <FiSearch size={20} />
             </span>
-            <input type="text" placeholder="Search..." className="h-full w-full pl-2 outline-none bg-transparent text-basegray " />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="h-full w-full pl-2 outline-none bg-transparent text-basegray "
+            />
           </div>
         </div>
-        <ul className="flex items-center gap-5"></ul>
+        <ul className="flex items-center gap-5">
+          {NavIcons.map((item: NavIconType, i: number) => (
+            <li key={i} className="group relative">
+              
+            </li>
+          ))}
+        </ul>
         <div></div>
       </nav>
     </>

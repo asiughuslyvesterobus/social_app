@@ -6,7 +6,7 @@ export interface SignUpUser {
   password: String;
 }
 
-export interface NavIcon {
+export interface NavIconType {
   icon: IconType;
   tooltip: string;
   href: string;
