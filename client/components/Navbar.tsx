@@ -1,10 +1,11 @@
-import { NavIcons } from "@/data";
-import { NavIconType } from "@/type";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { NavIcons } from "@/data";
+import { NavIconType } from "@/type";
 import { FiSearch } from "react-icons/fi";
+import { BsMessenger, BsBell } from "react-icons/bs";
 
 const Navbar = ({ title }: { title: String }) => {
   const router = useRouter();
@@ -60,11 +61,17 @@ const Navbar = ({ title }: { title: String }) => {
                   <item.icon size={29} />
                 </span>
               </Link>
-              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm">{item.tooltip}</span>
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm">
+                {item.tooltip}
+              </span>
             </li>
           ))}
         </ul>
-        <div></div>
+        <div>
+          <span>
+            <BsMessenger />
+          </span>
+        </div>
       </nav>
     </>
   );
