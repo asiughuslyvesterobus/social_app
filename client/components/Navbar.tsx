@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = ({ title }: { title: String }) => {
   return (
@@ -13,12 +14,14 @@ const Navbar = ({ title }: { title: String }) => {
       </Head>
       <nav className="w-full h-16 bg-white flex items-center justify-between gap-10">
         <div className="flex items-center justify-start gap-3">
-          <Image
-            src="/img/logo.png"
-            alt="ConnectSmart Logo"
-            width={62}
-            height={48}
-          />
+          <Link href="/">
+            <Image
+              src="/img/logo.png"
+              alt="ConnectSmart Logo"
+              width={62}
+              height={48}
+            />
+          </Link>
         </div>
         <div></div>
         <div></div>
