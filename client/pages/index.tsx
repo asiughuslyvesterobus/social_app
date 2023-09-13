@@ -3,7 +3,7 @@ import MainLayout from "@/layout/MainLayout";
 const Homepage = () => {
   return (
     <MainLayout>
-      <section></section>
+      <section>Main content</section>
     </MainLayout>
   );
 };

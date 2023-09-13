@@ -8,7 +8,13 @@ const config: Config = {
     "./layout/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#1877F2",
+        basegray: "#65676B",
+        bodybg: "#F0F0F0",
+      },
+    },
   },
   plugins: [],
 };
