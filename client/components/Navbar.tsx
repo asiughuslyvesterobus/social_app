@@ -30,7 +30,7 @@ const Navbar = ({ title }: { title: String }) => {
             <input type="text" placeholder="Search..." className="h-full w-full pl-2 outline-none bg-transparent text-basegray " />
           </div>
         </div>
-        <div></div>
+        <ul className="flex items-center gap-5"></ul>
         <div></div>
       </nav>
     </>
