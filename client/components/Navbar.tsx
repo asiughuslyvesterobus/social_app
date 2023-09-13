@@ -3,9 +3,18 @@ import { NavIconType } from "@/type";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FiSearch } from "react-icons/fi";
 
 const Navbar = ({ title }: { title: String }) => {
+  const router = useRouter();
+
+  const activeRoute = (pathname: String) => {
+    const currentRoute = router.pathname;
+
+    return currentRoute === pathname;
+  };
+
   return (
     <>
       <Head>
@@ -36,10 +45,20 @@ const Navbar = ({ title }: { title: String }) => {
             />
           </div>
         </div>
-        <ul className="flex items-center gap-5">
+        <ul className="flex items-center gap-5 h-full pt-2">
           {NavIcons.map((item: NavIconType, i: number) => (
-            <li key={i} className="group relative">
-              
+            <li
+              key={i}
+              className={`group relative py-4 px-10 h-full flex flex-col items-center justify-center cursor-pointer ${
+                activeRoute(item.href) ? "text-primary border-b-2 border-primary" : "hover:bg-bodybg mb-1 rounded-lg"
+              } transition-all`}
+            >
+              <Link href={item.href}>
+                <span>
+                  <item.icon size={29} />
+                </span>
+              </Link>
+              <span></span>
             </li>
           ))}
         </ul>

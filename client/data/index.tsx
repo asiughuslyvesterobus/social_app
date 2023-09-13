@@ -12,16 +12,16 @@ export const NavIcons = [
   {
     icon: PiMonitorPlayFill,
     tooltip: "Videos",
-    href: "/",
+    href: "/videos",
   },
   {
     icon: BsShop,
     tooltip: "Marketplace",
-    href: "/",
+    href: "/marketplace",
   },
   {
     icon: HiUserGroup,
-    tooltip: "Group",
-    href: "/",
+    tooltip: "Groups",
+    href: "/group",
   },
 ];
