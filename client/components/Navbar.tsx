@@ -50,7 +50,9 @@ const Navbar = ({ title }: { title: String }) => {
             <li
               key={i}
               className={`group relative py-4 px-10 h-full flex flex-col items-center justify-center cursor-pointer ${
-                activeRoute(item.href) ? "text-primary border-b-2 border-primary" : "hover:bg-bodybg mb-1 rounded-lg"
+                activeRoute(item.href)
+                  ? "text-primary border-b-2 border-primary"
+                  : "hover:bg-bodybg mb-1 rounded-lg"
               } transition-all`}
             >
               <Link href={item.href}>
@@ -58,7 +60,7 @@ const Navbar = ({ title }: { title: String }) => {
                   <item.icon size={29} />
                 </span>
               </Link>
-              <span></span>
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm">{item.tooltip}</span>
             </li>
           ))}
         </ul>
