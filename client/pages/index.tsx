@@ -1,5 +1,11 @@
+import MainLayout from "@/layout/MainLayout";
+
 const Homepage = () => {
-  return <div>Homepage</div>;
+  return (
+    <MainLayout>
+      <section></section>
+    </MainLayout>
+  );
 };
 
 export default Homepage;
