@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { FiSearch } from "react-icons/fi";
 
 const Navbar = ({ title }: { title: String }) => {
   return (
@@ -22,6 +23,12 @@ const Navbar = ({ title }: { title: String }) => {
               height={48}
             />
           </Link>
+          <div className="flex items-center justify-start bg-bodybg h-10 px-2 rounded-xl text-basegray w-[250px]">
+            <span className="cursor-pointer">
+              <FiSearch size={20} />
+            </span>
+            <input type="text" placeholder="Search..." className="h-full w-full pl-2 outline-none bg-transparent text-basegray " />
+          </div>
         </div>
         <div></div>
         <div></div>
