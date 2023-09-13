@@ -10,9 +10,7 @@ const MainLayout = ({ children }: LayoutProps) => {
   return (
     <main className="overflow-hidden h-screen flex items-start justify-start flex-col">
       <Navbar title="Connecting People, One Post at a Time" />
-      <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide">
-        {children}
-      </div>
+      <div className="w-full">{children}</div>
     </main>
   );
 };
