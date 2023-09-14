@@ -26,7 +26,7 @@ const Navbar = ({ title }: { title: String }) => {
           content="Connecting People, One Post at a Time"
         />
       </Head>
-      <nav className="w-full h-16 bg-white flex items-center justify-between gap-10">
+      <nav className="w-full h-16 bg-white flex items-center justify-between gap-3 md:gap-10">
         <div className="flex items-center justify-start gap-3">
           <Link href="/">
             <Image
@@ -36,18 +36,18 @@ const Navbar = ({ title }: { title: String }) => {
               height={48}
             />
           </Link>
-          <div className="flex items-center justify-start bg-bodybg h-10 px-2 rounded-xl text-basegray w-[250px]">
+          <div className="flex items-center justify-start bg-bodybg h-10 px-2 rounded-full lg:rounded-xl text-basegray w-fit lg:w-[250px]">
             <span className="cursor-pointer">
               <FiSearch size={20} />
             </span>
             <input
               type="text"
               placeholder="Search..."
-              className="h-full w-full pl-2 outline-none bg-transparent text-basegray "
+              className="h-full w-full pl-2 outline-none bg-transparent text-basegray hidden lg:flex"
             />
           </div>
         </div>
-        <ul className="flex items-center gap-5 h-full pt-2">
+        <ul className="md:flex hidden items-center gap-5 h-full pt-2">
           {NavIcons.map((item: NavIconType, i: number) => (
             <li
               key={i}
@@ -68,7 +68,10 @@ const Navbar = ({ title }: { title: String }) => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-5 h-full pr-6">
+        <div className="flex items-center gap-3 sm:gap-5 h-full pr-4 md:pr-6">
+          <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+            <FaBars size={20} />
+          </span>
           <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
             <BsMessenger size={20} />
           </span>
@@ -78,8 +81,8 @@ const Navbar = ({ title }: { title: String }) => {
           <Image
             src="/img/avatar.png"
             alt="user-avatar"
-            width={35}
-            height={35}
+            width={39}
+            height={39}
             className="rounded-full cursor-pointer"
           />
         </div>
