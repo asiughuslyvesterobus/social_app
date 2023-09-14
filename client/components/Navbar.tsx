@@ -6,6 +6,7 @@ import { NavIcons } from "@/data";
 import { NavIconType } from "@/type";
 import { FiSearch } from "react-icons/fi";
 import { BsMessenger, BsBell } from "react-icons/bs";
+import { FaBars } from "react-icons/fa6";
 
 const Navbar = ({ title }: { title: String }) => {
   const router = useRouter();
