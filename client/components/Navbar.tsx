@@ -67,10 +67,20 @@ const Navbar = ({ title }: { title: String }) => {
             </li>
           ))}
         </ul>
-        <div>
-          <span>
-            <BsMessenger />
+        <div className="flex items-center gap-5 h-full pr-6">
+          <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+            <BsMessenger size={20} />
           </span>
+          <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+            <BsBell size={20} />
+          </span>
+          <Image
+            src="/img/avatar.png"
+            alt="user-avatar"
+            width={35}
+            height={35}
+            className="rounded-full cursor-pointer"
+          />
         </div>
       </nav>
     </>
