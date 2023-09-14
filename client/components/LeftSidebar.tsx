@@ -1,5 +1,5 @@
 const LeftSidebar = () => {
-  return <div>LeftSidebar</div>;
+  return <nav aria-label="sidebar">LeftSidebar</nav>;
 };
 
 export default LeftSidebar;
