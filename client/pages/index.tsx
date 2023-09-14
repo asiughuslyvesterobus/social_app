@@ -4,14 +4,14 @@ import MainLayout from "@/layout/MainLayout";
 const Homepage = () => {
   return (
     <MainLayout>
-      <section className="w-full h-screen overflow-hidden flex items-start justify-start">
-        <div className="lg:flex-[1] w-full hidden md:flex">
+      <section className="w-full h-screen overflow-hidden flex items-start justify-start mt-[2px]">
+        <div className="lg:flex-[0.8] w-full hidden md:flex">
           <LeftSidebar />
         </div>
-        <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide">
-          children
+        <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4">
+          <div></div>
         </div>
-        <div className="lg:flex-[1] hidden lg:flex">
+        <div className="lg:flex-[0.8] hidden lg:flex">
           <RightSidebar />
         </div>
       </section>
