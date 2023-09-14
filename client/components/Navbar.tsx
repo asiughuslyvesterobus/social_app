@@ -69,7 +69,7 @@ const Navbar = ({ title }: { title: String }) => {
           ))}
         </ul>
         <div className="flex items-center gap-3 sm:gap-5 h-full pr-4 md:pr-6">
-          <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+          <span className="w-10 h-10 bg-btngray flex md:hidden items-center justify-center rounded-full cursor-pointer">
             <FaBars size={20} />
           </span>
           <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
