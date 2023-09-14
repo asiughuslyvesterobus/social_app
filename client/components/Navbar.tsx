@@ -26,7 +26,7 @@ const Navbar = ({ title }: { title: String }) => {
           content="Connecting People, One Post at a Time"
         />
       </Head>
-      <nav className="w-full h-16 bg-white flex items-center justify-between gap-3 md:gap-10">
+      <nav aria-label="header" className="w-full h-16 bg-white flex items-center justify-between gap-3 md:gap-10">
         <div className="flex items-center justify-start gap-3">
           <Link href="/">
             <Image
