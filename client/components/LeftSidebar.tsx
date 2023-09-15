@@ -22,6 +22,7 @@ const LeftSidebar = () => {
             height={30}
             className="rounded-full"
           />
+          <span className="text-base font-semibold text-black tracking-tight">Efe Starboy</span>
         </Link>
       )}
     </nav>
