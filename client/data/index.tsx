@@ -53,3 +53,12 @@ export const sideBarLink = [
     href: "/",
   },
 ];
+
+export const footerList = [
+  "Help",
+  "Safety",
+  "Terms",
+  "Privacy",
+  "Creator Portal",
+  "Community Guidelines",
+];
