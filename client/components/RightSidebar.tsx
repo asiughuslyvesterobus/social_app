@@ -18,11 +18,16 @@ const RightSidebar = () => {
       className="w-full h-screen overflow-y-auto overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start"
     >
       <div className="flex flex-col items-start w-full justify-start gap-3 pt-3">
-        <h4 className="text-lg font-semibold text-basegray tracking-tight">
-          Your shortcuts
-        </h4>
+        <div className="flex items-center justify-between w-full">
+          <h4 className="text-lg font-semibold text-basegray tracking-tight">
+            Contacts
+          </h4>
+          <span className="cursor-pointer text-basegray">
+            <HiDotsHorizontal size={19} />
+          </span>
+        </div>
         <ul className="flex flex-col items-start w-full justify-start gap-1">
-          {[0, 1, 2, 3].map((item, i) => (
+          {contacts.map((item, i) => (
             <li key={i} className="w-full">
               <Link
                 href="/"
@@ -33,10 +38,10 @@ const RightSidebar = () => {
                   alt="contact-images"
                   width={30}
                   height={30}
-                  className="rounded"
+                  className="rounded-full"
                 />
                 <span className="text-sm font-semibold text-black tracking-tight">
-                  UI / UX Designers & Developers
+                  {item}
                 </span>
               </Link>
             </li>
