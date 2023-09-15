@@ -5,21 +5,19 @@ const year = date.getFullYear();
 
 const Footer = () => {
   return (
-    <div className="block">
-      <div className="flex flex-wrap gap-2">
+    <footer className="block mt-4">
+      <ul className="flex flex-wrap gap-3">
         {footerList.map((item) => (
-          <p
+          <li
             key={item}
-            className="text-gray-400 dark:text-gray-200 text-sm hover:underline cursor-pointer"
+            className="text-basegray text-sm font-normal hover:underline cursor-pointer"
           >
             {item}
-          </p>
+          </li>
         ))}
-      </div>
-      <p className="text-gray-400 dark:text-gray-200 text-sm mt-5">
-        {year} ConnectSmart
-      </p>
-    </div>
+      </ul>
+      <p className="text-basegray text-sm font-normal">{year} ConnectSmart</p>
+    </footer>
   );
 };
 
