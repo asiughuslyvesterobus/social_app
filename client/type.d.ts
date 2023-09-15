@@ -11,3 +11,10 @@ export interface NavIconType {
   tooltip: string;
   href: string;
 }
+
+
+export interface StoryProp {
+  storyImage: String;
+  profileImg: String;
+  profileName: String;
+}

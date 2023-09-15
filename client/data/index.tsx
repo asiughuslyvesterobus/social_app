@@ -2,6 +2,7 @@ import { AiFillHome } from "react-icons/ai";
 import { PiMonitorPlayFill } from "react-icons/pi";
 import { BsShop } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi2";
+import { StoryProp } from "@/type";
 
 export const NavIcons = [
   {
@@ -63,7 +64,7 @@ export const footerList = [
   "Community Guidelines",
 ];
 
-export const cardDatas = [
+export const cardData: StoryProp[] = [
   {
     storyImage: "/img/story1.png",
     profileImg: "/img/story1.png",

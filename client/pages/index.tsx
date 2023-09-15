@@ -1,5 +1,7 @@
-import { LeftSidebar, RightSidebar } from "@/components";
+import { LeftSidebar, RightSidebar, StoryCard } from "@/components";
+import { cardData } from "@/data";
 import MainLayout from "@/layout/MainLayout";
+import { StoryProp } from "@/type";
 import { FiPlus } from "react-icons/fi";
 
 const Homepage = () => {
@@ -28,7 +30,9 @@ const Homepage = () => {
               </div>
             </div>
 
-            {}
+            {cardData.map((item: StoryProp, i: number) => (
+              <StoryCard key={i} {...item} />
+            ))}
           </div>
         </div>
         <div className="lg:flex-[0.8] hidden lg:flex">
