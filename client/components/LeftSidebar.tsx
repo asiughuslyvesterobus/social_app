@@ -13,7 +13,7 @@ const LeftSidebar = () => {
       ) : (
         <Link
           href={`/profile/42`}
-          className="flex items-center justify-start w-full gap-2"
+          className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
         >
           <Image
             src="/img/avatar.png"
@@ -25,6 +25,8 @@ const LeftSidebar = () => {
           <span className="text-base font-semibold text-black tracking-tight">Efe Starboy</span>
         </Link>
       )}
+
+
     </nav>
   );
 };
