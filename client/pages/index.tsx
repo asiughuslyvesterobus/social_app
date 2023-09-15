@@ -27,6 +27,8 @@ const Homepage = () => {
                 <span>Create story</span>
               </div>
             </div>
+
+            {}
           </div>
         </div>
         <div className="lg:flex-[0.8] hidden lg:flex">
