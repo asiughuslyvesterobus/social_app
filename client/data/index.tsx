@@ -34,7 +34,7 @@ export const sideBarLink = [
   },
   {
     imgUrl: "/icon/watchIcon.svg",
-    text: "Watch",
+    text: "Video",
     href: "/",
   },
   {
@@ -43,8 +43,8 @@ export const sideBarLink = [
     href: "/",
   },
   {
-    imgUrl: "/icon/saved.svg",
-    text: "Saved",
+    imgUrl: "/icon/adsIcon.svg",
+    text: "Ads",
     href: "/",
   },
 ];
