@@ -25,3 +25,9 @@ export const NavIcons = [
     href: "/group",
   },
 ];
+
+export const sideBarLink = [
+  {
+    imgUrl:""
+  },
+];
