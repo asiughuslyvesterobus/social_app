@@ -11,7 +11,7 @@ const StoryCard = ({ profileImg, profileName, storyImage }: StoryProp) => {
         height={100}
         className="w-full h-full group-hover:scale-[1.08] transition-all"
       />
-      <div className="absolute w-full h-full bg-black/30 transition-all inset-0 flex items-start justify-between p-4 flex-col">
+      <div className="absolute w-full h-full bg-black/20 group-hover:bg-black/50 transition-all inset-0 flex items-start justify-between p-4 flex-col">
         <Image
           src={profileImg}
           alt="user_profile"
