@@ -28,6 +28,23 @@ export const NavIcons = [
 
 export const sideBarLink = [
   {
-    imgUrl:""
+    imgUrl: "/icon/friend.png",
+    text: "Friends",
+    href: "/",
+  },
+  {
+    imgUrl: "/icon/watchIcon.svg",
+    text: "Watch",
+    href: "/",
+  },
+  {
+    imgUrl: "/icon/saved.svg",
+    text: "Saved",
+    href: "/",
+  },
+  {
+    imgUrl: "/icon/saved.svg",
+    text: "Saved",
+    href: "/",
   },
 ];
