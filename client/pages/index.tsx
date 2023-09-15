@@ -9,7 +9,7 @@ const Homepage = () => {
           <LeftSidebar />
         </div>
         <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
-          <div className="bg-white py-4 w-full">
+          <div className="bg-white py-4 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
             
           </div>
         </div>
