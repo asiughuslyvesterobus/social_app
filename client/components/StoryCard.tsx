@@ -9,9 +9,9 @@ const StoryCard = ({ profileImg, profileName, storyImage }: StoryProp) => {
         alt="story"
         width={100}
         height={100}
-        className="w-full h-full object-cover group-hover:scale-[1.08] transition-all"
+        className="w-full h-full group-hover:scale-[1.08] transition-all"
       />
-      <div className="absolute w-full h-full group-hover:bg-black/40 transition-all inset-0 flex items-start justify-between p-4">
+      <div className="absolute w-full h-full bg-black/30 transition-all inset-0 flex items-start justify-between p-4 flex-col">
         <Image
           src={profileImg}
           alt="user_profile"
@@ -19,6 +19,7 @@ const StoryCard = ({ profileImg, profileName, storyImage }: StoryProp) => {
           height={30}
           className="rounded-full border-[4px] border-primary"
         />
+        <span className="text-lg text-white font-semibold">{profileName}</span>
       </div>
     </div>
   );
