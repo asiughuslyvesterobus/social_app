@@ -29,8 +29,11 @@ const RightSidebar = () => {
                 Search by name or group
               </span>
             </span>
-            <span className="cursor-pointer text-basegray relative">
+            <span className="cursor-pointer text-basegray relative group">
               <HiDotsHorizontal size={20} />
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[22px] left-[-45px] bg-btngray/80 py-3 px-4 rounded-xl font-semibold text-sm w-fit">
+                Option
+              </span>
             </span>
           </div>
         </div>
