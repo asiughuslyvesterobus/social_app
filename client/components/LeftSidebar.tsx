@@ -1,3 +1,4 @@
+import { sideBarLink } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,11 +23,32 @@ const LeftSidebar = () => {
             height={30}
             className="rounded-full"
           />
-          <span className="text-base font-semibold text-black tracking-tight">Efe Starboy</span>
+          <span className="text-base font-semibold text-black tracking-tight">
+            Efe Starboy
+          </span>
         </Link>
       )}
 
-
+      <ul className="flex flex-col items-start w-full justify-start gap-2 pl-2">
+        {sideBarLink.map((item, i) => (
+          <li key={i}>
+            <Link
+              href={item.href}
+              className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
+            >
+              <Image
+                src={item.imgUrl}
+                alt={`${item.text}_icon`}
+                width={20}
+                height={20}
+              />
+              <span className="text-base font-semibold text-black tracking-tight">
+                {item.text}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };
