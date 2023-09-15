@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaUserCircle } from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 import { HiDotsHorizontal } from "react-icons/hi";
 
 const RightSidebar = () => {
@@ -22,9 +22,17 @@ const RightSidebar = () => {
           <h4 className="text-lg font-semibold text-basegray tracking-tight">
             Contacts
           </h4>
-          <span className="cursor-pointer text-basegray">
-            <HiDotsHorizontal size={19} />
-          </span>
+          <div className="flex items-center justify-end gap-4">
+            <span className="cursor-pointer text-basegray relative group">
+              <FiSearch size={20} />
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[22px] left-[-185px] bg-btngray/80 py-4 px-4 rounded-xl font-semibold text-sm w-fit">
+                Search by name or group
+              </span>
+            </span>
+            <span className="cursor-pointer text-basegray relative">
+              <HiDotsHorizontal size={20} />
+            </span>
+          </div>
         </div>
         <ul className="flex flex-col items-start w-full justify-start gap-1">
           {contacts.map((item, i) => (
