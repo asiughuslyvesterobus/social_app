@@ -55,12 +55,14 @@ const Homepage = () => {
         </div>
         <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
           <div className="bg-white py-4 w-full relative px-2 flex items-center">
-            <span
-              onClick={slideLeft}
-              className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-0 rounded-full cursor-pointer"
-            >
-              <BsChevronLeft size={20} className="" />
-            </span>
+            {slideNavigate.left === true && (
+              <span
+                onClick={slideLeft}
+                className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-0 rounded-full cursor-pointer"
+              >
+                <BsChevronLeft size={20} className="" />
+              </span>
+            )}
             <div
               ref={sliderRef}
               className="w-full h-full overflow-x-scroll overflow-y-hidden whitespace-nowrap scroll-smooth scrollbar-hide relative"
@@ -87,9 +89,14 @@ const Homepage = () => {
                 <StoryCard key={i} {...item} />
               ))}
             </div>
-            <span className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white right-0 rounded-full cursor-pointer">
-              <BsChevronRight size={23} className="ml-1" />
-            </span>
+            {slideNavigate.right === true && (
+              <span
+                onClick={slideRight}
+                className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white right-0 rounded-full cursor-pointer"
+              >
+                <BsChevronRight size={23} className="ml-1" />
+              </span>
+            )}
           </div>
           <div className="w-full"></div>
         </div>
