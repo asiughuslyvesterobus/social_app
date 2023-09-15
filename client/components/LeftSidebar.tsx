@@ -1,6 +1,7 @@
 import { sideBarLink } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
+import { Footer } from ".";
 
 const LeftSidebar = () => {
   const user = null;
@@ -76,6 +77,7 @@ const LeftSidebar = () => {
           ))}
         </ul>
       </div>
+      <Footer />
     </nav>
   );
 };
