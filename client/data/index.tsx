@@ -80,4 +80,34 @@ export const cardData: StoryProp[] = [
     profileImg: "/img/story3.png",
     profileName: "Jason Dodd",
   },
+  {
+    storyImage: "/img/story1.png",
+    profileImg: "/img/story1.png",
+    profileName: "Islam Ali",
+  },
+  {
+    storyImage: "/img/story2.png",
+    profileImg: "/img/story2.png",
+    profileName: "Albert Flores",
+  },
+  {
+    storyImage: "/img/story3.png",
+    profileImg: "/img/story3.png",
+    profileName: "Jason Dodd",
+  },
+  {
+    storyImage: "/img/story1.png",
+    profileImg: "/img/story1.png",
+    profileName: "Islam Ali",
+  },
+  {
+    storyImage: "/img/story2.png",
+    profileImg: "/img/story2.png",
+    profileName: "Albert Flores",
+  },
+  {
+    storyImage: "/img/story3.png",
+    profileImg: "/img/story3.png",
+    profileName: "Jason Dodd",
+  },
 ];

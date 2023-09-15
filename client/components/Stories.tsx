@@ -47,41 +47,6 @@ const Stories = () => {
     }
   };
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-
-    const handleScroll = () => {
-      if (slider) {
-        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-
-        if (slider.scrollLeft > 0 && !slideNavigate.left) {
-          setSlideNavigate((prev) => ({
-            ...prev,
-            left: true,
-          }));
-        } else if (slider.scrollLeft === 0 && !slideNavigate.right) {
-          setSlideNavigate((prev) => ({
-            ...prev,
-            right: true,
-          }));
-        } else if (slider.scrollLeft < maxScrollLeft) {
-          setSlideNavigate((prev) => ({
-            ...prev,
-            left: false,
-          }));
-        }
-      }
-    };
-
-    if (slider) {
-      slider.addEventListener("scroll", handleScroll);
-
-      return () => {
-        slider.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [slideNavigate]);
-
   return (
     <div className="bg-white py-4 w-full relative px-2 flex items-center">
       <span
