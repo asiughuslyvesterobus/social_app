@@ -15,11 +15,11 @@ const StoryCard = ({ profileImg, profileName, storyImage }: StoryProp) => {
         <Image
           src={profileImg}
           alt="user_profile"
-          width={30}
-          height={30}
+          width={35}
+          height={35}
           className="rounded-full border-[4px] border-primary"
         />
-        <span className="text-lg text-white font-semibold">{profileName}</span>
+        <span className="text-base text-white font-semibold">{profileName}</span>
       </div>
     </div>
   );
