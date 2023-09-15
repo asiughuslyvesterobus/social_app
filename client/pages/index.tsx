@@ -1,10 +1,10 @@
+import { useRef } from "react";
+import MainLayout from "@/layout/MainLayout";
 import { LeftSidebar, RightSidebar, StoryCard } from "@/components";
 import { cardData } from "@/data";
-import MainLayout from "@/layout/MainLayout";
 import { StoryProp } from "@/type";
 import { FiPlus } from "react-icons/fi";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import { useRef } from "react";
 
 const Homepage = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
