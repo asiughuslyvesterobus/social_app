@@ -16,7 +16,7 @@ const Stories = () => {
     if (sliderRef.current) {
       const slider = sliderRef.current;
       if (slider.scrollLeft > 0) {
-        slider.scrollLeft = slider.scrollLeft - 190;
+        slider.scrollLeft = slider.scrollLeft - 210;
       } else {
         setSlideNavigate((prev) => ({
           ...prev,
@@ -33,7 +33,7 @@ const Stories = () => {
       let maxScrollLeft = slider.scrollWidth - slider.clientWidth; // maximum scroll position
       if (slider.scrollLeft < maxScrollLeft) {
         // check if not at the end
-        slider.scrollLeft = slider.scrollLeft + 190;
+        slider.scrollLeft = slider.scrollLeft + 210;
         setSlideNavigate((prev) => ({
           ...prev,
           left: true,
