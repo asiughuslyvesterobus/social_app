@@ -50,7 +50,8 @@ const LeftSidebar = () => {
         ))}
       </ul>
 
-      <div className="flex flex-col items-start w-full justify-start gap-3">
+      <div className="flex flex-col items-start w-full justify-start gap-3 pt-3">
+        <h4 className="text-lg font-semibold text-basegray tracking-tight">Your shortcuts</h4>
         <ul className="flex flex-col items-start w-full justify-start gap-1">
           {[0, 1, 2, 3].map((item, i) => (
             <li key={i} className=""></li>
