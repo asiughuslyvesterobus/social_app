@@ -16,7 +16,7 @@ const Stories = () => {
     if (sliderRef.current) {
       const slider = sliderRef.current;
       if (slider.scrollLeft > 0) {
-        slider.scrollLeft = slider.scrollLeft - 50;
+        slider.scrollLeft = slider.scrollLeft - 190;
       } else {
         setSlideNavigate((prev) => ({
           ...prev,
@@ -33,7 +33,7 @@ const Stories = () => {
       let maxScrollLeft = slider.scrollWidth - slider.clientWidth; // maximum scroll position
       if (slider.scrollLeft < maxScrollLeft) {
         // check if not at the end
-        slider.scrollLeft = slider.scrollLeft + 50;
+        slider.scrollLeft = slider.scrollLeft + 190;
         setSlideNavigate((prev) => ({
           ...prev,
           left: true,
@@ -51,7 +51,7 @@ const Stories = () => {
     <div className="bg-white py-4 w-full relative px-2 flex items-center">
       <span
         onClick={slideLeft}
-        className={`absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-5 z-10 rounded-full cursor-pointer ${
+        className={`absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-3 z-10 rounded-full cursor-pointer ${
           slideNavigate.left === true
             ? "opacity-100 scale-100"
             : "opacity-0 scale-0"
