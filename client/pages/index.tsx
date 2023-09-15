@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import MainLayout from "@/layout/MainLayout";
 import { LeftSidebar, RightSidebar, StoryCard } from "@/components";
 import { cardData } from "@/data";
@@ -7,7 +7,45 @@ import { FiPlus } from "react-icons/fi";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 
 const Homepage = () => {
+  const [slideNavigate, setSlideNavigate] = useState({
+    left: false,
+    right: true,
+  });
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  const slideLeft = () => {
+    if (sliderRef.current) {
+      const slider = sliderRef.current;
+      if (slider.scrollLeft > 0) {
+        slider.scrollLeft = slider.scrollLeft - 50;
+      } else {
+        setSlideNavigate((prev) => ({
+          ...prev,
+          right: false,
+        }));
+      }
+    }
+  };
+
+  const slideRight = () => {
+    if (sliderRef.current) {
+      const slider = sliderRef.current;
+      let maxScrollLeft = slider.scrollWidth - slider.clientWidth; // maximum scroll position
+      if (slider.scrollLeft < maxScrollLeft) {
+        // check if not at the end
+        slider.scrollLeft = slider.scrollLeft + 50;
+        setSlideNavigate((prev) => ({
+          ...prev,
+          left: true,
+        }));
+      } else {
+        setSlideNavigate((prev) => ({
+          ...prev,
+          right: false,
+        }));
+      }
+    }
+  };
 
   return (
     <MainLayout>
@@ -17,7 +55,10 @@ const Homepage = () => {
         </div>
         <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
           <div className="bg-white py-4 w-full relative px-2 flex items-center">
-            <span className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-0 rounded-full cursor-pointer">
+            <span
+              onClick={slideLeft}
+              className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-0 rounded-full cursor-pointer"
+            >
               <BsChevronLeft size={20} className="" />
             </span>
             <div
