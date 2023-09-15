@@ -17,7 +17,7 @@ const Footer = () => {
         ))}
       </div>
       <p className="text-gray-400 dark:text-gray-200 text-sm mt-5">
-        {year} CS Social
+        {year} ConnectSmart
       </p>
     </div>
   );
