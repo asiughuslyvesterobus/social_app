@@ -12,9 +12,8 @@ export interface NavIconType {
   href: string;
 }
 
-
 export interface StoryProp {
   storyImage: any;
-  profileImg: String;
+  profileImg: any;
   profileName: String;
 }
