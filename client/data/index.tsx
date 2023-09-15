@@ -47,4 +47,9 @@ export const sideBarLink = [
     text: "Ads",
     href: "/",
   },
+  {
+    imgUrl: "/icon/messengerIcon.svg",
+    text: "Messenger",
+    href: "/",
+  },
 ];
