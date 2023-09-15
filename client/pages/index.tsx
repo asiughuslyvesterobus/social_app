@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import MainLayout from "@/layout/MainLayout";
 import { LeftSidebar, RightSidebar, StoryCard } from "@/components";
 import { cardData } from "@/data";
@@ -21,7 +21,8 @@ const Homepage = () => {
       } else {
         setSlideNavigate((prev) => ({
           ...prev,
-          right: false,
+          left: false,
+          right: true,
         }));
       }
     }
@@ -47,6 +48,42 @@ const Homepage = () => {
     }
   };
 
+  useEffect(() => {
+    const slider = sliderRef.current;
+
+    const handleScroll = () => {
+      if (slider) {
+        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+
+        if (slider.scrollLeft > 0 && !slideNavigate.left) {
+          setSlideNavigate((prev) => ({
+            ...prev,
+            left: true,
+          }));
+        } else if (slider.scrollLeft === 0 && !slideNavigate.right) {
+          setSlideNavigate((prev) => ({
+            ...prev,
+            left: false,
+            right: true,
+          }));
+        } else if (slider.scrollLeft < maxScrollLeft) {
+          setSlideNavigate((prev) => ({
+            ...prev,
+            left: false,
+          }));
+        }
+      }
+    };
+
+    if (slider) {
+      slider.addEventListener("scroll", handleScroll);
+
+      return () => {
+        slider.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [slideNavigate]);
+
   return (
     <MainLayout>
       <section className="w-full h-screen overflow-hidden flex items-start justify-start mt-[2px]">
@@ -55,14 +92,17 @@ const Homepage = () => {
         </div>
         <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
           <div className="bg-white py-4 w-full relative px-2 flex items-center">
-            {slideNavigate.left === true && (
-              <span
-                onClick={slideLeft}
-                className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-0 rounded-full cursor-pointer"
-              >
-                <BsChevronLeft size={20} className="" />
-              </span>
-            )}
+            <span
+              onClick={slideLeft}
+              className={`absolute w-10 h-10 bg-basegray flex items-center justify-center text-white left-5 z-10 rounded-full cursor-pointer ${
+                slideNavigate.left === true
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-0"
+              } transition-all`}
+            >
+              <BsChevronLeft size={20} />
+            </span>
+
             <div
               ref={sliderRef}
               className="w-full h-full overflow-x-scroll overflow-y-hidden whitespace-nowrap scroll-smooth scrollbar-hide relative"
@@ -89,14 +129,17 @@ const Homepage = () => {
                 <StoryCard key={i} {...item} />
               ))}
             </div>
-            {slideNavigate.right === true && (
-              <span
-                onClick={slideRight}
-                className="absolute w-10 h-10 bg-basegray flex items-center justify-center text-white right-0 rounded-full cursor-pointer"
-              >
-                <BsChevronRight size={23} className="ml-1" />
-              </span>
-            )}
+
+            <span
+              onClick={slideRight}
+              className={`absolute w-10 h-10 bg-basegray flex items-center z-10 justify-center text-white right-0 rounded-full cursor-pointer ${
+                slideNavigate.right === true
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-0"
+              } transition-all`}
+            >
+              <BsChevronRight size={23} className="ml-1" />
+            </span>
           </div>
           <div className="w-full"></div>
         </div>
