@@ -1,5 +1,10 @@
 import MainLayout from "@/layout/MainLayout";
-import { LeftSidebar, RightSidebar, Stories } from "@/components";
+import {
+  CreatePostCard,
+  LeftSidebar,
+  RightSidebar,
+  Stories,
+} from "@/components";
 
 const Homepage = () => {
   return (
@@ -10,7 +15,7 @@ const Homepage = () => {
         </div>
         <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
           <Stories />
-          
+          <CreatePostCard />
         </div>
         <div className="lg:flex-[0.8] hidden lg:flex">
           <RightSidebar />
