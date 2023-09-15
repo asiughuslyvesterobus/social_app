@@ -29,9 +29,9 @@ const LeftSidebar = () => {
         </Link>
       )}
 
-      <ul className="flex flex-col items-start w-full justify-start gap-2 pl-2">
+      <ul className="flex flex-col items-start w-full justify-start gap-1 pl-2 border-b">
         {sideBarLink.map((item, i) => (
-          <li key={i}>
+          <li key={i} className="w-full">
             <Link
               href={item.href}
               className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
@@ -39,7 +39,7 @@ const LeftSidebar = () => {
               <Image
                 src={item.imgUrl}
                 alt={`${item.text}_icon`}
-                width={20}
+                width={18}
                 height={20}
               />
               <span className="text-base font-semibold text-black tracking-tight">
@@ -49,6 +49,14 @@ const LeftSidebar = () => {
           </li>
         ))}
       </ul>
+
+      <div className="flex flex-col items-start w-full justify-start gap-3">
+        <ul className="flex flex-col items-start w-full justify-start gap-1">
+          {[0, 1, 2, 3].map((item, i) => (
+            <li key={i} className=""></li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
