@@ -18,7 +18,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#ededed] rounded-3xl;
+  @apply bg-basegray rounded-3xl;
 }
 
 ::-webkit-scrollbar-track {
