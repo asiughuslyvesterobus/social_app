@@ -54,7 +54,30 @@ const PostCard = ({ post }: IProp) => {
           className="rounded w-full h-auto"
         />
       </div>
-      <div className="w-full flex flex-col items-start justify-start gap-4"></div>
+      <div className="w-full flex flex-col items-start justify-start gap-4">
+        <div className="w-full flex items-center justify-between gap-3 py-3 border-b border-btngray">
+          <span className="flex items-center justify-start gap-1">
+            <span>
+              <Image src="/icon/like.svg" alt="like" width={20} height={20} />
+            </span>
+            <span className="text-sm font-normal text-[#888]">1.2k</span>
+          </span>
+          <div className="flex items-center justify-start gap-3">
+            <span className="flex items-center justify-start gap-1 text-[#888]">
+              <span className="text-sm font-normal text-[#888]">1.2k</span>
+              <span>
+                <BiComment size={20} />
+              </span>
+            </span>
+            <span className="flex items-center justify-start gap-1 text-[#888]">
+              <span className="text-sm font-normal text-[#888]">1.2k</span>
+              <span>
+                <PiShareFatLight size={20} />
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
