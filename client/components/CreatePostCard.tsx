@@ -1,6 +1,6 @@
 import { RiLiveLine } from "react-icons/ri";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
-import { LiaLaugh } from "react-icons/lia";
+import { FaLaugh } from "react-icons/fa";
 import Image from "next/image";
 
 const CreatePostCard = () => {
@@ -35,7 +35,7 @@ const CreatePostCard = () => {
         </div>
         <div className="flex items-center gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-5 rounded-md cursor-pointer">
           <span className="text-warning">
-            <LiaLaugh size={25} />
+            <FaLaugh size={25} />
           </span>
           <span className="text-base font-medium text-basegray">Feeling/activity</span>
         </div>
