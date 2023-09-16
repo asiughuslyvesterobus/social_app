@@ -15,7 +15,7 @@ const Homepage = () => {
         <div className="lg:flex-[0.8] md:w-[35%] w-full hidden md:flex">
           <LeftSidebar />
         </div>
-        <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4">
+        <div className="lg:flex-[2] w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4 pb-10">
           <Stories />
           <CreatePostCard />
           <div className="w-full flex flex-col items-start justify-start gap-6">
