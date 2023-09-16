@@ -28,6 +28,9 @@ const PostCard = ({ post }: IProp) => {
             height={40}
             className="rounded-full"
           />
+          <div className="flex flex-col items-start justify-start">
+            
+          </div>
         </Link>
       </div>
     </div>
