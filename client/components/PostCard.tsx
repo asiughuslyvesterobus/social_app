@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BiWorld } from "react-icons/bi";
 
 interface PostCardProp {
   id: String | Number;
   userProfileUrl: any;
   userName: String;
-  date: String | Number;
+  date: String;
   userPost: String;
 }
 
@@ -29,7 +30,14 @@ const PostCard = ({ post }: IProp) => {
             className="rounded-full"
           />
           <div className="flex flex-col items-start justify-start">
-            
+            <h2 className="text-base font-medium text-black">
+              {post.userName}
+            </h2>
+            <span className="text-sm font-normal text-[#888] flex items-center gap-1">
+              {post.date}{" "}
+              <span className="w-[3px] h-[3px] bg-basegray inline-block rounded-full"></span>{" "}
+              <BiWorld />
+            </span>
           </div>
         </Link>
       </div>
