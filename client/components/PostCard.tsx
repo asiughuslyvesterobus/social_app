@@ -8,7 +8,7 @@ interface PostCardProp {
   userProfileUrl: any;
   userName: String;
   date: String;
-  userPost: String;
+  userPost: any;
 }
 
 interface IProp {
@@ -44,6 +44,9 @@ const PostCard = ({ post }: IProp) => {
         <span className="text-basegray cursor-pointer hover:bg-bodybg w-10 h-10 flex items-center justify-center rounded-full transition-all">
           <HiDotsHorizontal size={20} />
         </span>
+      </div>
+      <div className="max-h-[800px] w-full">
+        <img  src={post.userPost} alt="user-post" className="rounded w-full h-auto" />
       </div>
     </div>
   );
