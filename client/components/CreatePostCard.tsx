@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const CreatePostCard = () => {
   return (
-    <div className="w-full bg-white p-3 flex flex-col items-start justify-start">
+    <div className="w-full bg-white p-3 flex flex-col items-start justify-start rounded">
       <div className="w-full flex items-center justify-start gap-4 border-b pb-5 border-btngray">
         <Image
           src="/img/avatar.png"
