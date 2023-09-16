@@ -54,7 +54,7 @@ const PostCard = ({ post }: IProp) => {
           className="rounded w-full h-auto"
         />
       </div>
-      <div className="w-full flex flex-col items-start justify-start gap-4">
+      <div className="w-full flex flex-col items-start justify-start">
         <div className="w-full flex items-center justify-between gap-3 py-3 border-b border-btngray">
           <span className="flex items-center justify-start gap-1">
             <span>
@@ -74,6 +74,33 @@ const PostCard = ({ post }: IProp) => {
               <span>
                 <PiShareFatLight size={20} />
               </span>
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between lg:justify-evenly w-full">
+          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+            <span className="text-[#888]">
+              <AiOutlineLike className="w-4 h-4 sm:w-6 sm:h-6" />
+            </span>
+            <span className="text-sm sm:text-base font-medium text-basegray">
+              Like
+            </span>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+            <span className="text-[#888]">
+              <BiComment className="w-4 h-4 sm:w-6 sm:h-6" />
+            </span>
+            <span className="text-sm sm:text-base font-medium text-basegray">
+              Comment
+            </span>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+            <span className="text-[#888]">
+              <PiShareFatLight className="w-4 h-4 sm:w-6 sm:h-6" />
+            </span>
+            <span className="text-sm sm:text-base font-medium text-basegray">
+              Share
             </span>
           </div>
         </div>
