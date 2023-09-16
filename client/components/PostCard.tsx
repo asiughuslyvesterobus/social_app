@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BiWorld } from "react-icons/bi";
+import { BiWorld, BiComment } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
+import { AiOutlineLike } from "react-icons/ai";
+import { PiShareFatLight } from "react-icons/pi";
 
 interface PostCardProp {
   id: String | Number;
@@ -46,9 +48,13 @@ const PostCard = ({ post }: IProp) => {
         </span>
       </div>
       <div className="max-h-[800px] w-full">
-        <img  src={post.userPost} alt="user-post" className="rounded w-full h-auto" />
+        <img
+          src={post.userPost}
+          alt="user-post"
+          className="rounded w-full h-auto"
+        />
       </div>
-      <div></div>
+      <div className="w-full flex flex-col items-start justify-start gap-4"></div>
     </div>
   );
 };
