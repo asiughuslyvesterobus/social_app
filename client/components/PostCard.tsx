@@ -48,6 +48,7 @@ const PostCard = ({ post }: IProp) => {
       <div className="max-h-[800px] w-full">
         <img  src={post.userPost} alt="user-post" className="rounded w-full h-auto" />
       </div>
+      <div></div>
     </div>
   );
 };

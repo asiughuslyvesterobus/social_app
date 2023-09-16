@@ -124,7 +124,7 @@ export const postData = [
     userProfileUrl: "/img/avatar.png",
     userName: "John Doe",
     date: "5s",
-    userPost: "/img/post.png",
+    userPost: "/img/post2.png",
   },
   {
     id: "01029302",
@@ -138,6 +138,6 @@ export const postData = [
     userProfileUrl: "/img/profile2.png",
     userName: "Mike Tyson",
     date: "5s",
-    userPost: "/img/post.png",
+    userPost: "/img/post2.png",
   },
 ];
