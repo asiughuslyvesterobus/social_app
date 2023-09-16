@@ -110,3 +110,12 @@ export const cardData = [
     profileName: "Jason Dodd",
   },
 ];
+
+export const postData = [
+  {
+    userProfileUrl: "/img/avatar.png",
+    userName: "Albert Flores",
+    date: "5s",
+    userPost: "/img/post.png",
+  },
+];
