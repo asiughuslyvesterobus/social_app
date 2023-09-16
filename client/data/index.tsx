@@ -113,8 +113,30 @@ export const cardData = [
 
 export const postData = [
   {
+    id: "01029302",
     userProfileUrl: "/img/avatar.png",
     userName: "Albert Flores",
+    date: "5s",
+    userPost: "/img/post.png",
+  },
+  {
+    id: "01029302",
+    userProfileUrl: "/img/avatar.png",
+    userName: "John Doe",
+    date: "5s",
+    userPost: "/img/post.png",
+  },
+  {
+    id: "01029302",
+    userProfileUrl: "/img/avatar.png",
+    userName: "Jason Todd",
+    date: "5s",
+    userPost: "/img/post.png",
+  },
+  {
+    id: "01029302",
+    userProfileUrl: "/img/avatar.png",
+    userName: "Mike Tyson",
     date: "5s",
     userPost: "/img/post.png",
   },
