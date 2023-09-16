@@ -11,7 +11,7 @@ interface IProp {
 }
 
 const PostCard = ({ post }: IProp) => {
-  return <div>PostCard</div>;
+  return <div className="w-full bg-white p-3 rounded-lg">PostCard</div>;
 };
 
 export default PostCard;
