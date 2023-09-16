@@ -9,7 +9,7 @@ import {
 const Homepage = () => {
   return (
     <MainLayout>
-      <section className="w-full h-screen overflow-hidden flex items-start justify-start mt-[2px]">
+      <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex items-start justify-start mt-[2px]">
         <div className="lg:flex-[0.8] md:w-[35%] w-full hidden md:flex">
           <LeftSidebar />
         </div>
