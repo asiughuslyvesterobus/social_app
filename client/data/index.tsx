@@ -135,7 +135,7 @@ export const postData = [
   },
   {
     id: "01029302",
-    userProfileUrl: "/img/avatar.png",
+    userProfileUrl: "/img/profile2.png",
     userName: "Mike Tyson",
     date: "5s",
     userPost: "/img/post.png",
