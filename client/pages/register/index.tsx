@@ -213,78 +213,80 @@ const Registerpage = () => {
                 placeholder="Bio"
                 className="bg-white border pt-3 border-[#E3E5E8] h-[140px] resize-none w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
-              <div className="flex flex-col gap-1 w-full">
-                <label htmlFor="password" className="text-sm font-medium">
-                  Password <span className="text-danger">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Password*"
-                    maxLength={60}
-                    className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
-                      errors.password && touched.password
-                        ? "!border-red-500 focus:!border-red-500"
-                        : ""
-                    }`}
-                  />
-                  <span
-                    onClick={toggle}
-                    className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
-                  >
-                    {showPassword ? (
-                      <AiOutlineEye size={20} />
-                    ) : (
-                      <AiOutlineEyeInvisible size={20} />
-                    )}
-                  </span>
-                </div>
+              <div className="w-full flex flex-col tab:flex-row items-start justify-between gap-3">
+                <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="password" className="text-sm font-medium">
+                    Password <span className="text-danger">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="Password*"
+                      maxLength={60}
+                      className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
+                        errors.password && touched.password
+                          ? "!border-red-500 focus:!border-red-500"
+                          : ""
+                      }`}
+                    />
+                    <span
+                      onClick={toggle}
+                      className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
+                    >
+                      {showPassword ? (
+                        <AiOutlineEye size={20} />
+                      ) : (
+                        <AiOutlineEyeInvisible size={20} />
+                      )}
+                    </span>
+                  </div>
 
-                {errors.password && (
-                  <p className="text-red-600 text-xs">{`${errors.password}`}</p>
-                )}
-              </div>
-              <div className="flex flex-col gap-1 w-full">
-                <label
-                  htmlFor="confirm_password"
-                  className="text-sm font-medium"
-                >
-                  Confirm Password <span className="text-danger">*</span>
-                </label>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    name="confirm_password"
-                    id="confirm_password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Confirm Password*"
-                    maxLength={60}
-                    className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
-                      errors.confirm_password && touched.confirm_password
-                        ? "!border-red-500 focus:!border-red-500"
-                        : ""
-                    }`}
-                  />
-                  <span
-                    onClick={toggleConfirm}
-                    className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
-                  >
-                    {showConfirmPassword ? (
-                      <AiOutlineEye size={20} />
-                    ) : (
-                      <AiOutlineEyeInvisible size={20} />
-                    )}
-                  </span>
+                  {errors.password && (
+                    <p className="text-red-600 text-xs">{`${errors.password}`}</p>
+                  )}
                 </div>
+                <div className="flex flex-col gap-1 w-full">
+                  <label
+                    htmlFor="confirm_password"
+                    className="text-sm font-medium"
+                  >
+                    Confirm Password <span className="text-danger">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      name="confirm_password"
+                      id="confirm_password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      placeholder="Confirm Password*"
+                      maxLength={60}
+                      className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
+                        errors.confirm_password && touched.confirm_password
+                          ? "!border-red-500 focus:!border-red-500"
+                          : ""
+                      }`}
+                    />
+                    <span
+                      onClick={toggleConfirm}
+                      className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
+                    >
+                      {showConfirmPassword ? (
+                        <AiOutlineEye size={20} />
+                      ) : (
+                        <AiOutlineEyeInvisible size={20} />
+                      )}
+                    </span>
+                  </div>
 
-                {errors.confirm_password && (
-                  <p className="text-red-600 text-xs">{`${errors.confirm_password}`}</p>
-                )}
+                  {errors.confirm_password && (
+                    <p className="text-red-600 text-xs">{`${errors.confirm_password}`}</p>
+                  )}
+                </div>
               </div>
               <div className="w-full flex items-center justify-between">
                 <div className="flex gap-2 items-center">
