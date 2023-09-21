@@ -99,7 +99,7 @@ const Registerpage = () => {
           </Link>
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
             <h2 className="text-dark text-lg md:text-3xl font-bold">
-              <span className="flex items-center justify-start gap-1">
+              <span className="flex items-center justify-start gap-1 text-[#0B0D0E]">
                 Welcome <img src="/icon/emoji.png" alt="smile" />
               </span>{" "}
               <span className="hidden lg:block">Let get you started</span>

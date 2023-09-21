@@ -86,7 +86,7 @@ const Loginpage = () => {
             </h2>
           </Link>
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
-            <h2 className="text-dark text-lg md:text-3xl font-bold">
+            <h2 className="text-dark text-lg md:text-3xl font-bold text-[#0B0D0E]">
               <span className="flex items-center justify-start gap-1">
                 Welcome back <img src="/icon/emoji.png" alt="smile" />
               </span>{" "}
