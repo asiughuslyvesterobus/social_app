@@ -6,7 +6,7 @@ interface MenuProps {
   setShow: (e: any) => void;
 }
 
-const MenuBox = () => {
+const MenuBox = ({ show, setShow }: MenuProps) => {
   return <div>MenuBox</div>;
 };
 
