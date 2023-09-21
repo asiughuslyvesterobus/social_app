@@ -7,6 +7,7 @@ import { loginSchema } from "@/schema";
 import { toast } from "react-hot-toast";
 import { SignInUser } from "@/type";
 import { useRouter } from "next/router";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Loginpage = () => {
   const router = useRouter();
@@ -96,6 +97,39 @@ const Loginpage = () => {
                 placeholder="Type your email address"
                 className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
+              <div className="flex flex-col gap-1 w-full">
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Password*"
+                    maxLength={60}
+                    className={`outline-none w-full h-12 border border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
+                      errors.password && touched.password
+                        ? "!border-red-500 focus:!border-red-500"
+                        : ""
+                    }`}
+                  />
+                  <span
+                    onClick={toggle}
+                    className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
+                  >
+                    {showPassword ? (
+                      <AiOutlineEye size={20} />
+                    ) : (
+                      <AiOutlineEyeInvisible size={20} />
+                    )}
+                  </span>
+                </div>
+
+                {errors.password && (
+                  <span className="text-red-400 text-xs font-medium">
+                    {`${errors.password}`}
+                  </span>
+                )}
+              </div>
             </form>
           </div>
         </div>
