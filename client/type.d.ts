@@ -8,6 +8,10 @@ export interface SignUpUser {
   password: String;
   confirm_password: String;
 }
+export interface SignInUser {
+  email: String;
+  password: String;
+}
 
 export interface NavIconType {
   icon: IconType;
