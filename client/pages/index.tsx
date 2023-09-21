@@ -98,15 +98,19 @@ const Loginpage = () => {
                 className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
               <div className="flex flex-col gap-1 w-full">
+                <label htmlFor="password">
+                  Password <span className="text-danger">*</span>
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    id="password"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="Password*"
                     maxLength={60}
-                    className={`outline-none w-full h-12 border border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
+                    className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
                       errors.password && touched.password
                         ? "!border-red-500 focus:!border-red-500"
                         : ""
@@ -125,9 +129,7 @@ const Loginpage = () => {
                 </div>
 
                 {errors.password && (
-                  <p className="text-red-600 text-xs">
-                    {`${errors.password}`}
-                  </p>
+                  <p className="text-red-600 text-xs">{`${errors.password}`}</p>
                 )}
               </div>
             </form>
