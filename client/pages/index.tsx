@@ -132,6 +132,36 @@ const Loginpage = () => {
                   <p className="text-red-600 text-xs">{`${errors.password}`}</p>
                 )}
               </div>
+              <div className="w-full flex items-center justify-between">
+                <div className="flex gap-2 items-center">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    name="remember"
+                    className="p-2 md:p-[14px] bg-transparent outline-none "
+                  />
+                  <label
+                    htmlFor="remember"
+                    className="text-sm text-[#5B6471] cursor-pointer"
+                  >
+                    Remember me
+                  </label>
+                </div>
+
+                <Link
+                  href="/recoverpassword"
+                  className="text-sm text-[#454B54] font-medium"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary h-[54px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
+              >
+                SIGN IN
+              </button>
             </form>
           </div>
         </div>
