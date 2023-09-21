@@ -125,9 +125,9 @@ const Loginpage = () => {
                 </div>
 
                 {errors.password && (
-                  <span className="text-red-500 text-xs font-medium">
+                  <p className="text-red-600 text-xs">
                     {`${errors.password}`}
-                  </span>
+                  </p>
                 )}
               </div>
             </form>
