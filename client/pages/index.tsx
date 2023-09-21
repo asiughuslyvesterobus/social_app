@@ -174,7 +174,7 @@ const Loginpage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
+                className="w-full bg-primary capitalize h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
               >
                 SIGN IN
               </button>
