@@ -15,6 +15,30 @@ const Loginpage = () => {
     password: "",
   };
 
+  const onSubmit = async (payload: SignInUser, actions: any) => {
+    console.log(payload);
+    await new Promise((res) => setTimeout(res, 1000));
+    actions.resetForm();
+  };
+
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    touched,
+    errors,
+    isSubmitting,
+  } = useFormik({
+    initialValues,
+    validationSchema: loginSchema,
+    onSubmit,
+  });
+
+  const getError = (key: keyof SignInUser) => {
+    return touched[key] && errors[key];
+  };
+
   const toggle = () => {
     setShowPassword((prev) => !prev);
   };
