@@ -2,15 +2,16 @@ import { sideBarLink } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import { Footer } from ".";
+import { useAuth } from "@/context/AuthContext";
 
 const LeftSidebar = () => {
-  const user = null;
+  const { isAuthenticated } = useAuth();
   return (
     <nav
       aria-label="sidebar"
       className="w-full h-screen overflow-y-auto overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start pb-20"
     >
-      {user ? (
+      {!isAuthenticated ? (
         "Loggin"
       ) : (
         <Link
