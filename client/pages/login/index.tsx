@@ -9,8 +9,10 @@ import { SignInUser } from "@/type";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 const Loginpage = () => {
+  const { login } = useAuth();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -21,6 +23,7 @@ const Loginpage = () => {
 
   const onSubmit = async (payload: SignInUser, actions: any) => {
     console.log(payload);
+    login(payload);
     router.push("/home");
     toast.success("Login Approved", {
       duration: 2000,
