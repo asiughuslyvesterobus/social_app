@@ -37,8 +37,8 @@ export const registerSchema = yup.object().shape({
     .required("Required"),
   privacy_policy_accepted: yup
     .boolean()
-    .oneOf([true], "Terms and condition is Required!")
-    .required("Terms and condition is Required!"),
+    .oneOf([true], "Term and condition is Required!")
+    .required("Term and condition is Required!"),
 });
 
 export const loginSchema = yup.object().shape({

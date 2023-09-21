@@ -313,7 +313,7 @@ const Registerpage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
+                className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 mt-4 disabled:cursor-not-allowed outline-none"
               >
                 Sign Up
               </button>
