@@ -19,6 +19,7 @@ const Loginpage = () => {
 
   const onSubmit = async (payload: SignInUser, actions: any) => {
     console.log(payload);
+    router.push("/home");
     await new Promise((res) => setTimeout(res, 1000));
     actions.resetForm();
   };
