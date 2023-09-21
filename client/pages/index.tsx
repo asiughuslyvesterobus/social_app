@@ -1,5 +1,5 @@
 const Loginpage = () => {
-  return <div >Loginpage</div>;
+  return <div className="w-full flex flex-col h-screen items-center justify-center lg:flex-row lg:overflow-hidden">Loginpage</div>;
 };
 
 export default Loginpage;
