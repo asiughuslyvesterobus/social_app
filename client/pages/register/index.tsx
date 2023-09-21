@@ -169,27 +169,20 @@ const Registerpage = () => {
                     name="privacy_policy_accepted"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    id="privacy_policy_accepted"
+                    id="privacy_poclicy_accepted"
                     className="p-2 md:p-[14px] bg-transparent outline-none "
                   />
                   <label
                     htmlFor="privacy_poclicy_accepted"
-                    className={`text-sm font-normal cursor-pointer translate-x-6 tab:translate-x-2 ${
+                    className={`text-sm font-normal cursor-pointer ${
                       errors.privacy_policy_accepted && "text-red-500"
                     }`}
                   >
                     {errors.privacy_policy_accepted
                       ? errors.privacy_policy_accepted
-                      : "By creating an account means you agree to the Terms and Conditions, and our Privacy Policy"}
+                      : "I agreed with the every terms and conditions and privacy policy"}
                   </label>
                 </div>
-
-                <Link
-                  href="/recoverpassword"
-                  className="text-sm text-[#454B54] hover:text-primary transition-all duration-300 font-medium"
-                >
-                  Forgot Password?
-                </Link>
               </div>
               <button
                 type="submit"
@@ -202,7 +195,7 @@ const Registerpage = () => {
             <p className="w-full flex items-center justify-center gap-1 font-normal text-[#5B6471] py-2">
               Already have an account?
               <Link href="/" className="text-primary font-medium">
-                Signin
+                Sign in
               </Link>
             </p>
           </div>
