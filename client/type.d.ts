@@ -2,8 +2,11 @@ export interface SignUpUser {
   firstName: String;
   lastName: String;
   email: String;
+  userName: String;
+  bio: String;
   phone: String;
   password: String;
+  confirm_password: String;
 }
 
 export interface NavIconType {
