@@ -125,7 +125,7 @@ const Loginpage = () => {
                 </div>
 
                 {errors.password && (
-                  <span className="text-red-400 text-xs font-medium">
+                  <span className="text-red-500 text-xs font-medium">
                     {`${errors.password}`}
                   </span>
                 )}
