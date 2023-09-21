@@ -13,7 +13,6 @@ const Loginpage = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
-
   const initialValues: SignInUser = {
     email: "",
     password: "",
@@ -22,7 +21,9 @@ const Loginpage = () => {
   const onSubmit = async (payload: SignInUser, actions: any) => {
     console.log(payload);
     router.push("/home");
-    toast.success("Login Approved");
+    toast.success("Login Approved", {
+      duration: 2000,
+    });
     await new Promise((res) => setTimeout(res, 1000));
     actions.resetForm();
   };
@@ -165,6 +166,12 @@ const Loginpage = () => {
                 SIGN IN
               </button>
             </form>
+            <p className="w-full flex items-center justify-center gap-1 font-normal text-[#5B6471]">
+              Don't have an account?
+              <a href="/register" className="text-primary font-medium">
+                Sign Up
+              </a>
+            </p>
           </div>
         </div>
       </div>
