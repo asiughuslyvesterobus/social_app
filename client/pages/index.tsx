@@ -76,7 +76,7 @@ const Loginpage = () => {
             </h2>
             <form
               onSubmit={handleSubmit}
-              className="w-full flex flex-col  items-start justify-start"
+              className="w-full flex flex-col items-start justify-start gap-5"
             >
               <CustomizeInput
                 showLabel={false}
