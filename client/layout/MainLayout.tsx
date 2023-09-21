@@ -1,17 +1,27 @@
 import { Navbar } from "@/components";
+import Head from "next/head";
 import { ReactNode } from "react";
-// import { LeftSideBar, RightSidebar } from "@/components";
 
 type LayoutProps = {
   children: ReactNode;
+  title: string;
 };
 
-const MainLayout = ({ children }: LayoutProps) => {
+const MainLayout = ({ children, title }: LayoutProps) => {
   return (
-    <main className="overflow-hidden h-screen flex items-start justify-start flex-col">
-      <Navbar title="Connecting People, One Post at a Time" />
-      <main className="w-full">{children}</main>
-    </main>
+    <>
+      <Head>
+        <title>{`SmartConnect - ${title}`}</title>
+        <meta
+          name="description"
+          content="Connecting People, One Post at a Time"
+        />
+      </Head>
+      <main className="overflow-hidden h-screen flex items-start justify-start flex-col">
+        <Navbar />
+        <main className="w-full">{children}</main>
+      </main>
+    </>
   );
 };
 
