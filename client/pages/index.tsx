@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { SignUpUser } from "@/type";
 
 const Loginpage = () => {
   return (
