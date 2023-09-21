@@ -61,7 +61,19 @@ const Registerpage = () => {
   const toggleConfirm = () => {
     setShowConfirmPassword((prev) => !prev);
   };
-  return <div>Registerpage</div>;
+  return (
+    <>
+      <Head>
+        <title>
+          SmartConnect - Get Started, and connect with anyone around the world
+        </title>
+        <meta
+          name="description"
+          content="Connecting People, One Post at a Time"
+        />
+      </Head>
+    </>
+  );
 };
 
 export default Registerpage;
