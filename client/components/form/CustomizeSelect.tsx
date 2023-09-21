@@ -1,10 +1,10 @@
-import { ChangeEvent, FocusEvent, SelectHTMLAttributes } from "react";
+import { ChangeEvent, FocusEvent, ReactNode, SelectHTMLAttributes } from "react";
 
 interface CustomizeSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   htmlFor?: string;
   showLabel?: boolean;
   id?: string;
-  label?: string;
+  label?: string | ReactNode;
   className?: string;
   labelClassName?: string;
   inputClassName?: string;

@@ -77,7 +77,25 @@ const Loginpage = () => {
               onSubmit={handleSubmit}
               className="w-full flex flex-col  items-start justify-start"
             >
-              
+              <CustomizeInput
+                showLabel={false}
+                label={
+                  <span>
+                    Email <span className="text-danger">*</span>
+                  </span>
+                }
+                htmlFor="email"
+                labelClassName="text-base font-normal text-dark2"
+                type="text"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={getError("email")}
+                id="email"
+                placeholder="Type your email address"
+                className="bg-white border border-[#E3E5E8] h-[48px] w-full rounded-[5px] px-4 focus:border-[1.5px] outline-none text-sm text-[#8E97A4]"
+              />
             </form>
           </div>
         </div>

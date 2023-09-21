@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FocusEvent, TextareaHTMLAttributes } from "react";
+import React, { ChangeEvent, FocusEvent, ReactNode, TextareaHTMLAttributes } from "react";
 
 interface CustomizeTextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   htmlFor?: string;
   showLabel?: boolean;
   id?: string;
-  label?: string;
+  label?: string | ReactNode;
   className?: string;
   labelClassName?: string;
   inputClassName?: string;

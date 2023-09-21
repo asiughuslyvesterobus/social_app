@@ -1,11 +1,11 @@
-import { ChangeEvent, FocusEvent, InputHTMLAttributes } from "react";
+import { ChangeEvent, FocusEvent, InputHTMLAttributes, ReactNode } from "react";
 
 interface CustomizeInputProps extends InputHTMLAttributes<HTMLInputElement> {
   htmlFor?: string;
   showLabel?: boolean;
   defaultChecked?: boolean;
   id?: string;
-  label?: string;
+  label?: string | ReactNode;
   className?: string;
   labelClassName?: string;
   inputClassName?: string;
