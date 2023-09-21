@@ -7,6 +7,7 @@ export interface SignUpUser {
   phone: String;
   password: String;
   confirm_password: String;
+  privacy_policy_accepted: boolean;
 }
 export interface SignInUser {
   email: String;

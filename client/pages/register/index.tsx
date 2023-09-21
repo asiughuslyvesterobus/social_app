@@ -15,6 +15,18 @@ const Registerpage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const initialValues: SignUpUser = {
+    firstName: "",
+    lastName: "",
+    phone: "",
+    bio: "",
+    email: "",
+    userName: "",
+    password: "",
+    confirm_password: "",
+    privacy_policy_accepted: false,
+  };
+
   const onSubmit = async (payload: SignUpUser, actions: any) => {
     console.log(payload);
     router.push("/");
