@@ -7,6 +7,10 @@ import RightSidebar from "./RightSidebar";
 import Stories from "./Stories";
 import StoryCard from "./StoryCard";
 
+import CustomizeInput from "./form/CustomizeInput";
+import CustomizeSelect from "./form/CustomizeSelect";
+import CustomizeTextarea from "./form/CustomizeTextarea";
+
 export {
   Navbar,
   RightSidebar,
@@ -16,4 +20,7 @@ export {
   StoryCard,
   Stories,
   CreatePostCard,
+  CustomizeInput,
+  CustomizeSelect,
+  CustomizeTextarea,
 };
