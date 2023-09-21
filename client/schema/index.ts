@@ -35,7 +35,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), undefined], "Password does not match")
     .required("Required"),
-  privacy_poclicy_accepted: yup
+  privacy_policy_accepted: yup
     .boolean()
     .oneOf([true], "Terms and condition is Required!")
     .required("Terms and condition is Required!"),
