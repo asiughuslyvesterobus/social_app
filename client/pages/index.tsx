@@ -66,7 +66,7 @@ const Loginpage = () => {
             />
           </div>
         </div>
-        <div className="w-full flex items-center justify-center h-full bg-white">
+        <div className="w-full flex items-center justify-center h-full bg-white py-10">
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
             <h2 className="text-dark text-lg md:text-3xl font-bold">
               <span className="flex items-center justify-start gap-1">
@@ -150,7 +150,7 @@ const Loginpage = () => {
 
                 <Link
                   href="/recoverpassword"
-                  className="text-sm text-[#454B54] font-medium"
+                  className="text-sm text-[#454B54] hover:text-primary transition-all duration-300 font-medium"
                 >
                   Forgot Password?
                 </Link>
@@ -158,7 +158,7 @@ const Loginpage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary h-[54px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
+                className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
               >
                 SIGN IN
               </button>
