@@ -47,18 +47,27 @@ const Loginpage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col lg:h-screen items-center justify-center lg:flex-row lg:overflow-hidden">
-      <div className="w-full md:flex items-center justify-center p-8 hidden bg-primary h-full">
-        <div className="lg:w-[436px] h-[549px]">
-          <img
-            src="/img/signinImg.png"
-            alt="sign_in_image"
-            className="w-full h-full object-contain img"
-          />
+    <>
+      <Head>
+        <title>SmartConnect - log in or sign up</title>
+        <meta
+          name="description"
+          content="Connecting People, One Post at a Time"
+        />
+      </Head>
+      <div className="w-full flex flex-col lg:h-screen items-center justify-center lg:flex-row lg:overflow-hidden">
+        <div className="w-full md:flex items-center justify-center p-8 hidden bg-primary h-full">
+          <div className="lg:w-[436px] h-[549px]">
+            <img
+              src="/img/signinImg.png"
+              alt="sign_in_image"
+              className="w-full h-full object-contain img"
+            />
+          </div>
         </div>
+        <div className="w-full flex items-center justify-center"></div>
       </div>
-      <div className="w-full flex items-center justify-center"></div>
-    </div>
+    </>
   );
 };
 
