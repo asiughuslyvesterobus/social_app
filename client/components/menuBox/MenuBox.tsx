@@ -1,6 +1,5 @@
-
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-
 
 interface MenuProps {
   show: boolean;
