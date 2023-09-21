@@ -10,7 +10,7 @@ import { postData } from "@/data";
 
 const Homepage = () => {
   return (
-    <MainLayout>
+    <MainLayout title="Connecting People, One Post at a Time">
       <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex items-start justify-start mt-[2px]">
         <div className="lg:flex-[0.8] md:w-[35%] w-full hidden md:flex">
           <LeftSidebar />

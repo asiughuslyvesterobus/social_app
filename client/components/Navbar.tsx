@@ -22,7 +22,7 @@ const Navbar = () => {
       className="w-full h-16 bg-white flex items-center justify-between gap-3 md:gap-10"
     >
       <div className="flex items-center justify-start gap-3">
-        <Link href="/">
+        <Link href="/home">
           <Image
             src="/img/logo.png"
             alt="ConnectSmart Logo"

@@ -7,7 +7,7 @@ export const NavIcons = [
   {
     icon: AiFillHome,
     tooltip: "Home",
-    href: "/",
+    href: "/home",
   },
   {
     icon: PiMonitorPlayFill,
@@ -30,27 +30,27 @@ export const sideBarLink = [
   {
     imgUrl: "/icon/friend.png",
     text: "Friends",
-    href: "/",
+    href: "/home",
   },
   {
     imgUrl: "/icon/watchIcon.svg",
     text: "Video",
-    href: "/",
+    href: "/home",
   },
   {
     imgUrl: "/icon/saved.svg",
     text: "Saved",
-    href: "/",
+    href: "/home",
   },
   {
     imgUrl: "/icon/adsIcon.svg",
     text: "Ads",
-    href: "/",
+    href: "/home",
   },
   {
     imgUrl: "/icon/messengerIcon.svg",
     text: "Messenger",
-    href: "/",
+    href: "/home",
   },
 ];
 
