@@ -111,7 +111,7 @@ const Registerpage = () => {
               <div className="w-full flex flex-col tab:flex-row items-start justify-between gap-3">
                 <CustomizeInput
                   showLabel={false}
-                  label="First Name"
+                  label="First name"
                   htmlFor="firstName"
                   labelClassName="text-sm font-medium"
                   type="text"
@@ -127,7 +127,7 @@ const Registerpage = () => {
                 />
                 <CustomizeInput
                   showLabel={false}
-                  label="Last Name"
+                  label="Last name"
                   htmlFor="lastName"
                   labelClassName="text-sm font-medium"
                   type="text"
@@ -161,7 +161,7 @@ const Registerpage = () => {
                 />
                 <CustomizeInput
                   showLabel={false}
-                  label="Phone Number"
+                  label="Phone number"
                   htmlFor="phone"
                   labelClassName="text-sm font-normal"
                   type="text"
@@ -199,7 +199,7 @@ const Registerpage = () => {
                 showLabel={false}
                 label={
                   <span className="text-sm font-medium">
-                    Bio <span className="">(optional)</span>
+                    Bio <span className="text-gray-500">(optional)</span>
                   </span>
                 }
                 htmlFor="bio"
@@ -210,7 +210,8 @@ const Registerpage = () => {
                 error={getError("bio")}
                 name="bio"
                 id="bio"
-                className="bg-white border border-[#E3E5E8] h-[140px] resize-none w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+                placeholder="Bio"
+                className="bg-white border pt-3 border-[#E3E5E8] h-[140px] resize-none w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
               <div className="flex flex-col gap-1 w-full">
                 <label htmlFor="password" className="text-sm font-medium">
@@ -270,7 +271,7 @@ const Registerpage = () => {
                     }`}
                   />
                   <span
-                    onClick={toggle}
+                    onClick={toggleConfirm}
                     className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
                   >
                     {showConfirmPassword ? (
