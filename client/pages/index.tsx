@@ -56,7 +56,7 @@ const Loginpage = () => {
         />
       </Head>
       <div className="w-full flex flex-col lg:h-screen items-center justify-center lg:flex-row lg:overflow-hidden">
-        <div className="w-full md:flex items-center justify-center p-8 hidden bg-primary h-full">
+        <div className="w-full lg:flex items-center justify-center p-8 hidden bg-primary h-full">
           <div className="lg:w-[436px] h-[549px]">
             <img
               src="/img/signinImg.png"
@@ -67,7 +67,12 @@ const Loginpage = () => {
         </div>
         <div className="w-full flex items-center justify-center h-full bg-white">
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
-
+            <h2 className="text-dark text-lg md:text-3xl font-bold">
+              <span className="flex items-center justify-start gap-1">
+                Welcome back <img src="/icon/emoji.png" alt="smile" />
+              </span>{" "}
+              <span className="hidden lg:block">Sign in</span>
+            </h2>
           </div>
         </div>
       </div>
