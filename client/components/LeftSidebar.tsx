@@ -12,7 +12,7 @@ const LeftSidebar = () => {
       className="w-full h-screen overflow-y-auto overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start pb-20"
     >
       {!isAuthenticated ? (
-        <Link href="/login" className="w-full bg-primary py-2 px-4">Sign In</Link>
+        <Link href="/login" className="w-[80%] mx-auto bg-primary py-2 px-4 text-center text-white text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300">Sign In</Link>
       ) : (
         <Link
           href={`/profile/42`}
@@ -31,7 +31,7 @@ const LeftSidebar = () => {
         </Link>
       )}
 
-      <ul className="flex flex-col items-start w-full justify-start gap-1 pl-2 border-b">
+      <ul className="flex flex-col items-start w-full justify-start gap-1 pl-2 border-b pb-2">
         {sideBarLink.map((item, i) => (
           <li key={i} className="w-full">
             <Link

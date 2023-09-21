@@ -6,8 +6,10 @@ import { NavIconType } from "@/type";
 import { FiSearch } from "react-icons/fi";
 import { BsMessenger, BsBell } from "react-icons/bs";
 import { FaBars } from "react-icons/fa6";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { isAuthenticated } = useAuth();
   const router = useRouter();
 
   const activeRoute = (pathname: String) => {
@@ -72,13 +74,25 @@ const Navbar = () => {
         <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
           <BsBell size={20} />
         </span>
-        <Image
-          src="/img/avatar.png"
-          alt="user-avatar"
-          width={39}
-          height={39}
-          className="rounded-full cursor-pointer"
-        />
+
+        {!isAuthenticated ? (
+          <div>
+            <Link
+              href="/login"
+              className="w-fit hidden md:inline my-auto bg-primary py-2 px-4 text-center text-white text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300"
+            >
+              Sign In
+            </Link>
+          </div>
+        ) : (
+          <Image
+            src="/img/avatar.png"
+            alt="user-avatar"
+            width={39}
+            height={39}
+            className="rounded-full cursor-pointer"
+          />
+        )}
       </div>
     </nav>
   );
