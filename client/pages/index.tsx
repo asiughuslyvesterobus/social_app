@@ -5,19 +5,14 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schema";
 import { toast } from "react-hot-toast";
-import {SignInUser} from "@/type"
+import { SignInUser } from "@/type";
 
 const Loginpage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const initialValues:  = {
-    team_name: "",
-    phone_number: "",
+  const initialValues: SignInUser = {
     email: "",
-    project_topic: "",
-    category: "",
-    group_size: "",
-    privacy_poclicy_accepted: false,
+    password: "",
   };
 
   const toggle = () => {
