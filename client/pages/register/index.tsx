@@ -72,6 +72,20 @@ const Registerpage = () => {
           content="Connecting People, One Post at a Time"
         />
       </Head>
+      <div className="w-full flex flex-col tab:h-screen items-center justify-center tab:flex-row tab:overflow-hidden">
+        <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full">
+          <div className="tab:w-[436px] h-[549px]">
+            <img
+              src="/img/signupImg.png"
+              alt="sign_in_image"
+              className="w-full h-full object-contain img"
+            />
+          </div>
+        </div>
+        <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 md:py-10">
+
+        </div>
+      </div>
     </>
   );
 };
