@@ -320,7 +320,7 @@ const Registerpage = () => {
             </form>
             <p className="w-full flex items-center justify-center gap-1 font-normal text-[#5B6471] py-2">
               Already have an account?
-              <Link href="/" className="text-primary font-medium">
+              <Link href="/login" className="text-primary font-medium">
                 Sign in
               </Link>
             </p>
