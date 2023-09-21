@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,8 +8,10 @@ import { FiSearch } from "react-icons/fi";
 import { BsMessenger, BsBell } from "react-icons/bs";
 import { FaBars } from "react-icons/fa6";
 import { useAuth } from "@/context/AuthContext";
+import { MenuBox } from ".";
 
 const Navbar = () => {
+  const [openMenu, setOpenMenu] = useState(false);
   const { isAuthenticated } = useAuth();
   const router = useRouter();
 
@@ -85,13 +88,16 @@ const Navbar = () => {
             </Link>
           </div>
         ) : (
-          <Image
-            src="/img/avatar.png"
-            alt="user-avatar"
-            width={39}
-            height={39}
-            className="rounded-full cursor-pointer"
-          />
+          <>
+            <Image
+              src="/img/avatar.png"
+              alt="user-avatar"
+              width={39}
+              height={39}
+              className="rounded-full cursor-pointer"
+            />
+            <MenuBox show={openMenu} setShow={setOpenMenu} />
+          </>
         )}
       </div>
     </nav>

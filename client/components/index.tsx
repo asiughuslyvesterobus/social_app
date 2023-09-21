@@ -6,10 +6,12 @@ import PostCard from "./PostCard";
 import RightSidebar from "./RightSidebar";
 import Stories from "./Stories";
 import StoryCard from "./StoryCard";
+import MenuBox from "./menuBox/MenuBox";
 
 import CustomizeInput from "./form/CustomizeInput";
 import CustomizeSelect from "./form/CustomizeSelect";
 import CustomizeTextarea from "./form/CustomizeTextarea";
+
 
 export {
   Navbar,
@@ -23,4 +25,5 @@ export {
   CustomizeInput,
   CustomizeSelect,
   CustomizeTextarea,
+  MenuBox,
 };
