@@ -65,7 +65,9 @@ const Loginpage = () => {
             />
           </div>
         </div>
-        <div className="w-full flex items-center justify-center"></div>
+        <div className="w-full flex items-center justify-center">
+        <div className="bg-white p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start"></div>
+        </div>
       </div>
     </>
   );
