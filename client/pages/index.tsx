@@ -81,7 +81,9 @@ const Loginpage = () => {
               width={62}
               height={38}
             />
-            <h2 className="text-xl font-semibold text-primary -translate-y-4 select-none">SmartConnect</h2>
+            <h2 className="text-xl font-semibold text-primary -translate-y-4 select-none">
+              SmartConnect
+            </h2>
           </Link>
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
             <h2 className="text-dark text-lg md:text-3xl font-bold">
@@ -97,12 +99,11 @@ const Loginpage = () => {
               <CustomizeInput
                 showLabel={false}
                 label={
-                  <span>
+                  <span className="text-sm font-medium">
                     Email <span className="text-danger">*</span>
                   </span>
                 }
                 htmlFor="email"
-                labelClassName="text-base font-normal text-dark2"
                 type="email"
                 name="email"
                 value={values.email}

@@ -82,7 +82,7 @@ const Registerpage = () => {
             />
           </div>
         </div>
-        <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 md:py-10">
+        <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 tab:py-0">
           <Link
             href="/home"
             className="flex tab:hidden flex-col items-center justify-center"
@@ -108,15 +108,82 @@ const Registerpage = () => {
               onSubmit={handleSubmit}
               className="w-full flex flex-col items-start justify-start gap-5"
             >
+              <div className="w-full flex flex-col tab:flex-row items-start justify-between gap-3">
+                <CustomizeInput
+                  showLabel={false}
+                  label="First Name"
+                  htmlFor="firstName"
+                  labelClassName="text-sm font-medium"
+                  type="text"
+                  name="firstName"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={getError("firstName")}
+                  id="firstName"
+                  placeholder="First Name"
+                  errorClass="block"
+                  className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+                />
+                <CustomizeInput
+                  showLabel={false}
+                  label="Last Name"
+                  htmlFor="lastName"
+                  labelClassName="text-sm font-medium"
+                  type="text"
+                  name="lastName"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={getError("lastName")}
+                  id="lastName"
+                  placeholder="Last Name"
+                  errorClass="block"
+                  className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+                />
+              </div>
+              <div className="w-full flex flex-col tab:flex-row items-start justify-between gap-3">
+                <CustomizeInput
+                  showLabel={false}
+                  label="Username"
+                  htmlFor="username"
+                  labelClassName="text-sm font-medium"
+                  type="text"
+                  name="userName"
+                  value={values.userName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={getError("userName")}
+                  id="username"
+                  placeholder="Username"
+                  errorClass="block"
+                  className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+                />
+                <CustomizeInput
+                  showLabel={false}
+                  label="Phone Number"
+                  htmlFor="phone"
+                  labelClassName="text-sm font-normal"
+                  type="text"
+                  name="phone"
+                  value={values.phone.trim()}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={getError("phone")}
+                  id="phone"
+                  placeholder="Enter your phone number"
+                  errorClass="block"
+                  className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+                />
+              </div>
               <CustomizeInput
                 showLabel={false}
                 label={
-                  <span>
+                  <span className="text-sm font-medium">
                     Email <span className="text-danger">*</span>
                   </span>
                 }
                 htmlFor="email"
-                labelClassName="text-base font-normal text-dark2"
                 type="email"
                 name="email"
                 value={values.email}
@@ -128,7 +195,7 @@ const Registerpage = () => {
                 className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
               <div className="flex flex-col gap-1 w-full">
-                <label htmlFor="password">
+                <label htmlFor="password" className="text-sm font-medium">
                   Password <span className="text-danger">*</span>
                 </label>
                 <div className="relative">
@@ -160,6 +227,44 @@ const Registerpage = () => {
 
                 {errors.password && (
                   <p className="text-red-600 text-xs">{`${errors.password}`}</p>
+                )}
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <label
+                  htmlFor="confirm_password"
+                  className="text-sm font-medium"
+                >
+                  Confirm Password <span className="text-danger">*</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirm_password"
+                    id="confirm_password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Confirm Password*"
+                    maxLength={60}
+                    className={`outline-none w-full h-12 border rounded-[5px] border-[#E3E5E8] focus:border-[1.5px] focus:border-primary px-4 bg-white text-sm text-[#8E97A4] font-normal transition-all duration-300 ${
+                      errors.confirm_password && touched.confirm_password
+                        ? "!border-red-500 focus:!border-red-500"
+                        : ""
+                    }`}
+                  />
+                  <span
+                    onClick={toggle}
+                    className="border-[#E3E5E8] px-2 absolute top-0 right-0 h-full flex items-center justify-center text-[#8E97A4] cursor-pointer"
+                  >
+                    {showConfirmPassword ? (
+                      <AiOutlineEye size={20} />
+                    ) : (
+                      <AiOutlineEyeInvisible size={20} />
+                    )}
+                  </span>
+                </div>
+
+                {errors.confirm_password && (
+                  <p className="text-red-600 text-xs">{`${errors.confirm_password}`}</p>
                 )}
               </div>
               <div className="w-full flex items-center justify-between">
