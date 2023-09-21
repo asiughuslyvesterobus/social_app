@@ -62,7 +62,7 @@ const Navbar = ({ title }: { title: String }) => {
                   <item.icon size={29} />
                 </span>
               </Link>
-              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm">
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
                 {item.tooltip}
               </span>
             </li>
