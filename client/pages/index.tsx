@@ -6,8 +6,10 @@ import { useFormik } from "formik";
 import { loginSchema } from "@/schema";
 import { toast } from "react-hot-toast";
 import { SignInUser } from "@/type";
+import { useRouter } from "next/router";
 
 const Loginpage = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues: SignInUser = {
