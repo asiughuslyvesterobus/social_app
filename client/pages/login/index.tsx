@@ -24,7 +24,7 @@ const Loginpage = () => {
   const onSubmit = async (payload: SignInUser, actions: any) => {
     console.log(payload);
     login(payload);
-    router.push("/home");
+    router.push("/");
     toast.success("Login Approved", {
       duration: 2000,
     });
