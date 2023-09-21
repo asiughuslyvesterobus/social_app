@@ -48,7 +48,7 @@ const Loginpage = () => {
       <div className="w-full md:flex items-center justify-center p-8 hidden bg-primary h-full">
         <div className="lg:w-[436px] h-[549px]">
           <img
-            src=""
+            src="/img/signinImg.png"
             alt="sign_in_image"
             className="w-full h-full object-contain img"
           />
