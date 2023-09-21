@@ -18,11 +18,11 @@ export const registerSchema = yup.object().shape({
     .min(2, "Username must be at least 2 characters")
     .max(25, "Username cannot exceed 25 characters")
     .trim()
-    .required("Username is required")
     .matches(
       /^[a-zA-Z0-9_]+$/,
       "Username can only contain letters, numbers, and underscores"
-    ),
+    )
+    .required("Username is required"),
   bio: yup
     .string()
     .min(3, "Bio must be at least 3 characters")
