@@ -174,15 +174,15 @@ const Loginpage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary capitalize h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
+                className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
               >
-                SIGN IN
+                Log in
               </button>
             </form>
             <p className="w-full flex items-center justify-center gap-1 font-normal text-[#5B6471]">
               Don't have an account?
               <a href="/register" className="text-primary font-medium">
-                Sign Up
+                SignUp
               </a>
             </p>
           </div>

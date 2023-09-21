@@ -190,13 +190,13 @@ const Registerpage = () => {
                 disabled={isSubmitting}
                 className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-75 disabled:cursor-not-allowed outline-none"
               >
-                Register
+                Sign Up
               </button>
             </form>
             <p className="w-full flex items-center justify-center gap-1 font-normal text-[#5B6471] py-2">
               Already have an account?
               <Link href="/" className="text-primary font-medium">
-                Sign in
+                Signin
               </Link>
             </p>
           </div>
