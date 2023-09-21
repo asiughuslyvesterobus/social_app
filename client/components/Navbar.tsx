@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav
       aria-label="header"
-      className="w-full h-16 bg-white flex items-center justify-between gap-3 md:gap-10"
+      className="w-full relative h-16 bg-white flex items-center justify-between gap-3 md:gap-10"
     >
       <div className="flex items-center justify-start gap-3">
         <Link href="/">
