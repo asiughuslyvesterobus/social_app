@@ -83,7 +83,21 @@ const Registerpage = () => {
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 md:py-10">
-
+          <Link
+            href="/home"
+            className="flex tab:hidden flex-col items-center justify-center"
+          >
+            <Image
+              src="/img/logo.png"
+              alt="ConnectSmart Logo"
+              width={62}
+              height={38}
+            />
+            <h2 className="text-xl font-semibold text-primary -translate-y-4 select-none">
+              SmartConnect
+            </h2>
+          </Link>
+          
         </div>
       </div>
     </>
