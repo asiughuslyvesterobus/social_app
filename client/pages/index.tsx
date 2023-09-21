@@ -94,7 +94,7 @@ const Loginpage = () => {
                 error={getError("email")}
                 id="email"
                 placeholder="Type your email address"
-                className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4]"
+                className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
             </form>
           </div>
