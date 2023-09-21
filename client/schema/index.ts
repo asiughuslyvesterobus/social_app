@@ -27,4 +27,14 @@ export const registerSchema = yup.object().shape({
     .string()
     .min(3, "Bio must be at least 3 characters")
     .max(250, "Bio cannot exceed 250 characters"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .required("Required"),
+  confirm_password: yup
+    .string()
+    .oneOf([yup.ref("password"), undefined], "Password must match")
+    .required("Required"),
 });
+
+export const loginSchema = yup.object().shape({});
