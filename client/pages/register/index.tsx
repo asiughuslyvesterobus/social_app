@@ -194,6 +194,24 @@ const Registerpage = () => {
                 placeholder="Type your email address"
                 className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
               />
+              <CustomizeTextarea
+                rows={4}
+                showLabel={false}
+                label={
+                  <span className="text-sm font-medium">
+                    Bio <span className="">(optional)</span>
+                  </span>
+                }
+                htmlFor="bio"
+                labelClassName="text-sm font-medium"
+                value={values.bio}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={getError("bio")}
+                name="bio"
+                id="bio"
+                className="bg-white border border-[#E3E5E8] h-[140px] resize-none w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+              />
               <div className="flex flex-col gap-1 w-full">
                 <label htmlFor="password" className="text-sm font-medium">
                   Password <span className="text-danger">*</span>
