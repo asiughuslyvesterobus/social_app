@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { SignInUser } from "@/type";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Image from "next/image";
 
 const Loginpage = () => {
   const router = useRouter();
@@ -59,9 +60,9 @@ const Loginpage = () => {
           content="Connecting People, One Post at a Time"
         />
       </Head>
-      <div className="w-full flex flex-col lg:h-screen items-center justify-center lg:flex-row lg:overflow-hidden">
-        <div className="w-full lg:flex items-center justify-center p-8 hidden bg-primary h-full">
-          <div className="lg:w-[436px] h-[549px]">
+      <div className="w-full flex flex-col tab:h-screen items-center justify-center tab:flex-row tab:overflow-hidden">
+        <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full">
+          <div className="tab:w-[436px] h-[549px]">
             <img
               src="/img/signinImg.png"
               alt="sign_in_image"
@@ -69,7 +70,19 @@ const Loginpage = () => {
             />
           </div>
         </div>
-        <div className="w-full flex items-center justify-center h-full bg-white py-10">
+        <div className="w-full flex flex-col items-center justify-center h-full bg-white py-4 md:py-10">
+          <Link
+            href="/home"
+            className="flex tab:hidden flex-col items-center justify-center"
+          >
+            <Image
+              src="/img/logo.png"
+              alt="ConnectSmart Logo"
+              width={62}
+              height={38}
+            />
+            <h2 className="text-xl font-semibold text-primary -translate-y-4 select-none">SmartConnect</h2>
+          </Link>
           <div className="p-4 md:py-10 md:px-6 w-full xl:w-[500px] h-full flex flex-col gap-6 items-start justify-start">
             <h2 className="text-dark text-lg md:text-3xl font-bold">
               <span className="flex items-center justify-start gap-1">

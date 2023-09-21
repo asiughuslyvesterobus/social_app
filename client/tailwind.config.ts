@@ -19,6 +19,9 @@ const config: Config = {
         success: "#00A400",
         warning: "#FFD233",
       },
+      screens: {
+        tab: "850px",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],
