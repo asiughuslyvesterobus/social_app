@@ -166,15 +166,21 @@ const Registerpage = () => {
                 <div className="flex gap-2 items-center">
                   <input
                     type="checkbox"
-                    id="remember"
-                    name="remember"
+                    name="privacy_policy_accepted"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="privacy_policy_accepted"
                     className="p-2 md:p-[14px] bg-transparent outline-none "
                   />
                   <label
-                    htmlFor="remember"
-                    className="text-sm text-[#5B6471] cursor-pointer"
+                    htmlFor="privacy_poclicy_accepted"
+                    className={`text-sm font-normal cursor-pointer translate-x-6 tab:translate-x-2 ${
+                      errors.privacy_policy_accepted && "text-red-500"
+                    }`}
                   >
-                    Remember me
+                    {errors.privacy_policy_accepted
+                      ? errors.privacy_policy_accepted
+                      : "By creating an account means you agree to the Terms and Conditions, and our Privacy Policy"}
                   </label>
                 </div>
 
