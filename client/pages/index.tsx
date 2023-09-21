@@ -86,7 +86,7 @@ const Loginpage = () => {
                 }
                 htmlFor="email"
                 labelClassName="text-base font-normal text-dark2"
-                type="text"
+                type="email"
                 name="email"
                 value={values.email}
                 onChange={handleChange}
