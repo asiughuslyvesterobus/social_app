@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schema";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { SignInUser } from "@/type";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -12,6 +12,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const Loginpage = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+
 
   const initialValues: SignInUser = {
     email: "",
@@ -21,6 +22,7 @@ const Loginpage = () => {
   const onSubmit = async (payload: SignInUser, actions: any) => {
     console.log(payload);
     router.push("/home");
+    toast.success("Login Approved");
     await new Promise((res) => setTimeout(res, 1000));
     actions.resetForm();
   };
