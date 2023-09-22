@@ -40,8 +40,8 @@ const MobileNav = ({ show, setShow }: MenuProps) => {
     <div
       className={`md:hidden absolute top-[100%] border-t z-50 bg-white shadow-boxShad w-full left-0 p-4 flex-col items-start justify-start ${
         show
-          ? "h-screen overflow-y-auto overflow-x-hidden flex"
-          : "h-0 overflow-hidden hidden"
+          ? "h-screen overflow-y-auto overflow-x-hidden scale-y-100"
+          : "h-0 overflow-hidden scale-y-0"
       } transition-all duration-300`}
     >
       {NavIcons.map((item: NavIconType, i: number) => (
