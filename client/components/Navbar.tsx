@@ -21,14 +21,6 @@ const Navbar = () => {
     return currentRoute === pathname;
   };
 
-  const handleOpen = () => {
-    if (openMenu === true) {
-      setOpenMenu(false);
-    } else {
-      setOpenMenu(true);
-    }
-  };
-
   return (
     <nav
       aria-label="header"
@@ -103,7 +95,7 @@ const Navbar = () => {
               width={39}
               height={39}
               className="rounded-full cursor-pointer"
-              onClick={handleOpen}
+              onClick={() => setOpenMenu(true)}
             />
             <MenuBox show={openMenu} setShow={setOpenMenu} />
           </>

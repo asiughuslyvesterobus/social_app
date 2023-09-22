@@ -5,6 +5,7 @@ import { MdSettings } from "react-icons/md";
 import { VscSignOut } from "react-icons/vsc";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
+import { RiCloseFill } from "react-icons/ri";
 
 interface MenuProps {
   show: boolean;
@@ -43,6 +44,12 @@ const MenuBox = ({ show, setShow }: MenuProps) => {
       variants={variant}
       className="absolute w-[300px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-3 md:right-5 rounded-md"
     >
+      <span
+        onClick={() => setShow(false)}
+        className="absolute top-3 right-3 text-borderColor cursor-pointer"
+      >
+        <RiCloseFill size={30} />
+      </span>
       <Link
         href={`/profile/42`}
         className="flex items-center justify-start w-full gap-2 hover:bg-btngray py-2 px-3 rounded-lg transition-all duration-300"
