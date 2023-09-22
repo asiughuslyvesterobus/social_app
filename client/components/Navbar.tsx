@@ -95,7 +95,7 @@ const Navbar = () => {
               width={39}
               height={39}
               className={`rounded-full cursor-pointer ${
-                openMenu === false ? "scale-1" : "scale-0"
+                openMenu === false ? "scale-1 relative" : "scale-0 absolute top-[100%] right-[15%]"
               } transition-all duration-300`}
               onClick={() => setOpenMenu(true)}
             />
