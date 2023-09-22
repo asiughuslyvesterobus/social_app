@@ -95,6 +95,7 @@ const Navbar = () => {
               width={39}
               height={39}
               className="rounded-full cursor-pointer"
+              onClick={() => setOpenMenu((prev) => !prev)}
             />
             <MenuBox show={openMenu} setShow={setOpenMenu} />
           </>
