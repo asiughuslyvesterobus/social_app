@@ -12,6 +12,7 @@ import { MenuBox } from ".";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const { isAuthenticated } = useAuth();
   const router = useRouter();
 
@@ -68,7 +69,10 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="flex items-center gap-3 sm:gap-5 h-full pr-4 md:pr-6">
-        <span className="w-10 h-10 bg-btngray flex md:hidden items-center justify-center rounded-full cursor-pointer">
+        <span
+          onClick={() => setMobileNavOpen(true)}
+          className="w-10 h-10 bg-btngray flex md:hidden items-center justify-center rounded-full cursor-pointer"
+        >
           <FaBars size={20} />
         </span>
         <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
@@ -95,7 +99,9 @@ const Navbar = () => {
               width={39}
               height={39}
               className={`rounded-full cursor-pointer ${
-                openMenu === false ? "scale-1 relative" : "scale-0 absolute top-[100%] right-[15%]"
+                openMenu === false
+                  ? "scale-1 relative"
+                  : "scale-0 absolute top-[100%] right-[15%]"
               } transition-all duration-300`}
               onClick={() => setOpenMenu(true)}
             />
