@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useRef, useEffect } from "react";
 
 interface MenuProps {
@@ -7,6 +8,13 @@ interface MenuProps {
 
 const MobileNav = ({ show, setShow }: MenuProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  const activeRoute = (pathname: String) => {
+    const currentRoute = router.pathname;
+
+    return currentRoute === pathname;
+  };
 
   useEffect(() => {
     const handleClickOutside: EventListener = (event) => {
