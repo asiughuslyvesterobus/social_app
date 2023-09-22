@@ -8,7 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { BsMessenger, BsBell } from "react-icons/bs";
 import { FaBars } from "react-icons/fa6";
 import { useAuth } from "@/context/AuthContext";
-import { MenuBox } from ".";
+import { MenuBox, MobileNav } from ".";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -115,6 +115,8 @@ const Navbar = () => {
             <MenuBox show={openMenu} setShow={setOpenMenu} />
           </>
         )}
+
+        <MobileNav show={mobileNavOpen} setShow={setMobileNavOpen} />
       </div>
     </nav>
   );
