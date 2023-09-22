@@ -8,7 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { BsMessenger, BsBell } from "react-icons/bs";
 import { FaBars } from "react-icons/fa6";
 import { useAuth } from "@/context/AuthContext";
-import { MenuBox, MobileNav } from ".";
+import { MenuBox, MobileNav, NotificationBox } from ".";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -86,6 +86,7 @@ const Navbar = () => {
           <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
             Notifications
           </span>
+          <NotificationBox />
         </span>
 
         {!isAuthenticated ? (
