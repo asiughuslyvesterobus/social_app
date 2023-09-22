@@ -23,7 +23,12 @@ const MobileNav = ({ show, setShow }: MenuProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [show]);
-  return <div>MobileNav</div>;
+
+  return (
+    <div
+      className={`md:hidden absolute top-[100%] border-t z-50 bg-white shadow-boxShad w-full left-0 h-screen overflow-y-auto p-4 flex-col gap-4 items-start justify-start`}
+    ></div>
+  );
 };
 
 export default MobileNav;
