@@ -75,11 +75,17 @@ const Navbar = () => {
         >
           <FaBars size={20} />
         </span>
-        <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+        <span className="group relative w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
           <BsMessenger size={20} />
+          <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
+            Messenger
+          </span>
         </span>
-        <span className="w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+        <span className="group relative w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
           <BsBell size={20} />
+          <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
+            Notifications
+          </span>
         </span>
 
         {!isAuthenticated ? (
