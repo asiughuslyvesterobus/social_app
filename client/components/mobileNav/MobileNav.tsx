@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useRef, useEffect } from "react";
+import Link from "next/link";
 
 interface MenuProps {
   show: boolean;
