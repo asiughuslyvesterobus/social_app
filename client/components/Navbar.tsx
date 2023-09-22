@@ -89,14 +89,16 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <Image
-              src="/img/avatar.png"
-              alt="user-avatar"
-              width={39}
-              height={39}
-              className="rounded-full cursor-pointer"
-              onClick={() => setOpenMenu(true)}
-            />
+            {openMenu === false && (
+              <Image
+                src="/img/avatar.png"
+                alt="user-avatar"
+                width={39}
+                height={39}
+                className="rounded-full cursor-pointer"
+                onClick={() => setOpenMenu(true)}
+              />
+            )}
             <MenuBox show={openMenu} setShow={setOpenMenu} />
           </>
         )}
