@@ -22,6 +22,10 @@ const config: Config = {
       screens: {
         tab: "850px",
       },
+      boxShadow: {
+        boxShad: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        profileShad: "0px 0px 4px 4px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

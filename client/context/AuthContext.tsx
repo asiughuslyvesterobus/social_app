@@ -21,7 +21,7 @@ interface PayloadProp {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState<any | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<any | null>({});
 
   const login = (payload: PayloadProp) => {
     // Implement your login logic here
