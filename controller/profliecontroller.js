@@ -1,19 +1,81 @@
-const {
-  BadRequestError,
-  Unauthorized,
-  NotFoundError,
-} = require("../lib/error");
+const { BadRequestError } = require("../lib/error");
 const {
   validateProfileEdit,
-  validateRequestAction,
+  validateRequestAction
 } = require("../lib/validation/userValidation");
-const {
-  validatePost,
-  validateComment,
-} = require("../lib/validation/postvalidation");
 const User = require("../models/user");
-const post = require("../models/post");
 
+//@Method:Get /profile/
+//@Desc: view my profile
+//@Access: private
+
+const myProfile = async (req, res, next) => {
+  const userId = req.user._id;
+  const user = await User.findById({ _id: user });
+  if (!user) {
+    throw new BadRequestError("login to view your profile");
+  }
+
+  // create object contaning user propreties
+  const userProfile = {
+    username: user.profile.userName,
+    bio: user.profile.bio,
+    followers: user.profile.followers.length,
+    following: user.profile.following.length
+  };
+
+  // find users posts
+  const posts = await post.find({ author: userId });
+  if (post.length === 0) {
+    res.status(200).json({ userProfile, message: "you have no post" });
+    return;
+  }
+  const postsLikes = await post
+    .find({ author: userId })
+    .populate("likes", "profile.userName")
+    .select("profile.userName");
+
+  const postsComment = posts
+    .map((post) =>
+      post.comments.map((comment) => ({
+        userName: comment.userName,
+        message: comment.message
+      }))
+    )
+    .flat();
+  // map out username of the  posts likes
+  const likesUserNames = postsLikes
+    .map((postLike) => postLike.likes.map((like) => like.profile.userName))
+    .flat();
+
+  // handle the likes message
+  let likesmessage;
+  if (likesUsernames.length === 1) {
+    likesmessage = `${likesUsernames[0]} like your post`;
+  }
+  if (likesUsernames.length === 2) {
+    likesmessage = `${likesUsernames[0]} and ${likesUsernames[1]} liked your post`;
+  }
+  if (likesUsernames.length === 3) {
+    likesmessage = `${likesUsernames[0]} and ${likesUserNames[1]}and ${likesUsernames[2]} liked your post`;
+  }
+  if (likesUsernames.length > 3) {
+    likesmessage = `${likesUsernames[0]},${likesUsernames[1]} and ${
+      likesUsernames.length - 2
+    } others liked your post`;
+  }
+  // create new post object contaning selected properties
+  const Your_Posts = posts.map((post) => {
+    const selectedProperties = new Post(post).toJSON();
+    selectedProperties.likes = likesMessage;
+    selectedProperties.comments = postsComment;
+    delete selectedProperties._id;
+    delete selectedProperties.__v;
+    delete selectedProperties.author;
+    return selectedProperties;
+  });
+  res.status(200).json({ userProfile, your_post });
+};
 //@Method:POST /profile/follow
 //@Desc: follow profile
 //@Access : Private
@@ -35,13 +97,13 @@ const followProfile = async (req, res, next) => {
 
   // check if user is already following
   const alreadyFollowing = await User.findOne({
-    "profile.followers": userId,
+    "profile.followers": userId
   });
   if (alreadyFollowing) {
     // remove from user following
     await User.findOneAndUpdate(
       {
-        _id: user._id,
+        _id: user._id
       },
       { $pull: { "profile.followers": userId } }
     );
@@ -66,7 +128,7 @@ const followProfile = async (req, res, next) => {
   );
   res.status(200).json({
     succes: true,
-    msg: `you are now following ${followerUsername}`,
+    msg: `you are now following ${followerUsername}`
   });
 };
 //@Method:GET /profile/following
@@ -78,7 +140,7 @@ const viewFollowing = async (req, res, next) => {
   const user = await User.findById({ _id: userId })
     .populate({
       path: "profile.following",
-      model: "User",
+      model: "User"
     })
     .select("profile.following");
 
@@ -103,7 +165,7 @@ const viewfollowers = async (req, res, next) => {
   const user = await User.findById({ _id: userId })
     .populate({
       path: "profile.followers",
-      model: "User",
+      model: "User"
     })
     .select("profile.followers");
 
@@ -118,39 +180,23 @@ const viewfollowers = async (req, res, next) => {
   res.json(names_followers);
 };
 
-//@Method:GET /profile/followers
-//@Desc: get followers
-//@Access: private
-
-const Post = async (req, res, next) => {
-  // validate post
-  const error = await validatePost(req.body);
-  if (error) {
-    throw new BadRequestError(error);
-  }
-
-  // implement post for private profiles
-  const { title, content } = req.body;
-  const userId = req.user._id;
-
-  const post = new post({
-    author: userId,
-    title,
-    content,
-  });
-  await post.save();
-  res.status(200).json({ success: true, message: "post made successfully" });
-};
-
 //@Method:POST /profile/find
 //@Desc: find and view a profile
 //@Access: public
-const viewProfile = async (req, res, next) => {
+const findProfile = async (req, res, next) => {
   const userId = req.user._id;
   const { userName } = req.body;
 
+  // find user
+  const user = await User.findOne({ "profile.userName": userName });
+  if (!user) {
+    throw new BadRequestError("invalid userName");
+  }
+
   // find user posts
-  let posts = await post.find({ author: user._id });
+  let posts = await post
+    .find({ author: user._id })
+    .populate("comments", "message");
   if (!posts) {
     posts = `${userName} has no post`;
   }
@@ -160,7 +206,7 @@ const viewProfile = async (req, res, next) => {
     Username: user.profile.userName,
     accountType: user.profile.profileType,
     followers: user.profile.followers.length,
-    following: user.profile.following.length,
+    following: user.profile.following.length
   };
 
   // if the profile is private
@@ -170,7 +216,7 @@ const viewProfile = async (req, res, next) => {
     if (!isaFollower) {
       res.status(200).json({
         profile,
-        message: `only followers of ${userName} can view there post`,
+        message: `only followers of ${userName} can view there post`
       });
       return;
     }
@@ -189,74 +235,6 @@ const viewProfile = async (req, res, next) => {
   res.status(200).json({ profile, userPosts });
 };
 
-//@Method:POST /profile/:postId/comment
-//@Desc: comment on a post
-//@Access: public
-
-const commentPost = async (req, res, next) => {
-  // validate comment
-  const error = await validateComment(req.body);
-  if (error) {
-    throw new BadRequestError(error);
-  }
-  const postId = req.params.postId;
-  const { message } = req.body;
-  const userId = req.user._id;
-
-  //   find post
-  const post = await this.post.findById({ _id: postId });
-  if (!post) {
-    throw new BadRequestError("post cannot be found");
-  }
-
-  //   create comment object
-  const comment = {
-    user: userId,
-    message,
-  };
-  //   add comment object to comments array
-  post.comments.push(comment);
-  await post.save();
-  res.status(200).json({ message: "comment successful" });
-};
-// Method:POST /profile/:postId/like
-//@Desc: like a post
-//@Access: public
-
-const likePost = async (req, res, next) => {
-  const postId = req.params.postId;
-  const userId = req.user._id;
-
-  //   find post
-  const post = await this.post.findById({ _id: postId });
-  if (post.author.toString() == userId.toString()) {
-    throw new BadRequestError("you cannot like your own post");
-  }
-
-  // find author
-  const author = await User.findById({ _id: post.author });
-  if (!post) {
-    throw new BadRequestError("post not found");
-  }
-
-  //   check if user has already liked post
-  const hasLikedPost = await post.findOne({ _id: postId, likes: userId });
-  if (hasLikedPost) {
-    await post.findOneAndUpdate({ _id: postId }, { $pull: { likes: userId } });
-    res.status(200).json({
-      success: true,
-      message: `you unliked ${author.profile.userName} 's post `,
-    });
-    return;
-  }
-  //   add user to like arrray
-  await post.findOneAndUpdate({ _id: postId }, { $push: { likes: userId } });
-  res.status(200).json({
-    success: true,
-    message: `you liked ${author.profile.userName}'s post`,
-  });
-};
-
 //@Method:GET /profile/follow-requests
 //@Desc: manage follow requests
 //@Access: private
@@ -273,7 +251,7 @@ const viewFollowRequest = async (req, res, next) => {
   const user = await User.findById({ _id: userId })
     .populate({
       model: "User",
-      path: "followRequest",
+      path: "followRequest"
     })
     .select("followRequest");
 
@@ -333,7 +311,7 @@ const followRequestAction = async (req, res, next) => {
     );
     res.status(200).json({
       success: true,
-      message: `you have denied ${username}'s follow request`,
+      message: `you have denied ${username}'s follow request`
     });
   }
 };
@@ -364,12 +342,10 @@ const editProfile = async (req, res, next) => {
   res.json({ message: "account updated succesfully" });
 };
 
+module.exports.myProfile = myProfile;
 module.exports.followProfile = followProfile;
 module.exports.viewFollowing = viewFollowing;
-module.exports.Post = Post;
-module.exports.commentPost = commentPost;
-module.exports.likePost = likePost;
-module.exports.viewProfile = viewProfile;
+module.exports.findProfile = findProfile;
 module.exports.viewFollowRequest = viewFollowRequest;
 module.exports.viewfollowers = viewfollowers;
 module.exports.followRequestAction = followRequestAction;

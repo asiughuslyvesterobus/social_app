@@ -8,10 +8,10 @@ const {
 } = require("../lib/validation/userValidation");
 const { BadRequestError, Unauthorized } = require("../lib/error");
 const {
-  sendAccountActivation,
+  sendAccountActivation
 } = require("../lib/message/account-activation-message");
 const {
-  sendSuccessfulPasswordReset,
+  sendSuccessfulPasswordReset
 } = require("../lib/message/password-rest-successful");
 //@Method:POST /auth/signup
 //@Desc:To signup a user
@@ -21,8 +21,7 @@ const signup = async (req, res, next) => {
   if (error) {
     throw new BadRequestError(error);
   }
-  const { firstName, lastName, email, profile, phone, password,  } =
-    req.body;
+  const { firstName, lastName, email, profile, phone, password } = req.body;
 
   const userExists = await User.findOne({ email });
   if (userExists) {
@@ -47,20 +46,23 @@ const signup = async (req, res, next) => {
     email,
     profile,
     phone,
-    password: hashedPassword,
+    password: hashedPassword
   });
 
-  await user.save();
+ 
 
   const token = await bcryptjs.hash(email.toString(), 10);
   const thirtyMinutes = 30 * 60 * 1000;
 
   user.AccountactivativationToken = token;
   user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
+  
+  await user.save();
+  
   await sendAccountActivation({ email, token });
   res.status(201).json({
     success: true,
-    message: "click the link in your email to activate your account ",
+    message: "click the link in your email to activate your account "
   });
 };
 
@@ -70,7 +72,7 @@ const signup = async (req, res, next) => {
 const activateAccount = async (req, res) => {
   const user = await User.findOne({
     AccountactivativationToken: req.url.token,
-    AccountTokenExpires: { $gt: Date.now() },
+    AccountTokenExpires: { $gt: Date.now() }
   });
   if (!user) {
     throw new BadRequestError("link has expired. please, request new link ");
@@ -108,16 +110,16 @@ const Login = async (req, res) => {
 
       await sendAccountActivation({ email, token });
       res.json({
-        msg: "account not activated. click the link your email to activate your account ",
+        msg: "account not activated. click the link your email to activate your account "
       });
     }
     res.json({
-      msg: "account not activated. click the link on your email to activate your account",
+      msg: "account not activated. click the link on your email to activate your account"
     });
   }
   const payload = {
     _id: user._id,
-    email: user.email,
+    email: user.email
   };
 
   const token = jwt.sign(payload, process.env.JWT_PRIVATE_KEY);
@@ -127,7 +129,7 @@ const Login = async (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     signed: true,
-    expires: new Date(Date.now() + oneDay),
+    expires: new Date(Date.now() + oneDay)
   });
   res.status(200).json({ success: true, msg: "login sucessful" });
 };
@@ -155,7 +157,7 @@ const forgetPassword = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "check your email for password reset link",
+    message: "check your email for password reset link"
   });
 };
 
@@ -166,7 +168,7 @@ const restPassword = async (req, res, next) => {
   const token = req.url.token;
   const user = await User.findOne({
     passwordRestToken: token,
-    passwordRestExpired: { $gt: Date.now() },
+    passwordRestExpired: { $gt: Date.now() }
   });
   if (!user) {
     throw new BadRequestError("link has expired, please request a new link");
@@ -228,7 +230,7 @@ const logOut = async (req, res, next) => {
   res.cookie("accessToken", "Logout", {
     httpOnly: true,
     signed: true,
-    expires: new Date(Date.now()),
+    expires: new Date(Date.now())
   });
   res.status(200).json({ success: true, msg: "user loged out" });
 };
@@ -246,6 +248,19 @@ const deleteUser = async (req, res, next) => {
   res.status(200).json({ success: true, message: "user deleted" });
 };
 
+const blockAccount = async (req, res, next) => {
+  const { accessToken } = res.signedCookies;
+
+  // verify is user is logged in
+  if (!accessToken) {
+    throw new Unauthorized("User must be logged in to block account");
+  }
+
+  // find and block user
+  res.user = await User.findByIdAndBlock(decoded._id);
+  res.status(200).json({ success: true, message: "User blocked" });
+};
+
 module.exports.signUp = signup;
 module.exports.Login = Login;
 module.exports.activateAccount = activateAccount;
@@ -254,3 +269,4 @@ module.exports.restPassword = restPassword;
 module.exports.logOut = logOut;
 module.exports.deleteUser = deleteUser;
 module.exports.editAccount = editAccount;
+module.exports.blockAccount = blockAccount;
