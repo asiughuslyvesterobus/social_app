@@ -84,7 +84,9 @@ const Navbar = () => {
         </span>
         <span
           onClick={() => setNotificationShow((prev) => !prev)}
-          className="group relative w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer"
+          className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
+            notificationShow === true ? "bg-primary text-primary" : "bg-btngray"
+          }`}
         >
           <BsBell size={20} />
           <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">

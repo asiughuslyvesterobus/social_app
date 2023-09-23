@@ -29,7 +29,7 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
 
   return (
     <div className="absolute w-[300px] tab:w-[450px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[140%] shadow-boxShad right-[-150%] rounded-md">
-      NotificationBox
+      
     </div>
   );
 };
