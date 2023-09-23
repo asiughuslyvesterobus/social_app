@@ -83,7 +83,7 @@ const Navbar = () => {
           </span>
         </span>
         <span
-          onClick={() => setNotificationShow((prev) => !prev)}
+          onClick={() => setNotificationShow(true)}
           className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
             notificationShow === true
               ? "bg-primary/90 text-white"

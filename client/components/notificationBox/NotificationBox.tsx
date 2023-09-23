@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { BsThreeDots } from "react-icons/bs";
 import { FaUserSecret } from "react-icons/fa6";
+import { RiCloseFill } from "react-icons/ri";
 
 interface NotificationProps {
   show: boolean;
@@ -29,10 +30,16 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
 
   return (
     <div
-      className={`absolute w-[300px] tab:w-[450px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-[10px] rounded-md ${
+      ref={modalRef}
+      className={`absolute w-[300px] tab:w-[450px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-[10px] rounded-md h-[85vh] tab:h-fit overflow-x-hidden overflow-y-auto ${
         show ? "scale-100 opacity-100" : "scale-0 opacity-0"
       } transition-all duration-300`}
     >
+      <div className="w-full flex item-end justify-end">
+        <span onClick={() => setShow(false)} className="cursor-pointer">
+          <RiCloseFill size={25} />
+        </span>
+      </div>
       <div className="w-full flex items-center justify-between gap-5">
         <h2 className="text-black text-xl font-semibold tab:text-2xl">
           Notifications
