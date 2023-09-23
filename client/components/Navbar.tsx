@@ -96,11 +96,11 @@ const Navbar = () => {
               Notifications
             </span>
           )}
-          <NotificationBox
-            show={notificationShow}
-            setShow={setNotificationShow}
-          />
         </span>
+        <NotificationBox
+          show={notificationShow}
+          setShow={setNotificationShow}
+        />
 
         {!isAuthenticated ? (
           <div>
