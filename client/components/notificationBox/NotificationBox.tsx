@@ -46,7 +46,7 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
           >
             <FaUserSecret size={30} />
             <div className="w-full flex flex-col items-start justify-start gap-3">
-              <p>
+              <p className="text-sm font-medium md:text-base">
                 <b>Hey Efe Starboy</b>, You have a new message from Bruce wayne!
               </p>
             </div>
