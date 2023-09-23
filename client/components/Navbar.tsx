@@ -13,6 +13,7 @@ import { MenuBox, MobileNav, NotificationBox } from ".";
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [notificationShow, setNotificationShow] = useState(false);
   const { isAuthenticated } = useAuth();
   const router = useRouter();
 
@@ -86,7 +87,10 @@ const Navbar = () => {
           <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
             Notifications
           </span>
-          <NotificationBox />
+          <NotificationBox
+            show={notificationShow}
+            setShow={setNotificationShow}
+          />
         </span>
 
         {!isAuthenticated ? (
