@@ -28,7 +28,11 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
   }, [show]);
 
   return (
-    <div className="absolute w-[300px] tab:w-[450px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-[10px] rounded-md">
+    <div
+      className={`absolute w-[300px] tab:w-[450px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-[10px] rounded-md ${
+        show ? "scale-100 opacity-100" : "scale-0 opacity-0"
+      } transition-all duration-300`}
+    >
       <div className="w-full flex items-center justify-between gap-5">
         <h2 className="text-black text-xl font-semibold tab:text-2xl">
           Notifications
