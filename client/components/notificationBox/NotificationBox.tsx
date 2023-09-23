@@ -53,6 +53,9 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
           </Link>
         ))}
       </div>
+      <p className="w-full text-center text-primary text-sm font-medium md:text-base cursor-pointer hover:underline transition-all">
+        See all
+      </p>
     </div>
   );
 };
