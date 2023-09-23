@@ -37,7 +37,22 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
           <BsThreeDots size={20} />
         </span>
       </div>
-      <div className="w-full flex items-center justify-start flex-col"></div>
+      <div className="w-full flex items-start justify-start flex-col">
+        {[0, 1, 2, 3, 4].map((item, i) => (
+          <Link
+            key={i}
+            href="/"
+            className="relative w-full flex items-start justify-start gap-3 hover:bg-btngray py-2 px-3 rounded-lg transition-all duration-300"
+          >
+            <FaUserSecret size={30} />
+            <div className="w-full flex flex-col items-start justify-start gap-3">
+              <p>
+                <b>Hey Efe Starboy</b>, You have a new message from Bruce wayne!
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
