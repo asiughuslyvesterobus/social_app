@@ -71,7 +71,11 @@ const Navbar = () => {
       </ul>
       <div className="flex items-center gap-3 sm:gap-5 h-full pr-4 md:pr-6">
         <span
-          onClick={() => setMobileNavOpen((prev) => !prev)}
+          onClick={() => {
+            setMobileNavOpen((prev) => !prev);
+            setOpenMenu(false);
+            setNotificationShow(false);
+          }}
           className="w-10 h-10 bg-btngray flex md:hidden items-center justify-center rounded-full cursor-pointer"
         >
           <FaBars size={20} />
