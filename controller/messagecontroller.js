@@ -1,11 +1,17 @@
-const { BadRequestError, NotFoundError } = require("../lib/error");
+const {
+  BadRequestError,
+  NotFoundError,
+  Unauthorized
+} = require("../lib/error");
+const {
+  addMessageToConversation
+} = require("../lib/helpers.js/functions/messagefunctions");
 const {
   validateMessage,
   validateGroup
 } = require("../lib/validation/messagevalidation");
 const User = require("../models/user");
 const Message = require("../models/messages");
-const { Query } = require("mongoose");
 
 //@Method: POST /message/:userid
 //@Desc:to send a message to another profile
@@ -43,7 +49,7 @@ const message = async (req, res, next) => {
     .select("profile.inbox");
 
   // check if recevier is in sender inbox
-  const gasSeenMessage = senderInbox.profile.inbox.find(
+  const hasSeenMessage = senderInbox.profile.inbox.find(
     (inboxItem) => String(inboxItem.user._id) === String(receiver.id)
   );
 
@@ -57,15 +63,22 @@ const message = async (req, res, next) => {
 
   //   check for ongoing conversation
   const haveConversation = await Message.findOne({
-    conversers: { $pull: [userId, receiver._id] }
-  });
+    conversers: [userId, receiver._id]
+  }).populate("message.sender", "profile.userName");
+
+  const receiverId = receiver._id;
 
   //   add message to ongoing conversation
   if (haveConversation) {
-    haveConversation.messages.push({ sender: userId, message: textMessage });
+    const response = await addMessageToConversation(
+      haveConversation,
+      textMessage,
+      receiver,
+      sender,
+      { userId, receiverId }
+    );
 
-    await haveConversation.save();
-    res.json("message sent");
+    res.status(200).json(response);
     return;
   }
 
@@ -92,21 +105,18 @@ const message = async (req, res, next) => {
 const getMessages = async (req, res, next) => {
   // retrieve user and receiver id
   const userId = req.user._id;
-  const query = req.params.userId;
+  const messageId = req.params.messageId;
 
   //   find user and receiver
   const user = await User.findById(userId);
-  const receiver = await User.findById(query);
 
   //   find conversation and populate sender field with profile.userName
   const conversation = await Message.findOne({
-    conversers: [userId, query]
+    _id: messageId
   }).populate("messages.sender", "profile.userName");
 
   if (!conversation) {
-    throw new NotFoundError(
-      `you have no message with${receiver.profile.userName}`
-    );
+    throw new NotFoundError(`message not found`);
   }
   // map through conversation to select necessary properties
   const modifiedConversation = conversation.messages.map((message) => ({
@@ -163,7 +173,48 @@ const createGroup = async (req, res, next) => {
   await message.save();
   res.status(200).json({ message: "Group created successfully" });
 };
+//@Method:POST /message/:groupId/message
+//@Desc:to message a group
+//@Access:private
+
+const messageGroup = async (req, res, next) => {
+  const userId = req.user._id;
+  const query = req.params.groupId;
+  const group = await message
+    .findById(query)
+    .populate("messages.sender", "profile.userName");
+  if (!group) {
+    throw new BadRequestError("group does not exist");
+  }
+  // check if user is a member of the group
+  const aMember = group.conversers.includes(userId);
+  if (!aMember) {
+    throw new Unauthorized("You are not a member of this group");
+  }
+
+  const { textMessage } = req.body;
+  // create message object
+  const message = {
+    sender: userId,
+    message: textMessage
+  };
+
+  // push message object
+  group.messages.push(messsage);
+  await group.save();
+
+  const populateGroup = await Message.findById(query).populate(
+    "messages.sender",
+    "profile.userName"
+  );
+  const conUsernames = populateGroup.messages.map((message) => ({
+    sender: message.sender.profile.userName,
+    message: message.message
+  }));
+  res.status(200).json({ message: "message sent", conUsernames });
+};
 
 module.exports.message = message;
 module.exports.getMessages = getMessages;
 module.exports.createGroup = createGroup;
+module.exports.messageGroup = messageGroup;

@@ -4,7 +4,7 @@ const User = require("../models/user");
 const {
   validateSignup,
   validateLogin,
-  validateAccountEdit,
+  validateAccountEdit
 } = require("../lib/validation/userValidation");
 const { BadRequestError, Unauthorized } = require("../lib/error");
 const {
@@ -13,6 +13,11 @@ const {
 const {
   sendSuccessfulPasswordReset
 } = require("../lib/message/password-rest-successful");
+const {
+  updateChangeAuthProperties,
+  checkValidation
+} = require("../lib/helpers.js/functions/authfunction");
+
 //@Method:POST /auth/signup
 //@Desc:To signup a user
 //@Access:Public
@@ -49,16 +54,14 @@ const signup = async (req, res, next) => {
     password: hashedPassword
   });
 
- 
-
   const token = await bcryptjs.hash(email.toString(), 10);
-  const thirtyMinutes = 30 * 60 * 1000;
+  const oneHour = 60 * 60 * 1000;
 
   user.AccountactivativationToken = token;
-  user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
-  
+  user.AccountTokenExpires = new Date(Date.now() + oneHour);
+
   await user.save();
-  
+
   await sendAccountActivation({ email, token });
   res.status(201).json({
     success: true,
@@ -89,9 +92,15 @@ const Login = async (req, res) => {
   if (error) {
     throw new BadRequestError(error);
   }
-  const { email, password } = req.body;
+  const { email_or_userName, password } = req.body;
 
-  const user = await User.findOne({ email });
+  // find user by email or username
+  const user = await User.findOne({
+    $or: [
+      { email: email_or_userName },
+      { "profile.userName": email_or_userName }
+    ]
+  });
   if (!user) {
     throw new BadRequestError("invalid email or password");
   }
@@ -100,22 +109,12 @@ const Login = async (req, res) => {
   if (!valid) {
     throw new BadRequestError("invalid email or password");
   }
+
+  const email = user.email;
   if (!user.isActivated) {
-    if (user.AccountTokenExpires < Date.now()) {
-      const token = await bcryptjs.hash(email.toString(), 10);
-      const thirtyMinutes = 30 * 60 * 1000;
-
-      user.AccountactivativationToken = token;
-      user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
-
-      await sendAccountActivation({ email, token });
-      res.json({
-        msg: "account not activated. click the link your email to activate your account "
-      });
-    }
-    res.json({
-      msg: "account not activated. click the link on your email to activate your account"
-    });
+    const response = await checkValidation(user, email);
+    res.status(200).json(response);
+    return;
   }
   const payload = {
     _id: user._id,
@@ -165,14 +164,15 @@ const forgetPassword = async (req, res, next) => {
 //@Desc: reset password
 //@Access: Private
 const restPassword = async (req, res, next) => {
-  const token = req.url.token;
   const user = await User.findOne({
     passwordRestToken: token,
     passwordRestExpired: { $gt: Date.now() }
   });
+
   if (!user) {
     throw new BadRequestError("link has expired, please request a new link");
   }
+
   const { newPassword } = req.body;
   const salt = await bcryptjs.genSalt(10);
   const hashedPassword = await bcryptjs.hash(newPassword, salt);
@@ -187,13 +187,13 @@ const restPassword = async (req, res, next) => {
 
   await sendSuccessfulPasswordReset({ email, firstName });
 
-  res.status(200).json({ success: true, msg: "account activated" });
+  res.status(200).json({ success: true, msg: "password reset successful" });
 };
 //@Method:PUT auth/edit
 //@Desc:Edit account
 //@Access:private
 const editAccount = async (req, res, next) => {
-  const error = await validateAccointEdit(req.body);
+  const error = await validateAccountEdit(req.body);
   if (error) {
     throw new BadRequestError(error);
   }
@@ -207,18 +207,17 @@ const editAccount = async (req, res, next) => {
     throw new BadRequestError("invalid password");
   }
 
-  if (firstName !== undefined) {
-    user.firstName = firstName;
-    await user.save();
-  }
-  if (lastName !== undefined) {
-    user.lastName = lastName;
-    await user.save();
-  }
-  if (phone !== underfined) {
-    user.phone = phone;
-    await user.save();
-  }
+  user = updateChangeAuthProperties(user, {
+    firstName,
+    lastName,
+    phone
+  });
+
+  const accountBody = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    phone: user.phone
+  };
   res.status(200).json({ message: "account updated successfully " });
 };
 
