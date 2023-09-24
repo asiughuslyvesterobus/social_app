@@ -54,7 +54,7 @@ const Profilepage = () => {
                 </div>
               </div>
 
-              <h2 className="text-base font-medium tab:text-xl text-primary border-b-2 border-primary pt-5 pb-2 px-2 select-none">
+              <h2 className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary pt-5 pb-2 px-2 select-none">
                 Details
               </h2>
             </div>
