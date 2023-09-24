@@ -35,8 +35,12 @@ const Profilepage = () => {
                       249 friends
                     </p>
                     <div className="flex items-center justify-ce tab:justify-endnter w-full tab:w-fit gap-3">
-                      <button type="button" className="flex items-center justify-center gap-2 outline-none text-sm tab:text-base font-medium bg-primary text-white border border-primary">
-
+                      <button
+                        type="button"
+                        className="flex items-center justify-center py-2 px-3 rounded-lg hover:bg-primary/90 transition-all duration-300 gap-2 outline-none text-sm tab:text-base font-medium bg-primary text-white border border-primary"
+                      >
+                        <BiPlus className="w-4 h-4" />
+                        <span>Add a Story</span>
                       </button>
                     </div>
                   </div>
