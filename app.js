@@ -1,23 +1,40 @@
 require("dotenv").config();
-require("express-async-error");
+require("express-async-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const { authRoutes, homeRouters, profileRouters } = require("./routers");
+const helmet = require("helmet");
+const compression = require("compression");
+const {
+  authRoutes,
+  homeRouters,
+  profileRouters,
+  messageRouters,
+  postRouters
+} = require("./routers");
 const { dbConnect } = require("./lib/dbconnect");
 const {
   notFound,
-  errorHandler,
+  errorHandler
 } = require("./lib/error/middleware/error-middleware");
-
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
 
+app.use(helmet());
+app.use(
+  compression({
+    level: 6,
+    threshold: 0
+  })
+);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", homeRouters);
 app.use("/api/profile", profileRouters);
+app.use("/api/post", postRouters);
+app.use("/api/message", messageRouters);
 
 app.use(notFound);
 app.use(errorHandler);

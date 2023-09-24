@@ -56,6 +56,16 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    imgUrl: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    imgPath: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     password: {
       type: String,
       maxlength: 220,
