@@ -1,5 +1,7 @@
+import MainLayout from "@/layout/MainLayout";
+
 const Profilepage = () => {
-  return <div>Profilepage</div>;
+  return <MainLayout title="User Profil">Profilepage</MainLayout>;
 };
 
 export default Profilepage;
