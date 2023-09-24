@@ -53,11 +53,10 @@ const Profilepage = () => {
                   </div>
                 </div>
               </div>
-              <div className="py-2">
-                <h2 className="text-base font-medium tab:text-xl text-primary">
-                  Details
-                </h2>
-              </div>
+
+              <h2 className="text-base font-medium tab:text-xl text-primary border-b-2 border-primary pt-5 pb-2 px-2 select-none">
+                Details
+              </h2>
             </div>
           </div>
         </div>
