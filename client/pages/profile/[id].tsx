@@ -17,10 +17,10 @@ const Profilepage = () => {
                       alt="userProfile"
                       className="w-40 h-40 rounded-full border-[4px] border-primary"
                     />
+                    <span className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-full bottom-4 right-2 bg-bodybg shadow-boxShad absolute">
+                      <ImCamera size={20} />
+                    </span>
                   </div>
-                  <span className="cursor-pointer">
-                    <ImCamera size={20} />
-                  </span>
                 </div>
                 <div className="flex flex-col items-center tab:items-start flex-grow justify-start tab:pt-5 mt-32 tab:mt-0">
                   <h2 className="text-3xl font-bold tab:text-4xl">
