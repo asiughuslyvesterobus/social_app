@@ -33,16 +33,12 @@ const MenuBox = ({ show, setShow }: MenuProps) => {
     };
   }, [show]);
 
-  const variant = {
-    open: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
-    closed: { opacity: 0, scale: 0, transition: { duration: 0.4 } },
-  };
   return (
-    <motion.div
+    <div
       ref={modalRef}
-      animate={show ? "open" : "closed"}
-      variants={variant}
-      className="absolute w-[300px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-3 md:right-5 rounded-md"
+      className={`absolute w-[300px] flex flex-col items-start justify-start gap-2 bg-bodybg p-5 z-40 top-[100%] shadow-boxShad right-3 md:right-5 rounded-md ${
+        show ? "scale-100 opacity-100" : "scale-0 opacity-0"
+      } transition-all duration-300`}
     >
       <span
         onClick={() => setShow(false)}
@@ -85,7 +81,7 @@ const MenuBox = ({ show, setShow }: MenuProps) => {
           Sign Out
         </span>
       </span>
-    </motion.div>
+    </div>
   );
 };
 
