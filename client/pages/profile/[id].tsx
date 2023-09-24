@@ -34,7 +34,11 @@ const Profilepage = () => {
                     <p className="text-base font-medium text-gray-600">
                       249 friends
                     </p>
-                    <div className="flex items-center justify-ce tab:justify-endnter w-full tab:w-fit gap-3"></div>
+                    <div className="flex items-center justify-ce tab:justify-endnter w-full tab:w-fit gap-3">
+                      <button type="button" className="flex items-center justify-center gap-2 outline-none text-sm tab:text-base font-medium bg-primary text-white border border-primary">
+
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
