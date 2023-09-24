@@ -9,7 +9,7 @@ const Profilepage = () => {
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
           <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
             <div className="w-full relative h-[120px] tab:h-[240px] bg-primary tab:rounded-bl-md tab:rounded-br-md"></div>
-            <div className="w-full tab:w-[90%] tab:mx-auto tab:px-4 flex flex-col items-center justify-start tab:justify-between tab:flex-row border-b border-basegray">
+            <div className="w-full tab:w-[95%] tab:mx-auto tab:px-4 flex flex-col items-center justify-start tab:justify-between tab:flex-row border-b border-basegray">
               <div className="flex w-full items-center justify-start flex-col tab:flex-row tab:items-start tab:gap-6 relative">
                 <div className="tab:mb-32 mr-40">
                   <div className="absolute bg-btngray rounded-full p-1 -translate-y-14">
@@ -37,10 +37,17 @@ const Profilepage = () => {
                     <div className="flex items-center justify-ce tab:justify-endnter w-full tab:w-fit gap-3">
                       <button
                         type="button"
-                        className="flex items-center justify-center py-2 px-3 rounded-lg hover:bg-primary/90 transition-all duration-300 gap-2 outline-none text-sm tab:text-base font-medium bg-primary text-white border border-primary"
+                        className="flex w-full tab:w-fit items-center justify-center py-2 px-3 rounded-lg hover:bg-primary/90 transition-all duration-300 gap-2 outline-none text-sm tab:text-base font-medium bg-primary text-white border border-primary"
                       >
                         <BiPlus className="w-4 h-4" />
                         <span>Add a Story</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="flex w-full tab:w-fit items-center justify-center py-2 px-3 rounded-lg hover:bg-white/80 transition-all duration-300 gap-2 outline-none text-sm tab:text-base font-medium bg-white text-black border border-white"
+                      >
+                        <BiSolidPencil className="w-4 h-4" />
+                        <span>Edit Profile</span>
                       </button>
                     </div>
                   </div>
