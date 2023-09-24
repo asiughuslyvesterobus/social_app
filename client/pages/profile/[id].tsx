@@ -22,9 +22,9 @@ const Profilepage = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex flex-col items-center tab:items-start flex-grow justify-start tab:pt-5 mt-32 tab:mt-0">
-                  <h2 className="text-3xl font-bold tab:text-4xl">
-                    Efe Starboy <span className="font-normal text-2xl">(@starcodes)</span>
+                <div className="flex flex-col items-center tab:items-start tab:flex-grow justify-start tab:pt-5 mt-32 tab:mt-0">
+                  <h2 className="text-3xl font-bold tab:text-4xl text-center">
+                    Efe Starboy <span className="font-normal text-xl tab:text-2xl">(@starcodes)</span>
                   </h2>
                   <div className="flex items-center justify-center tab:justify-between flex-col tab:flex-row gap-4 w-full">
                     <p className="text-base font-medium text-gray-600">
