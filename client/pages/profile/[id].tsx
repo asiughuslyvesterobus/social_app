@@ -1,4 +1,5 @@
 import MainLayout from "@/layout/MainLayout";
+import { ImCamera } from "react-icons/im";
 
 const Profilepage = () => {
   return (
@@ -17,6 +18,9 @@ const Profilepage = () => {
                       className="w-40 h-40 rounded-full border-[4px] border-primary"
                     />
                   </div>
+                  <span className="cursor-pointer">
+                    <ImCamera size={20} />
+                  </span>
                 </div>
                 <div className="flex flex-col items-center tab:items-start flex-grow justify-start tab:pt-5 mt-32 tab:mt-0">
                   <h2 className="text-3xl font-bold tab:text-4xl">
@@ -26,7 +30,6 @@ const Profilepage = () => {
                     <p className="text-base font-medium text-gray-600">
                       249 friends
                     </p>
-                    
                   </div>
                 </div>
               </div>
