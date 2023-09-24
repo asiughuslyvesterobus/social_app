@@ -47,7 +47,7 @@ const MobileNav = ({ show, setShow }: MenuProps) => {
       {NavIcons.map((item: NavIconType, i: number) => (
         <li
           key={i}
-          className={`py-4 flex items-center justify-start gap-4 cursor-pointer ${
+          className={`py-4 px-4 flex items-center justify-start gap-4 cursor-pointer ${
             activeRoute(item.href)
               ? "text-primary border-b border-primary"
               : "hover:bg-bodybg mb-1 rounded-lg"
@@ -66,7 +66,7 @@ const MobileNav = ({ show, setShow }: MenuProps) => {
           <li key={i} className="w-full">
             <Link
               href={item.href}
-              className="flex items-center justify-start w-full gap-4 py-4 transition-all"
+              className="flex items-center justify-start w-full gap-4 py-4 px-4 transition-all"
             >
               <Image
                 src={item.imgUrl}

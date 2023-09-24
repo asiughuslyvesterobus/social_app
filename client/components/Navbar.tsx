@@ -83,7 +83,11 @@ const Navbar = () => {
           </span>
         </span>
         <span
-          onClick={() => setNotificationShow(true)}
+          onClick={() => {
+            setNotificationShow(true);
+            setMobileNavOpen(false);
+            setOpenMenu(false);
+          }}
           className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
             notificationShow === true
               ? "bg-primary/90 text-white"
@@ -123,7 +127,11 @@ const Navbar = () => {
                   ? "scale-1 relative"
                   : "scale-0 absolute top-[100%] right-[15%]"
               } transition-all duration-300`}
-              onClick={() => setOpenMenu(true)}
+              onClick={() => {
+                setOpenMenu(true);
+                setMobileNavOpen(false);
+                setNotificationShow(false);
+              }}
             />
 
             <MenuBox show={openMenu} setShow={setOpenMenu} />
