@@ -9,8 +9,8 @@ const Profilepage = () => {
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
           <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
             <div className="w-full relative h-[120px] tab:h-[240px] bg-primary tab:rounded-bl-md tab:rounded-br-md"></div>
-            <div className="w-full tab:w-[95%] tab:mx-auto tab:px-4 flex flex-col items-center justify-start tab:justify-between tab:flex-row border-b pb-4 tab:pb0 border-basegray">
-              <div className="flex w-full items-center justify-start flex-col tab:flex-row tab:items-start tab:gap-6 relative">
+            <div className="w-full tab:w-[95%] tab:mx-auto tab:px-4 flex flex-col items-start justify-start">
+              <div className="flex w-full items-center justify-start flex-col tab:flex-row tab:items-start tab:gap-6 relative  border-b pb-4 tab:pb-0 border-basegray">
                 <div className="tab:mb-32 mr-40">
                   <div className="absolute bg-btngray rounded-full p-1 -translate-y-14">
                     <img
@@ -53,8 +53,11 @@ const Profilepage = () => {
                   </div>
                 </div>
               </div>
-              
-              <div></div>
+              <div className="py-2">
+                <h2 className="text-base font-medium tab:text-xl text-primary">
+                  Details
+                </h2>
+              </div>
             </div>
           </div>
         </div>
