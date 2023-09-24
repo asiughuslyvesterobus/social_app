@@ -26,7 +26,7 @@ const Profilepage = () => {
                     <p className="text-base font-medium text-gray-600">
                       249 friends
                     </p>
-                    <p>djdjd</p>
+                    
                   </div>
                 </div>
               </div>
