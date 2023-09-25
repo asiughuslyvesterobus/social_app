@@ -61,7 +61,9 @@ const Profilepage = () => {
           </div>
         </div>
         <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10">
-          <div className="w-full">hehe</div>
+          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
+
+          </div>
           <div className="w-full">sdbsd</div>
         </div>
       </section>
