@@ -64,7 +64,7 @@ const Profilepage = () => {
           <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
 
           </div>
-          <div className="w-full">sdbsd</div>
+          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">sdbsd</div>
         </div>
       </section>
     </MainLayout>
