@@ -2,6 +2,8 @@ import MainLayout from "@/layout/MainLayout";
 import { ImCamera } from "react-icons/im";
 import { BiPlus, BiSolidPencil } from "react-icons/bi";
 import Link from "next/link";
+import { postData } from "@/data";
+import { PostCard } from "@/components";
 
 const Profilepage = () => {
   return (
@@ -97,7 +99,13 @@ const Profilepage = () => {
               </div>
             </div>
           </div>
-          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5"></div>
+          <div className="w-full h-screen overflow-y-auto overflow-x-hidden scrollbar-hide p-3 flex flex-col items-start justify-start gap-5">
+            <div className="w-full flex flex-col items-start justify-start gap-6">
+              {postData.map((item) => (
+                <PostCard key={item.id} post={item} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </MainLayout>
