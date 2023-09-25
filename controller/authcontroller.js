@@ -63,6 +63,7 @@ const signup = async (req, res, next) => {
   await user.save();
 
   await sendAccountActivation({ email, token });
+  
   res.status(201).json({
     success: true,
     message: "click the link in your email to activate your account "
@@ -74,7 +75,7 @@ const signup = async (req, res, next) => {
 //@Access:Public
 const activateAccount = async (req, res) => {
   const user = await User.findOne({
-    AccountactivativationToken: req.url.token,
+    AccountactivativationToken: req.query.token,
     AccountTokenExpires: { $gt: Date.now() }
   });
   if (!user) {
@@ -83,7 +84,9 @@ const activateAccount = async (req, res) => {
   user.isActivated = true;
   user.AccountactivativationToken = undefined;
   user.AccountTokenExpires = undefined;
+
   await user.save();
+  
   res.status(200).json({ success: true, msg: "Account activated" });
 };
 
