@@ -5,7 +5,7 @@ import { BiPlus, BiSolidPencil } from "react-icons/bi";
 const Profilepage = () => {
   return (
     <MainLayout title="User Profile">
-      <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden">
+      <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden pb-20">
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
           <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
             <div className="w-full relative h-[120px] tab:h-[240px] bg-primary tab:rounded-bl-md tab:rounded-br-md"></div>
@@ -60,11 +60,16 @@ const Profilepage = () => {
             </div>
           </div>
         </div>
-        <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10">
-          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
-
+        <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10 gap-8">
+          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5 sticky top-10">
+            <h2 className="text-lg font-bold md:text-2xl">Intro</h2>
+            <div className="w-full flex flex-col items-center justify-center">
+              <p className="text-sm text-center font-normal md:text-base">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta,
+              </p>
+            </div>
           </div>
-          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">sdbsd</div>
+          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5"></div>
         </div>
       </section>
     </MainLayout>
