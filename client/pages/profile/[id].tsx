@@ -61,12 +61,15 @@ const Profilepage = () => {
           </div>
         </div>
         <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10 gap-8">
-          <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5 sticky top-10">
-            <h2 className="text-lg font-bold md:text-2xl">Intro</h2>
-            <div className="w-full flex flex-col items-center justify-center">
-              <p className="text-sm text-center font-normal md:text-base">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta,
-              </p>
+          <div className="w-full flex flex-col items-start justify-start gap-5 sticky top-10">
+            <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
+              <h2 className="text-lg font-bold md:text-2xl">Intro</h2>
+              <div className="w-full flex flex-col items-center justify-center">
+                <p className="text-sm text-center font-normal md:text-base">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Dicta,
+                </p>
+              </div>
             </div>
           </div>
           <div className="w-full bg-bodybg shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5"></div>
