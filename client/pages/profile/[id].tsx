@@ -5,7 +5,7 @@ import { BiPlus, BiSolidPencil } from "react-icons/bi";
 const Profilepage = () => {
   return (
     <MainLayout title="User Profile">
-      <section className="w-full flex-col items-start justify-start gap-5">
+      <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden">
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
           <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
             <div className="w-full relative h-[120px] tab:h-[240px] bg-primary tab:rounded-bl-md tab:rounded-br-md"></div>
@@ -60,8 +60,9 @@ const Profilepage = () => {
             </div>
           </div>
         </div>
-        <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row">
-          
+        <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10">
+          <div className="w-full">hehe</div>
+          <div className="w-full">sdbsd</div>
         </div>
       </section>
     </MainLayout>
