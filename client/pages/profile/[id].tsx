@@ -60,6 +60,9 @@ const Profilepage = () => {
             </div>
           </div>
         </div>
+        <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row">
+          
+        </div>
       </section>
     </MainLayout>
   );
