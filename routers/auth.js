@@ -8,7 +8,7 @@ const {
   logOut,
   deleteUser,
   editAccount,
-  blockAccount
+  // blockAccount
 } = require("../controller/authcontroller");
 const isLogin = require("../lib/error/middleware/auth-middleware");
 const router = express.Router();
@@ -21,7 +21,7 @@ router.post("/rest-password?token=token", restPassword);
 router.delete("/logout", logOut);
 router.delete("/delete", isLogin, deleteUser);
 router.put("/edit", isLogin, editAccount);
-router.put("/block-account", isLogin, blockAccount);
+// router.put("/block-account", isLogin, blockAccount);
 
 
 module.exports = router;
