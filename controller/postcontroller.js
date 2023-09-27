@@ -88,16 +88,56 @@ const commentPost = async (req, res, next) => {
   if (!post) {
     throw new BadRequestError("post cannot be found");
   }
+  // find user and give username
+  const user = await User.findOne({ _id: userId }).select("profile.userName");
+
+  if (!user) {
+    throw new BadRequestError("User not found");
+  }
+
+  // get the userName from user object
+  const userName = user.profile.userName;
 
   //   create comment object
   const comment = {
     user: userId,
+    userName: userName,
     message
   };
+
   //   add comment object to comments array
   post.comments.push(comment);
   await post.save();
+
   res.status(200).json({ message: "comment successful" });
+};
+
+//@Method:DELETE /post/delete/:commentId
+//@Desc: delete a post
+//@Access: private
+
+const deleteComment = async (req, res, next) => {
+  const userId = req.user._id;
+  const query = req.params.commentId;
+
+  const post = await Post.findOne({ "comments._id": query });
+  if (!post) {
+    throw new BadRequestError("Comment not found");
+  }
+  const comment = post.comments.find((c) => c._id.toString() === query);
+
+  if (!comment) {
+    throw new BadRequestError("Comment not found in post");
+  }
+  if (comment.user.toString() !== userId.toString()) {
+    throw new Unauthorized("You cannot delete this comment");
+  }
+  // pull comment
+  post.comments.pull({ _id: query });
+
+  // Save the post
+  await post.save();
+  res.status(200).json({ message: "Comment deleted" });
 };
 
 const deletePost = async (req, res, next) => {
@@ -118,3 +158,4 @@ module.exports.post = post;
 module.exports.likePost = likePost;
 module.exports.commentPost = commentPost;
 module.exports.deletePost = deletePost;
+module.exports.deleteComment = deleteComment;
