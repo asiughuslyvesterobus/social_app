@@ -9,6 +9,8 @@ import { SignUpUser } from "@/type";
 import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import LoginIcon from "@/data/register.json";
 
 const Registerpage = () => {
   const router = useRouter();
@@ -73,13 +75,10 @@ const Registerpage = () => {
         />
       </Head>
       <div className="w-full flex flex-col tab:h-screen items-center justify-center tab:flex-row tab:overflow-hidden">
-        <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full">
-          <div className="tab:w-[436px] h-[549px]">
-            <img
-              src="/img/signupImg.png"
-              alt="sign_in_image"
-              className="w-full h-full object-contain img"
-            />
+        <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full relative">
+          <div className="absolute w-[566px] h-[310px] bg-white bottom-[5%] rounded-full"></div>
+          <div className="tab:w-[536px]">
+            <Lottie animationData={LoginIcon} loop={true} />
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 tab:py-0">
