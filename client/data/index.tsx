@@ -141,3 +141,4 @@ export const postData = [
     userPost: "/img/post2.png",
   },
 ];
+
