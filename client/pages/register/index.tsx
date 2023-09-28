@@ -76,6 +76,16 @@ const Registerpage = () => {
       </Head>
       <div className="w-full flex flex-col tab:h-screen items-center justify-center tab:flex-row tab:overflow-hidden">
         <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full relative">
+          <div className="absolute w-full flex items-start justify-start top-0">
+            <Link href="/">
+              <Image
+                src="/img/logo.png"
+                alt="ConnectSmart Logo"
+                width={62}
+                height={48}
+              />
+            </Link>
+          </div>
           <div className="absolute w-[566px] h-[310px] bg-white bottom-[5%] rounded-full"></div>
           <div className="tab:w-[536px]">
             <Lottie animationData={LoginIcon} loop={true} />
