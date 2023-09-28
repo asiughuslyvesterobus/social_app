@@ -76,10 +76,10 @@ const Registerpage = () => {
       </Head>
       <div className="w-full flex flex-col tab:h-screen items-center justify-center tab:flex-row tab:overflow-hidden">
         <div className="w-full tab:flex items-center justify-center p-8 hidden bg-primary h-full relative">
-          <div className="absolute w-full flex items-start justify-start top-0">
+          <div className="absolute w-full flex items-start justify-start top-2 px-5">
             <Link
               href="/"
-              className="flex items-center justify-start select-none"
+              className="flex items-center justify-start select-none bg-white w-fit rounded-full px-4"
             >
               <Image
                 src="/img/logo.png"
@@ -87,9 +87,8 @@ const Registerpage = () => {
                 width={62}
                 height={48}
               />
-
-              <span>
-                <i>SmartConnect</i>
+              <span className="text-xl font-medium text-primary">
+                SmartConnect
               </span>
             </Link>
           </div>
