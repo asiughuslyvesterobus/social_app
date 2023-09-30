@@ -107,7 +107,7 @@ const Profilepage = () => {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Dicta,
                 </p>
-                <button className="w-full h-12 outline-none text-base font-medium bg-primary text-white mt-3 rounded-md hover:cursor-pointer hover:opacity-95">
+                <button className="w-full h-12 outline-none text-base font-medium bg-primary text-white mt-3 rounded-md hover:cursor-pointer hover:opacity-95 transition-all duration-300">
                   Edit Bio
                 </button>
               </div>
