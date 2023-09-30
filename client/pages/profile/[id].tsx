@@ -4,15 +4,26 @@ import { BiPlus, BiSolidPencil } from "react-icons/bi";
 import Link from "next/link";
 import { postData } from "@/data";
 import { PostCard } from "@/components";
+import { useRouter } from "next/router";
 
 const Profilepage = () => {
+  const router = useRouter();
+
+  const isActive = (pathname: string) => {
+    const currentPath = router.pathname;
+    return currentPath === pathname;
+  };
   return (
     <MainLayout title="User Profile">
       <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden pb-20">
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
           <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
             <div className="w-full relative h-[120px] tab:h-[240px] overflow-hidden tab:rounded-bl-md tab:rounded-br-md">
-              <img src="https://images.pexels.com/photos/6424589/pexels-photo-6424589.jpeg?auto=compress&cs=tinysrgb&w=600" alt="backgroud imag" className="w-full h-full object-cover" />
+              <img
+                src="https://images.pexels.com/photos/6424589/pexels-photo-6424589.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="backgroud imag"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="w-full tab:w-[95%] tab:mx-auto tab:px-4 flex flex-col items-start justify-start">
               <div className="flex w-full items-center justify-start flex-col tab:flex-row tab:items-start tab:gap-6 relative  border-b pb-4 tab:pb-0 border-basegray">
@@ -59,9 +70,22 @@ const Profilepage = () => {
                 </div>
               </div>
 
-              <h2 className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary pt-5 pb-2 px-2 select-none">
-                Profile Details
-              </h2>
+              <div className="w-full flex items-center justify-start gap-4">
+                <Link
+                  href={`/profile/42`}
+                  className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary pt-5 pb-2 px-6 select-none"
+                >
+                  Post
+                </Link>
+                <Link
+                  href={`/profile/friends`}
+                  className={`text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 pt-5 pb-2 px-6 select-none ${
+                    isActive("/profile/friends") ? "text-primary border-primary " : ""
+                  }`}
+                >
+                  Friends
+                </Link>
+              </div>
             </div>
           </div>
         </div>
