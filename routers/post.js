@@ -14,7 +14,7 @@ router.post("/post", isLogin, post);
 router.put("/:postId/like", isLogin, likePost);
 router.post("/:postId/comment", isLogin, commentPost);
 router.delete("/:postId/delete", isLogin, deletePost);
-router.delete("./delete/:commentId", isLogin, deleteComment);
+router.delete("/delete/:commentId", isLogin, deleteComment);
 
 
 module.exports = router;

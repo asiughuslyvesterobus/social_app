@@ -2,7 +2,7 @@ const {
   createModifiedHomePostObject
 } = require("../lib/helpers.js/functions/homefunctions");
 const User = require("../models/user");
-const post = require("../models/post");
+const Post = require("../models/post");
 
 //@Method: GET user/home
 //@Desc: Homepage
@@ -47,14 +47,14 @@ const viewPostByTopic = async (req, res, next) => {
   const { title } = req.body;
 
   // find post made by the user following by topic
-  const postByTitle = await post
-    .find({
-      author: { $in: followingId },
-      title: title
-    })
+  const posts = await Post.find({
+    author: { $in: followingId },
+    title: title
+  })
     .populate("author", "profile.userName")
     .sort({ dateCreated: -1 });
-  if (!postByTitle) {
+
+  if (posts.length == 0) {
     res.status(404).json({ message: "there are no post under this topic" });
     return;
   }

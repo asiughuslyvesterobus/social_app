@@ -40,6 +40,7 @@ const likePost = async (req, res, next) => {
 
   //   find post
   const post = await Post.findById({ _id: PostId });
+
   if (post.author.toString() == userId.toString()) {
     throw new BadRequestError("you cannot like your own post");
   }
@@ -51,7 +52,7 @@ const likePost = async (req, res, next) => {
   }
 
   //   check if user has already liked post
-  const hasLikedPost = await Post.findOne({ _id: postId, likes: userId });
+  const hasLikedPost = await Post.findOne({ _id: PostId, likes: userId });
 
   if (hasLikedPost) {
     await Post.findOneAndUpdate({ _id: postId }, { $pull: { likes: userId } });
@@ -62,7 +63,7 @@ const likePost = async (req, res, next) => {
     return;
   }
   //   add user to like arrray
-  await Post.findOneAndUpdate({ _id: postId }, { $push: { likes: userId } });
+  await Post.findOneAndUpdate({ _id: PostId }, { $push: { likes: userId } });
   res.status(200).json({
     success: true,
     message: `you liked ${author.profile.userName}'s post`

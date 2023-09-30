@@ -13,7 +13,7 @@ const {
 const { editAccount } = require("../controller/authcontroller");
 const router = express.Router();
 
-router.get("/", isLogin, myProfile);
+router.get("/profile", isLogin, myProfile);
 router.post("/follow", isLogin, followProfile);
 router.get("/following", isLogin, viewFollowing);
 router.get("/followers", isLogin, viewfollowers);

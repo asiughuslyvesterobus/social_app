@@ -12,34 +12,32 @@ const {
   validateRequestAction
 } = require("../lib/validation/userValidation");
 const User = require("../models/user");
+const Post = require("../models/post");
 
 //@Method:Get /profile/
 //@Desc: view my profile
 //@Access: private
-
 const myProfile = async (req, res, next) => {
   const userId = req.user._id;
-  const user = await User.findById({ _id: user });
+  const user = await User.findById({ _id: userId });
   if (!user) {
     throw new BadRequestError("login to view your profile");
   }
 
   // create object contaning user propreties
-  const userProfile = {
+  const Your_profile = {
     username: user.profile.userName,
     bio: user.profile.bio,
     followers: user.profile.followers.length,
     following: user.profile.following.length
   };
-
   // find users posts
-  const posts = await post.find({ author: userId });
-  if (post.length === 0) {
-    res.status(200).json({ Your_Profile, message: "you have no post" });
+  const posts = await Post.find({ author: userId });
+  if (posts.length === 0) {
+    res.status(200).json({ Your_profile, message: "you have no post" });
     return;
   }
-  const postsLikes = await post
-    .find({ author: userId })
+  const postsLikes = await Post.find({ author: userId })
     .populate("likes", "profile.userName")
     .select("profile.userName");
 
@@ -66,23 +64,24 @@ const myProfile = async (req, res, next) => {
     postsComment
   );
 
-  res.status(200).json({ Your_Profile, your_post });
+  res.status(200).json({ Your_profile, Your_Posts });
 };
 //@Method:POST /profile/follow
 //@Desc: follow profile
 //@Access : Private
 const followProfile = async (req, res, next) => {
   const { userName } = req.body;
-  const userId = req.User_id;
+  const userId = req.user._id;
 
   // find user
   const user = await User.findOne({ "profile.userName": userName });
   if (!user) {
     throw new BadRequestError("User does not exist");
   }
+
   // prevent user from following own profile
   if (userId.toString() === user._id.toString()) {
-    throw new BadRequestError("you cannot follow yuorself");
+    throw new BadRequestError("You cannot follow yourself");
   }
 
   const followeeId = user._id;
@@ -154,9 +153,10 @@ const findProfile = async (req, res, next) => {
   }
 
   // find user posts
-  let posts = await post
-    .find({ author: user._id })
-    .populate("comments", "message");
+  let posts = await Post.find({ author: user._id }).populate(
+    "comments",
+    "message"
+  );
   if (!posts) {
     posts = `${userName} has no post`;
   }
@@ -172,7 +172,7 @@ const findProfile = async (req, res, next) => {
   // if the profile is private
   if (user.profile.profileType === "private") {
     // check if the user follows the private profile
-    const isaFollower = user.profile.followers.includes(usedId);
+    const isaFollower = user.profile.followers.includes(userId);
     if (!isaFollower) {
       res.status(200).json({
         profile,
@@ -256,7 +256,12 @@ const editProfile = async (req, res, next) => {
   }
   const user = await User.findById({ _id: userId });
 
-  let { userName, bio, profileType } = req.body;
+  let { userName, bio, profileType, password } = req.body;
+
+  const valid = await bcryptjs.compare(password, user.password);
+  if (!valid) {
+    throw new BadRequestError("invalid password");
+  }
 
   // update the provided fields by the body
   user = await updateChangedProfileProperties(user, {

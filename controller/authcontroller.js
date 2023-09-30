@@ -113,7 +113,7 @@ const Login = async (req, res) => {
   if (!valid) {
     throw new BadRequestError("invalid email or password");
   }
-  
+
   //check if user is activated
   if (!user.isActivated) {
     const response = await checkValidation(user, email);
@@ -140,7 +140,7 @@ const Login = async (req, res) => {
 //@Access:Private
 //@Desc: to request for password reset
 const forgetPassword = async (req, res, next) => {
-  const { email } = req.body;
+  let { email } = req.body;
   if (!email) {
     throw new BadRequestError("invalid email");
   }
@@ -164,10 +164,10 @@ const forgetPassword = async (req, res, next) => {
   });
 };
 
-// Method: GET auth/reset-password
+// Method: post auth/reset-password
 //@Desc: reset password
 //@Access: Private
-const restPassword = async (req, res, next) => {
+const resetPassword = async (req, res, next) => {
   const user = await User.findOne({
     passwordRestToken: req.query.token,
     passwordRestExpired: { $gt: Date.now() }
@@ -208,8 +208,10 @@ const editAccount = async (req, res, next) => {
 
   let { firstName, lastName, phone, password } = req.body;
 
-  const user = await User.findById(userId);
+  // find user
+  let user = await User.findById(userId);
 
+  // check password
   const valid = await bcryptjs.compare(password, user.password);
   if (!valid) {
     throw new BadRequestError("invalid password");
@@ -255,25 +257,28 @@ const deleteUser = async (req, res, next) => {
   res.status(200).json({ success: true, message: "user deleted" });
 };
 
-// const blockAccount = async (req, res, next) => {
-//   const { accessToken } = res.signedCookies;
+//@Method:put auth/block-account
+//@Desc:blockAccount
+//@Access:Private
+const blockAccount = async (req, res, next) => {
+  const { accessToken } = res.signedCookies;
 
-//   // verify is user is logged in
-//   if (!accessToken) {
-//     throw new Unauthorized("User must be logged in to block account");
-//   }
+  // verify is user is logged in
+  if (!accessToken) {
+    throw new Unauthorized("User must be logged in to block account");
+  }
 
-//   // find and block user
-//   res.user = await User.findByIdAndRemove(decoded._id);
-//   res.status(200).json({ success: true, message: "User blocked" });
-// };
+  // find and block user
+  res.user = await User.findByIdAndRemove(decoded._id);
+  res.status(200).json({ success: true, message: "User blocked" });
+};
 
 module.exports.signUp = signup;
 module.exports.Login = Login;
 module.exports.activateAccount = activateAccount;
 module.exports.forgetPassword = forgetPassword;
-module.exports.restPassword = restPassword;
+module.exports.resetPassword = resetPassword;
 module.exports.logOut = logOut;
 module.exports.deleteUser = deleteUser;
 module.exports.editAccount = editAccount;
-// module.exports.blockAccount = blockAccount;
+module.exports.blockAccount = blockAccount;

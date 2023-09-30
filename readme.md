@@ -52,7 +52,7 @@ after logging in, you'll have permission to access various features, including:
 # View Your Profile
 
 - **Method:** GET
-- **Endpoint:** `/profile`
+- **Endpoint:** `/profile/profile`
 - **Access:** Private
 
 #Follow a Profile/ Unfollow a profile
@@ -165,6 +165,10 @@ To change bio, use:
  "textMessage": "hello"
 }
 ```
+### Get messages
+- **Method: GET
+- **Endpoint:** `/message/:messageId/view`
+- **Access:private
 
 ### Create group
 
@@ -252,6 +256,11 @@ To change bio, use:
  "password": "1234567890"
 }
 ```
+
+### block account
+- **Method:** PUT
+- **Endpoint:** `api/auth/block-account`
+- **Access:** Private
 
 ### Log-out
 

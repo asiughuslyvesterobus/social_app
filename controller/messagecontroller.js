@@ -26,9 +26,9 @@ const message = async (req, res, next) => {
     throw new BadRequestError("you cannot send yourself a message");
   }
 
-  //   grt sender and receiver
+  //   get sender and receiver
   const sender = await User.findById(userId);
-  const receiver = await User.findById(Query);
+  const receiver = await User.findById(query);
 
   if (!receiver) {
     throw new BadRequestError("User not found");
@@ -83,7 +83,7 @@ const message = async (req, res, next) => {
   }
 
   //   initialize new conversatiom
-  const message = new message({
+  const message = new Message({
     conversers: [userId, receiver._id],
     messages: [{ sender: userId, message: textMessage }]
   });
@@ -92,7 +92,7 @@ const message = async (req, res, next) => {
   //   send notification to inbox
   receiver.profile.inbox.push({
     user: userId,
-    userName: sender.prodfile.userName
+    userName: sender.profile.userName
   });
 
   await receiver.save();
@@ -118,6 +118,9 @@ const getMessages = async (req, res, next) => {
   if (!conversation) {
     throw new NotFoundError(`message not found`);
   }
+  if (!conversation.conversers.includes(userId)) {
+    throw new Unauthorized("you are not permitted to view these message");
+  }
   // map through conversation to select necessary properties
   const modifiedConversation = conversation.messages.map((message) => ({
     sender: message.sender.profile.userName,
@@ -134,7 +137,7 @@ const getMessages = async (req, res, next) => {
   res.status(200).json({ modifiedConversation });
 };
 
-//@Method: api /message/group
+//@Method:POST api /message/group
 //@Desc:to create a group
 //@Access:private
 
@@ -180,7 +183,7 @@ const createGroup = async (req, res, next) => {
 const messageGroup = async (req, res, next) => {
   const userId = req.user._id;
   const query = req.params.groupId;
-  const group = await message
+  const group = await Message
     .findById(query)
     .populate("messages.sender", "profile.userName");
   if (!group) {
@@ -200,7 +203,7 @@ const messageGroup = async (req, res, next) => {
   };
 
   // push message object
-  group.messages.push(messsage);
+  group.messages.push(message);
   await group.save();
 
   const populateGroup = await Message.findById(query).populate(
