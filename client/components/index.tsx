@@ -9,10 +9,10 @@ import StoryCard from "./StoryCard";
 import MenuBox from "./menuBox/MenuBox";
 import MobileNav from "./mobileNav/MobileNav";
 import NotificationBox from "./notificationBox/NotificationBox";
-
 import CustomizeInput from "./form/CustomizeInput";
 import CustomizeSelect from "./form/CustomizeSelect";
 import CustomizeTextarea from "./form/CustomizeTextarea";
+import ProfileHeadline from "./ProfileHeadline";
 
 export {
   Navbar,
@@ -29,4 +29,5 @@ export {
   MenuBox,
   MobileNav,
   NotificationBox,
+  ProfileHeadline,
 };
