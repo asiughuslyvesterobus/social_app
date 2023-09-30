@@ -11,7 +11,7 @@ const FriendsPage = () => {
           <ProfileHeadline className="hover:bg-gray-300 rounded-lg" />
         </div>
         <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-5 gap-8 px-4 rounded-lg bg-btngray shadow-boxShad mt-8">
-          <div className="w-full flex items-center justify-between gap-5">
+          <div className="w-full flex items-center justify-between gap-5 border-b border-gray-500 pb-5">
             <h2 className="text-base font-bold md:text-xl">Friends</h2>
             <div className="flex items-center justify-end gap-5">
               <Link
