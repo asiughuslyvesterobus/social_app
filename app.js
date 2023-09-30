@@ -2,6 +2,7 @@ require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 const {
@@ -18,9 +19,19 @@ const {
 } = require("./lib/error/middleware/error-middleware");
 
 const app = express();
+if (!process.env.JWT_PRIVATE_KEY) {
+  throw new Error("JWT private is not defined.");
+}
 
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
+app.use(
+  cors({
+    origin: [process.env.CLIENT_URL],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+  })
+);
 
 app.use(helmet());
 app.use(

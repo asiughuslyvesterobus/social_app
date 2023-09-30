@@ -21,6 +21,11 @@ const messageSchema = new mongoose.Schema({
   ]
 });
 
+messageSchema.pre("save", function (next) {
+  this.conversers = this.conversers.sort();
+  next();
+});
+
 const Message = mongoose.model("mesage", messageSchema);
 
 module.exports = Message;

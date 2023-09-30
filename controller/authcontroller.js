@@ -4,7 +4,7 @@ const User = require("../models/user");
 const {
   validateSignup,
   validateLogin,
-  validateAccountEdit,
+  validateAccountEdit
 } = require("../lib/validation/userValidation");
 const { BadRequestError, Unauthorized } = require("../lib/error");
 const {
@@ -13,6 +13,13 @@ const {
 const {
   sendSuccessfulPasswordReset
 } = require("../lib/message/password-rest-successful");
+const {
+  updateChangeAuthProperties,
+  checkValidation
+} = require("../lib/helpers.js/functions/authfunction");
+
+const sendPasswordRest = require("../lib/message/password -reset-message");
+
 //@Method:POST /auth/signup
 //@Desc:To signup a user
 //@Access:Public
@@ -25,16 +32,16 @@ const signup = async (req, res, next) => {
 
   const userExists = await User.findOne({ email });
   if (userExists) {
-    throw new BadRequestError("user already exist");
+    throw new BadRequestError("User already exist");
   }
   const { userName } = profile;
   const usernameExists = await User.findOne({ userName });
   if (usernameExists) {
-    throw new BadRequestError("username has already been taken");
+    throw new BadRequestError("Username has already been taken");
   }
   const phoneExists = await User.findOne({ phone });
   if (phoneExists) {
-    throw new BadRequestError("phone number already exist");
+    throw new BadRequestError("Phone number already exist");
   }
 
   const salt = await bcryptjs.genSalt(10);
@@ -49,17 +56,18 @@ const signup = async (req, res, next) => {
     password: hashedPassword
   });
 
- 
+  await user.save();
 
   const token = await bcryptjs.hash(email.toString(), 10);
-  const thirtyMinutes = 30 * 60 * 1000;
+  const oneHour = 60 * 60 * 1000;
 
   user.AccountactivativationToken = token;
-  user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
-  
+  user.AccountTokenExpires = new Date(Date.now() + oneHour);
+
   await user.save();
-  
+
   await sendAccountActivation({ email, token });
+
   res.status(201).json({
     success: true,
     message: "click the link in your email to activate your account "
@@ -71,16 +79,19 @@ const signup = async (req, res, next) => {
 //@Access:Public
 const activateAccount = async (req, res) => {
   const user = await User.findOne({
-    AccountactivativationToken: req.url.token,
+    AccountactivativationToken: req.query.token,
     AccountTokenExpires: { $gt: Date.now() }
   });
+
   if (!user) {
     throw new BadRequestError("link has expired. please, request new link ");
   }
   user.isActivated = true;
   user.AccountactivativationToken = undefined;
   user.AccountTokenExpires = undefined;
+
   await user.save();
+
   res.status(200).json({ success: true, msg: "Account activated" });
 };
 
@@ -91,7 +102,9 @@ const Login = async (req, res) => {
   }
   const { email, password } = req.body;
 
+  // find user by email or username
   const user = await User.findOne({ email });
+
   if (!user) {
     throw new BadRequestError("invalid email or password");
   }
@@ -100,22 +113,12 @@ const Login = async (req, res) => {
   if (!valid) {
     throw new BadRequestError("invalid email or password");
   }
+
+  //check if user is activated
   if (!user.isActivated) {
-    if (user.AccountTokenExpires < Date.now()) {
-      const token = await bcryptjs.hash(email.toString(), 10);
-      const thirtyMinutes = 30 * 60 * 1000;
-
-      user.AccountactivativationToken = token;
-      user.AccountTokenExpires = new Date(Date.now() + thirtyMinutes);
-
-      await sendAccountActivation({ email, token });
-      res.json({
-        msg: "account not activated. click the link your email to activate your account "
-      });
-    }
-    res.json({
-      msg: "account not activated. click the link on your email to activate your account"
-    });
+    const response = await checkValidation(user, email);
+    res.status(200).json(response);
+    return;
   }
   const payload = {
     _id: user._id,
@@ -137,7 +140,7 @@ const Login = async (req, res) => {
 //@Access:Private
 //@Desc: to request for password reset
 const forgetPassword = async (req, res, next) => {
-  const { email } = req.body;
+  let { email } = req.body;
   if (!email) {
     throw new BadRequestError("invalid email");
   }
@@ -153,7 +156,7 @@ const forgetPassword = async (req, res, next) => {
 
   await user.save();
 
-  await sendPasswordReset({ email, token });
+  await sendPasswordRest({ email, token });
 
   res.status(200).json({
     success: true,
@@ -161,23 +164,27 @@ const forgetPassword = async (req, res, next) => {
   });
 };
 
-// Method: GET auth/reset-password
+// Method: post auth/reset-password
 //@Desc: reset password
 //@Access: Private
-const restPassword = async (req, res, next) => {
-  const token = req.url.token;
+const resetPassword = async (req, res, next) => {
   const user = await User.findOne({
-    passwordRestToken: token,
+    passwordRestToken: req.query.token,
     passwordRestExpired: { $gt: Date.now() }
   });
+
   if (!user) {
     throw new BadRequestError("link has expired, please request a new link");
   }
-  const { newPassword } = req.body;
-  const salt = await bcryptjs.genSalt(10);
-  const hashedPassword = await bcryptjs.hash(newPassword, salt);
 
-  user.password = hashedPassword;
+  const { newPassword } = req.body;
+  if (!newPassword) {
+    throw new BadRequestError("invalid password");
+  }
+  const salt = await bcryptjs.genSalt(10);
+  const hashedpassword = await bcryptjs.hash(newPassword, salt);
+
+  user.password = hashedpassword;
   user.passwordRestToken = undefined;
   user.passwordRestExpired = undefined;
   const email = user.email;
@@ -187,13 +194,13 @@ const restPassword = async (req, res, next) => {
 
   await sendSuccessfulPasswordReset({ email, firstName });
 
-  res.status(200).json({ success: true, msg: "account activated" });
+  res.status(200).json({ success: true, msg: "password reset successful" });
 };
 //@Method:PUT auth/edit
 //@Desc:Edit account
 //@Access:private
 const editAccount = async (req, res, next) => {
-  const error = await validateAccointEdit(req.body);
+  const error = await validateAccountEdit(req.body);
   if (error) {
     throw new BadRequestError(error);
   }
@@ -201,24 +208,26 @@ const editAccount = async (req, res, next) => {
 
   let { firstName, lastName, phone, password } = req.body;
 
-  const user = await User.findById(userId);
+  // find user
+  let user = await User.findById(userId);
+
+  // check password
   const valid = await bcryptjs.compare(password, user.password);
   if (!valid) {
     throw new BadRequestError("invalid password");
   }
 
-  if (firstName !== undefined) {
-    user.firstName = firstName;
-    await user.save();
-  }
-  if (lastName !== undefined) {
-    user.lastName = lastName;
-    await user.save();
-  }
-  if (phone !== underfined) {
-    user.phone = phone;
-    await user.save();
-  }
+  user = updateChangeAuthProperties(user, {
+    firstName,
+    lastName,
+    phone
+  });
+
+  const accountBody = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    phone: user.phone
+  };
   res.status(200).json({ message: "account updated successfully " });
 };
 
@@ -248,6 +257,9 @@ const deleteUser = async (req, res, next) => {
   res.status(200).json({ success: true, message: "user deleted" });
 };
 
+//@Method:put auth/block-account
+//@Desc:blockAccount
+//@Access:Private
 const blockAccount = async (req, res, next) => {
   const { accessToken } = res.signedCookies;
 
@@ -257,7 +269,7 @@ const blockAccount = async (req, res, next) => {
   }
 
   // find and block user
-  res.user = await User.findByIdAndBlock(decoded._id);
+  res.user = await User.findByIdAndRemove(decoded._id);
   res.status(200).json({ success: true, message: "User blocked" });
 };
 
@@ -265,7 +277,7 @@ module.exports.signUp = signup;
 module.exports.Login = Login;
 module.exports.activateAccount = activateAccount;
 module.exports.forgetPassword = forgetPassword;
-module.exports.restPassword = restPassword;
+module.exports.resetPassword = resetPassword;
 module.exports.logOut = logOut;
 module.exports.deleteUser = deleteUser;
 module.exports.editAccount = editAccount;
