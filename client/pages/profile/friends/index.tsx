@@ -11,7 +11,7 @@ const FriendsPage = () => {
         </div>
         <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10 gap-8 px-4 rounded-lg bg-btngray shadow-boxShad mt-8">
           <div className="w-full flex items-center justify-between gap-5">
-            <h2 className="text-base font-semibold md:text-xl">Friends</h2>
+            <h2 className="text-base font-bold md:text-xl">Friends</h2>
           </div>
         </div>
       </section>
