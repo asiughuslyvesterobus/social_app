@@ -15,7 +15,7 @@ const FriendsPage = () => {
             <h2 className="text-base font-bold md:text-xl">Friends</h2>
             <div className="flex items-center justify-end gap-5">
               <Link
-                href="friends"
+                href="/friends"
                 className="text-sm font-semibold md:text-base text-primary"
               >
                 Find Friend
