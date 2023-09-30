@@ -13,6 +13,17 @@ const Profilepage = () => {
     const currentPath = router.pathname;
     return currentPath === pathname;
   };
+
+  const tabLinks = [
+    {
+      href: `/profile/${router.query.id}`,
+      text: "Post",
+    },
+    {
+      href: `/profile/friends`,
+      text: "Friends",
+    },
+  ];
   return (
     <MainLayout title="User Profile">
       <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden pb-20">
@@ -70,21 +81,19 @@ const Profilepage = () => {
                 </div>
               </div>
 
-              <div className="w-full flex items-center justify-start gap-4">
-                <Link
-                  href={`/profile/42`}
-                  className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary pt-5 pb-2 px-6 select-none"
-                >
-                  Post
-                </Link>
-                <Link
-                  href={`/profile/friends`}
-                  className={`text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 pt-5 pb-2 px-6 select-none ${
-                    isActive("/profile/friends") ? "text-primary border-primary " : ""
-                  }`}
-                >
-                  Friends
-                </Link>
+              <div className="w-full flex items-center justify-start gap-4 mt-2">
+                {tabLinks.map((item) => (
+                  <Link
+                    href={item.href}
+                    className={`text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 px-6 select-none ${
+                      isActive(item.href)
+                        ? "text-primary border-primary"
+                        : "hover:bg-gray-300 rounded-lg py-3"
+                    } transition-all duration-300`}
+                  >
+                    {item.text}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
