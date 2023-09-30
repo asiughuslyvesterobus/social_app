@@ -82,18 +82,18 @@ const Profilepage = () => {
               </div>
 
               <div className="w-full flex items-center justify-start gap-4 mt-2">
-                {tabLinks.map((item) => (
-                  <Link
-                    href={item.href}
-                    className={`text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 px-6 select-none ${
-                      isActive(item.href)
-                        ? "text-primary border-primary"
-                        : "hover:bg-gray-300 rounded-lg py-3"
-                    } transition-all duration-300`}
-                  >
-                    {item.text}
-                  </Link>
-                ))}
+                <Link
+                  href="/profile/42"
+                  className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary py-3 px-6 select-none"
+                >
+                  Post
+                </Link>
+                <Link
+                  href="/profile/friends"
+                  className="text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 px-6 select-none hover:bg-gray-300 rounded-lg py-3 transition-all duration-300"
+                >
+                  Friends
+                </Link>
               </div>
             </div>
           </div>
@@ -107,6 +107,9 @@ const Profilepage = () => {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Dicta,
                 </p>
+                <button className="w-full h-12 outline-none text-base font-medium bg-primary text-white mt-3 rounded-md hover:cursor-pointer hover:opacity-95">
+                  Edit Bio
+                </button>
               </div>
             </div>
             <div className="w-full bg-bodybg border shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
