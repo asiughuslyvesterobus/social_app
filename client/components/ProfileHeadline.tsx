@@ -1,8 +1,15 @@
 import { ImCamera } from "react-icons/im";
 import { BiPlus, BiSolidPencil } from "react-icons/bi";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const ProfileHeadline = () => {
+interface ProfileProp {
+  className: string;
+}
+
+const ProfileHeadline = ({ className }: ProfileProp) => {
+  const router = useRouter();
+
   return (
     <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start">
       <div className="w-full relative h-[120px] tab:h-[240px] overflow-hidden tab:rounded-bl-md tab:rounded-br-md">
@@ -58,13 +65,17 @@ const ProfileHeadline = () => {
         <div className="w-full flex items-center justify-start gap-4 mt-2">
           <Link
             href="/profile/42"
-            className="text-base font-medium tab:text-xl text-primary border-b-2 ml-3 tab:ml-0 border-primary py-3 px-6 select-none"
+            className={`text-base font-medium tab:text-xl ml-3 tab:ml-0 ${className} py-3 px-6 select-none`}
           >
             Post
           </Link>
           <Link
             href="/profile/friends"
-            className="text-base font-medium tab:text-xl border-b-2 ml-3 tab:ml-0 px-6 select-none hover:bg-gray-300 rounded-lg py-3 transition-all duration-300"
+            className={`text-base font-medium tab:text-xl ml-3 tab:ml-0 px-6 select-none py-3 transition-all duration-300 ${
+              router.pathname === "/profile/friends"
+                ? "border-primary text-primary border-b-2"
+                : "hover:bg-gray-300 rounded-lg"
+            }`}
           >
             Friends
           </Link>

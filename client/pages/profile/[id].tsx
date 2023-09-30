@@ -3,14 +3,12 @@ import Link from "next/link";
 import { postData } from "@/data";
 import { PostCard, ProfileHeadline } from "@/components";
 
-
 const Profilepage = () => {
-
   return (
     <MainLayout title="User Profile">
       <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden pb-20">
         <div className="w-full bg-btngray tab:px-5 shadow-boxShad flex gap-5 flex-col items-center justify-center">
-          <ProfileHeadline />
+          <ProfileHeadline className="border-primary text-primary border-b-2" />
         </div>
         <div className="tab:w-[75%] w-full tab:mx-auto flex flex-col items-start justify-start tab:flex-row py-10 gap-8 px-4 tab:px-0">
           <div className="w-full tab:flex-[1] flex flex-col items-start justify-start gap-5 sticky top-0">
