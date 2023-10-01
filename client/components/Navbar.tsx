@@ -52,7 +52,7 @@ const Navbar = () => {
         {NavIcons.map((item: NavIconType, i: number) => (
           <li
             key={i}
-            className={`group relative py-4 px-10 h-full flex flex-col items-center justify-center cursor-pointer ${
+            className={`group relative py-1 px-10 h-full flex flex-col items-center justify-center cursor-pointer ${
               activeRoute(item.href)
                 ? "text-primary border-b-2 border-primary"
                 : "hover:bg-bodybg mb-1 rounded-lg"
