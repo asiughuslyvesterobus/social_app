@@ -10,6 +10,7 @@ interface NotificationProps {
 }
 
 const NotificationBox = ({ show, setShow }: NotificationProps) => {
+  const [optionOpen, setOptionOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
