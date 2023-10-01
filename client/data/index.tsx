@@ -30,22 +30,22 @@ export const sideBarLink = [
   {
     imgUrl: "/icon/friend.png",
     text: "Friends",
-    href: "/",
+    href: "/comingsoon",
   },
   {
     imgUrl: "/icon/watchIcon.svg",
     text: "Video",
-    href: "/",
+    href: "/comingsoon",
   },
   {
     imgUrl: "/icon/saved.svg",
     text: "Saved",
-    href: "/",
+    href: "/comingsoon",
   },
   {
     imgUrl: "/icon/adsIcon.svg",
     text: "Ads",
-    href: "/",
+    href: "/comingsoon",
   },
   {
     imgUrl: "/icon/messengerIcon.svg",
