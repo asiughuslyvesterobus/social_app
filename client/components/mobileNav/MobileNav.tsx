@@ -45,21 +45,22 @@ const MobileNav = ({ show, setShow }: MenuProps) => {
       } transition-all duration-300`}
     >
       {NavIcons.map((item: NavIconType, i: number) => (
-        <li
+        <Link
+          href={item.href}
           key={i}
+          onClick={() => setShow(false)}
           className={`py-4 px-4 flex items-center justify-start gap-4 cursor-pointer ${
             activeRoute(item.href)
               ? "text-primary border-b border-primary"
               : "hover:bg-bodybg mb-1 rounded-lg"
           } transition-all`}
         >
-          <Link onClick={() => setShow(false)} href={item.href}>
-            <span>
-              <item.icon size={20} />
-            </span>
-          </Link>
+          <span>
+            <item.icon size={20} />
+          </span>
+
           <span className="font-semibold text-sm">{item.tooltip}</span>
-        </li>
+        </Link>
       ))}
       <ul>
         {sideBarLink.map((item, i) => (

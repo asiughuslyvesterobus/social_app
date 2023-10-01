@@ -14,7 +14,7 @@ const CreatePostCard = () => {
           height={40}
           className="rounded-full"
         />
-        <div className="w-full bg-bodybg h-10 border border-bodybg transition-all duration-300 px-4 text-base font-normal text-basegray rounded-full items-center flex select-none hover:cursor-pointer">
+        <div className="w-full bg-bodybg h-10 border border-bodybg transition-all duration-300 px-4 text-sm sm:text-base font-normal text-basegray rounded-full items-center flex select-none hover:cursor-pointer">
           What's on your Mind, Efe
         </div>
       </div>
