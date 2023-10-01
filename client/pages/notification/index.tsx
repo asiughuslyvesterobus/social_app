@@ -1,5 +1,7 @@
+import MainLayout from "@/layout/MainLayout";
+
 const NotificationPage = () => {
-  return <div>NotificationPage</div>;
+  return <MainLayout title="Notifcation">NotificationPage</MainLayout>;
 };
 
 export default NotificationPage;

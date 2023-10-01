@@ -93,7 +93,7 @@ const Navbar = () => {
             setOpenMenu(false);
           }}
           className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
-            notificationShow === true
+            notificationShow === true || activeRoute("/notification")
               ? "bg-primary/90 text-white"
               : "bg-btngray"
           } transition-all duration-300`}
