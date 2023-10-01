@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
-import { BsThreeDots } from "react-icons/bs";
 import { FaUserSecret } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
 
@@ -10,7 +9,6 @@ interface NotificationProps {
 }
 
 const NotificationBox = ({ show, setShow }: NotificationProps) => {
-  const [optionOpen, setOptionOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,13 +39,10 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
           <RiCloseFill size={25} />
         </span>
       </div>
-      <div className="w-full flex items-center justify-between gap-5">
+      <div className="w-full flex items-center justify-between gap-5 relative">
         <h2 className="text-black text-xl font-semibold tab:text-2xl">
           Notifications
         </h2>
-        <span onClick={() => setOptionOpen(true)} className="cursor-pointer">
-          <BsThreeDots size={20} />
-        </span>
       </div>
       <div className="w-full flex items-start justify-start flex-col">
         {[0, 1, 2, 3, 4].map((item, i) => (
