@@ -22,7 +22,7 @@ export const NavIcons = [
   {
     icon: HiUserGroup,
     tooltip: "Groups",
-    href: "/comingsoon",
+    href: "/groups/feed",
   },
 ];
 
@@ -141,4 +141,3 @@ export const postData = [
     userPost: "/img/post2.png",
   },
 ];
-
