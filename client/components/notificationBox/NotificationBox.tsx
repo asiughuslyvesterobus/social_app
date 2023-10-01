@@ -45,7 +45,7 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
         <h2 className="text-black text-xl font-semibold tab:text-2xl">
           Notifications
         </h2>
-        <span className="cursor-pointer">
+        <span onClick={() => setOptionOpen(true)} className="cursor-pointer">
           <BsThreeDots size={20} />
         </span>
       </div>
@@ -53,7 +53,7 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
         {[0, 1, 2, 3, 4].map((item, i) => (
           <Link
             key={i}
-            href="/"
+            href="/notification"
             className="relative w-full flex items-start justify-start gap-3 hover:bg-btngray py-2 px-3 rounded-lg transition-all duration-300"
           >
             <FaUserSecret size={30} />
@@ -66,7 +66,7 @@ const NotificationBox = ({ show, setShow }: NotificationProps) => {
         ))}
       </div>
       <Link
-        href="/"
+        href="/notification"
         className="w-full text-center text-primary text-sm font-semibold md:text-base cursor-pointer hover:underline transition-all"
       >
         See all
