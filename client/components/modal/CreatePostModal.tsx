@@ -2,6 +2,7 @@ import { MdClose } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface ModalProp {
   show: boolean;
@@ -39,17 +40,22 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
     }
   };
 
+  const variants = {
+    open: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
+    closed: { opacity: 0, scale: 0, transition: { duration: 0.2 } },
+  };
+
   return (
     <div
       className={`fixed top-0 right-0 w-full h-full bg-[#00000085] z-40 place-items-center flex justify-center transition-all duration-500 overflow-auto ${
         show ? "flex" : "hidden"
       }`}
     >
-      <div
+      <motion.div
         ref={modalRef}
-        className={`${
-          show ? "scale-100 opacity-100" : "scale-0 opacity-0"
-        } lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4`}
+        whileInView={show ? "open" : "closed"}
+        variants={variants}
+        className="lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4"
       >
         <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
           <h3 className="text-2xl font-bold">Create Post</h3>
@@ -96,7 +102,7 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
