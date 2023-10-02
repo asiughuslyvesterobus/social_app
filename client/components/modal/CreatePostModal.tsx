@@ -9,6 +9,7 @@ interface ModalProp {
 }
 
 const CreatePostModal = ({ show, setShow }: ModalProp) => {
+  const [content, setContent] = useState("");
   const modalRef = useRef<any>(null);
 
   useEffect(() => {
@@ -31,15 +32,22 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
     };
   }, [show]);
 
+  const handleSubmit = () => {
+    if (content) {
+      setContent("");
+      setShow(false);
+    }
+  };
+
   return (
     <div
       className={`fixed top-0 right-0 w-full h-full bg-[#00000085] z-40 place-items-center flex justify-center transition-all duration-500 overflow-auto ${
-        show ? "flex" : "flex"
+        show ? "flex" : "hidden"
       }`}
     >
       <div
         className={`${
-          show ? "scale-100 opacity-100" : "scale-100 opacity-100"
+          show ? "scale-100 opacity-100" : "scale-0 opacity-0"
         } lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4`}
       >
         <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
@@ -73,11 +81,14 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
             <textarea
               name="content"
               rows={4}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               placeholder="What's on your mind Efe"
               className="outline-none border-none h-[200px] w-full text-base md:text-2xl font-medium text-basegray resize-none"
             ></textarea>
             <button
-              disabled={true}
+              disabled={!content}
+              onClick={handleSubmit}
               className="text-base font-semibold bg-primary text-white transition-all duration-300 disabled:cursor-not-allowed disabled:bg-basegray/40 h-10 outline-none rounded-md"
             >
               Post
