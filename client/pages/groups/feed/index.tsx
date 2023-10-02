@@ -1,5 +1,7 @@
+import MainLayout from "@/layout/MainLayout";
+
 const GroupPage = () => {
-  return <div>GroupPage</div>;
+  return <MainLayout title="Groups">GroupPage</MainLayout>;
 };
 
 export default GroupPage;
