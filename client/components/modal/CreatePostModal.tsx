@@ -40,20 +40,18 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
           show ? "scale-100 opacity-100" : "scale-100 opacity-100"
         } lg:w-[450px] w-full bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 h-[450px] overflow-y-auto p-4 lg:px-4`}
       >
-        <div className="w-full flex items-center justify-between gap-4">
+        <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
           <h3 className="text-2xl font-bold">Create Post</h3>
           <span
             onClick={() => {
               setShow(false);
             }}
-            className="flex items-center justify-center rounded-lg text-secondary cursor-pointer"
+            className="flex items-center justify-center rounded-full w-10 h-10 bg-btngray cursor-pointer"
           >
-            <MdClose
-              size={29}
-              className="hover:rotate-180 transition-all duration-300"
-            />
+            <MdClose className="hover:rotate-180 transition-all duration-300 w-5 h-5" />
           </span>
         </div>
+        <div className="w-full flex flex-col"></div>
       </div>
     </div>
   );
