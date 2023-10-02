@@ -50,7 +50,8 @@ const Navbar = () => {
       </div>
       <ul className="md:flex hidden items-center gap-5 h-full pt-2">
         {NavIcons.map((item: NavIconType, i: number) => (
-          <li
+          <Link
+            href={item.href}
             key={i}
             className={`group relative py-1 px-10 h-full flex flex-col items-center justify-center cursor-pointer ${
               activeRoute(item.href)
@@ -58,15 +59,14 @@ const Navbar = () => {
                 : "hover:bg-bodybg mb-1 rounded-lg"
             } transition-all`}
           >
-            <Link href={item.href}>
-              <span>
-                <item.icon size={29} />
-              </span>
-            </Link>
+            <span>
+              <item.icon size={29} />
+            </span>
+
             <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[62px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
               {item.tooltip}
             </span>
-          </li>
+          </Link>
         ))}
       </ul>
       <div className="flex items-center gap-3 sm:gap-5 h-full pr-4 md:pr-6">
