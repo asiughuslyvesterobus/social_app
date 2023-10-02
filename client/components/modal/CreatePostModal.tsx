@@ -46,6 +46,7 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
       }`}
     >
       <div
+        ref={modalRef}
         className={`${
           show ? "scale-100 opacity-100" : "scale-0 opacity-0"
         } lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4`}
