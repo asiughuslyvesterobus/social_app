@@ -35,7 +35,11 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
         show ? "flex" : "flex"
       }`}
     >
-
+      <div
+        className={`${
+          show ? "scale-100 opacity-100" : "scale-100 opacity-100"
+        } lg:w-[450px] w-full bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 h-[450px] overflow-y-auto p-4 lg:px-10`}
+      ></div>
     </div>
   );
 };
