@@ -13,6 +13,7 @@ import CustomizeInput from "./form/CustomizeInput";
 import CustomizeSelect from "./form/CustomizeSelect";
 import CustomizeTextarea from "./form/CustomizeTextarea";
 import ProfileHeadline from "./ProfileHeadline";
+import CreatePostModal from "./modal/CreatePostModal";
 
 export {
   Navbar,
@@ -30,4 +31,5 @@ export {
   MobileNav,
   NotificationBox,
   ProfileHeadline,
+  CreatePostModal,
 };
