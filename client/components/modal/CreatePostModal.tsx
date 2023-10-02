@@ -53,7 +53,7 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
     >
       <motion.div
         ref={modalRef}
-        whileInView={show ? "open" : "closed"}
+        animate={show ? "open" : "closed"}
         variants={variants}
         className="lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4"
       >
