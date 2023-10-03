@@ -1,4 +1,6 @@
 import MainLayout from "@/layout/MainLayout";
+import Link from "next/link";
+import { BsCardHeading } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 
 const GroupPage = () => {
@@ -22,6 +24,19 @@ const GroupPage = () => {
               <div className="w-full bg-bodybg h-fit p-4 flex-col items-center justify-start absolute bottom-0 z-10 hidden">
                 <p>No recent searches</p>
               </div>
+            </div>
+            <div className="flex flex-col items-start w-full">
+              <Link
+                href="/groups/feed"
+                className="flex items-center justify-start w-full gap-2 bg-bodybg py-2 px-2 rounded transition-all"
+              >
+                <span className="text-white w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                  <BsCardHeading size={20} />
+                </span>
+                <span className="text-base font-semibold text-black tracking-tight">
+                  Your feed
+                </span>
+              </Link>
             </div>
           </div>
         </div>
