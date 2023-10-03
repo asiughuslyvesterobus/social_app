@@ -45,14 +45,14 @@ const GroupPage = () => {
               >
                 <BsPlus size={25} />
                 <span className="text-base font-semibold tracking-tight">
-                  Your feed
+                  Create new group
                 </span>
               </Link>
             </div>
           </div>
         </div>
         <div className="tab:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
-          {postData.length !== 0 ? (
+          {postData.length === 0 ? (
             <div className="w-full flex flex-col items-center justify-start gap-5">
               <span>
                 <MdGroupOff className="w-14 h-14 md:w-20 md:h-20 text-basegray" />
@@ -60,6 +60,15 @@ const GroupPage = () => {
               <p className="text-2xl text-center font-semibold ">
                 No Group has been created yet!
               </p>
+              <Link
+                href="/groups/create"
+                className="flex items-center justify-center w-fit gap-2 bg-primary text-white py-2 px-10 rounded transition-all"
+              >
+                <BsPlus size={25} />
+                <span className="text-base font-semibold tracking-tight">
+                  Create new group
+                </span>
+              </Link>
             </div>
           ) : (
             postData.map((item) => <div key={item.id}></div>)
