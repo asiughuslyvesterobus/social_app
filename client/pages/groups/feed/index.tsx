@@ -6,8 +6,8 @@ import { FiSearch } from "react-icons/fi";
 const GroupPage = () => {
   return (
     <MainLayout title="Groups">
-      <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex items-start justify-start mt-[2px]">
-        <div className="lg:flex-shrink bg-white md:w-[35%] w-full hidden md:flex flex-col p-3">
+      <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex flex-col tab:flex-row items-start justify-start mt-[2px]">
+        <div className="tab:flex-shrink bg-white tab:w-[45%] w-full flex flex-col p-3">
           <div className="flex flex-col items-start justify-start gap-4 border-b pb-3">
             <h2 className="text-lg font-bold md:text-2xl">Groups</h2>
             <div className="w-full flex flex-col items-start justify-start relative">
@@ -18,7 +18,7 @@ const GroupPage = () => {
                 <input
                   type="text"
                   placeholder="Search for groups"
-                  className="h-full w-full pl-2 outline-none bg-transparent text-basegray hidden lg:flex"
+                  className="h-full w-full pl-2 outline-none bg-transparent text-basegray"
                 />
               </div>
               <div className="w-full bg-bodybg h-fit p-4 flex-col items-center justify-start absolute bottom-0 z-10 hidden">
@@ -49,7 +49,7 @@ const GroupPage = () => {
             </div>
           </div>
         </div>
-        <div className="lg:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4 pb-24">
+        <div className="tab:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4 pb-24">
           hdhde
         </div>
       </section>
