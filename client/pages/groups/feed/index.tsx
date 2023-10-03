@@ -1,9 +1,14 @@
 import { postData } from "@/data";
 import MainLayout from "@/layout/MainLayout";
+import Image from "next/image";
 import Link from "next/link";
+import { AiOutlineLike } from "react-icons/ai";
+import { BiComment, BiWorld } from "react-icons/bi";
 import { BsCardHeading, BsPlus } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import { HiDotsHorizontal } from "react-icons/hi";
 import { MdGroupOff } from "react-icons/md";
+import { PiShareFatLight } from "react-icons/pi";
 
 const GroupPage = () => {
   return (
@@ -51,7 +56,7 @@ const GroupPage = () => {
             </div>
           </div>
         </div>
-        <div className="tab:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
+        <div className="tab:flex-grow w-full tab:h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
           {postData.length === 0 ? (
             <div className="w-full flex flex-col items-center justify-start gap-5">
               <span>
@@ -71,7 +76,109 @@ const GroupPage = () => {
               </Link>
             </div>
           ) : (
-            postData.map((item) => <div key={item.id}></div>)
+            postData.map((item) => (
+              <div
+                key={item.id}
+                className="w-full bg-white p-3 rounded-lg flex flex-col items-start justify-start h-fit gap-4"
+              >
+                <div className="w-full flex items-center justify-between gap-4">
+                  <Link
+                    href={`/profile/${item.id}`}
+                    className="flex items-start justify-start gap-2"
+                  >
+                    <Image
+                      src={item.userProfileUrl}
+                      alt="group-Profile"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                    />
+                    <div className="flex flex-col items-start justify-start">
+                      <h2 className="text-base font-medium text-black">
+                        {item.userName}
+                      </h2>
+                      <span className="text-sm font-normal text-[#888] flex items-center gap-1">
+                        {item.date}{" "}
+                        <span className="w-[3px] h-[3px] bg-basegray inline-block rounded-full"></span>{" "}
+                        <BiWorld />
+                      </span>
+                    </div>
+                  </Link>
+                  <span className="text-basegray cursor-pointer hover:bg-bodybg w-10 h-10 flex items-center justify-center rounded-full transition-all">
+                    <HiDotsHorizontal size={20} />
+                  </span>
+                </div>
+                <div className="h-[700px] w-full bg-red-500">
+                  <img
+                    src={item.userPost}
+                    alt="user-post"
+                    className="rounded w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full flex flex-col items-start justify-start">
+                  <div className="w-full flex items-center justify-between gap-3 py-3 border-b border-btngray">
+                    <span className="flex items-center justify-start gap-1">
+                      <span>
+                        <Image
+                          src="/icon/like.svg"
+                          alt="like"
+                          width={20}
+                          height={20}
+                        />
+                      </span>
+                      <span className="text-sm font-normal text-[#888]">
+                        1.2k
+                      </span>
+                    </span>
+                    <div className="flex items-center justify-start gap-3">
+                      <span className="flex items-center justify-start gap-1 text-[#888]">
+                        <span className="text-sm font-normal text-[#888]">
+                          1.2k
+                        </span>
+                        <span>
+                          <BiComment size={20} />
+                        </span>
+                      </span>
+                      <span className="flex items-center justify-start gap-1 text-[#888]">
+                        <span className="text-sm font-normal text-[#888]">
+                          1.2k
+                        </span>
+                        <span>
+                          <PiShareFatLight size={20} />
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between lg:justify-evenly w-full pt-4">
+                    <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                      <span className="text-[#888]">
+                        <AiOutlineLike className="w-4 h-4 sm:w-6 sm:h-6" />
+                      </span>
+                      <span className="text-sm sm:text-base font-medium text-basegray">
+                        Like
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                      <span className="text-[#888]">
+                        <BiComment className="w-4 h-4 sm:w-6 sm:h-6" />
+                      </span>
+                      <span className="text-sm sm:text-base font-medium text-basegray">
+                        Comment
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                      <span className="text-[#888]">
+                        <PiShareFatLight className="w-4 h-4 sm:w-6 sm:h-6" />
+                      </span>
+                      <span className="text-sm sm:text-base font-medium text-basegray">
+                        Share
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
           )}
         </div>
       </section>
