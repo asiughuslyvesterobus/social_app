@@ -8,7 +8,7 @@ const GroupPage = () => {
     <MainLayout title="Groups">
       <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex items-start justify-start mt-[2px]">
         <div className="lg:flex-shrink bg-white md:w-[35%] w-full hidden md:flex flex-col p-3">
-          <div className="flex flex-col items-start justify-start gap-4">
+          <div className="flex flex-col items-start justify-start gap-4 border-b pb-3">
             <h2 className="text-lg font-bold md:text-2xl">Groups</h2>
             <div className="w-full flex flex-col items-start justify-start relative">
               <div className="flex items-center justify-start bg-bodybg h-10 px-4 rounded-full text-basegray w-full">
