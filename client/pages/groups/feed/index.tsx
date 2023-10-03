@@ -1,7 +1,9 @@
+import { postData } from "@/data";
 import MainLayout from "@/layout/MainLayout";
 import Link from "next/link";
 import { BsCardHeading, BsPlus } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import { MdGroupOff } from "react-icons/md";
 
 const GroupPage = () => {
   return (
@@ -49,8 +51,19 @@ const GroupPage = () => {
             </div>
           </div>
         </div>
-        <div className="tab:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-4 pb-24">
-          hdhde
+        <div className="tab:flex-grow w-full h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
+          {postData.length !== 0 ? (
+            <div className="w-full flex flex-col items-center justify-start gap-5">
+              <span>
+                <MdGroupOff className="w-14 h-14 md:w-20 md:h-20 text-basegray" />
+              </span>
+              <p className="text-2xl text-center font-semibold ">
+                No Group has been created yet!
+              </p>
+            </div>
+          ) : (
+            postData.map((item) => <div key={item.id}></div>)
+          )}
         </div>
       </section>
     </MainLayout>
