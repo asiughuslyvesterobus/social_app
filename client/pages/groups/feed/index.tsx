@@ -13,7 +13,7 @@ import { PiShareFatLight } from "react-icons/pi";
 const GroupPage = () => {
   return (
     <MainLayout title="Groups">
-      <section className="w-full h-screen overflow-y-auto overflow-x-hidden flex flex-col tab:flex-row items-start justify-start mt-[2px]">
+      <section className="w-full h-screen overflow-auto flex flex-col tab:flex-row items-start justify-start mt-[2px]">
         <div className="tab:flex-shrink bg-white tab:w-[45%] w-full flex flex-col p-3">
           <div className="flex flex-col items-start justify-start gap-4 border-b pb-3">
             <h2 className="text-lg font-bold md:text-2xl">Groups</h2>
@@ -56,7 +56,7 @@ const GroupPage = () => {
             </div>
           </div>
         </div>
-        <div className="tab:flex-grow w-full tab:h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
+        <div className="tab:flex-grow relative w-full tab:h-screen overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24">
           {postData.length === 0 ? (
             <div className="w-full flex flex-col items-center justify-start gap-5">
               <span>
@@ -108,7 +108,7 @@ const GroupPage = () => {
                     <HiDotsHorizontal size={20} />
                   </span>
                 </div>
-                <div className="h-[700px] w-full bg-red-500">
+                <div className="h-[700px] w-full bg-basegray/50">
                   <img
                     src={item.userPost}
                     alt="user-post"
