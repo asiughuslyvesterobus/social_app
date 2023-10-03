@@ -108,7 +108,7 @@ const GroupPage = () => {
                     <HiDotsHorizontal size={20} />
                   </span>
                 </div>
-                <div className="h-[700px] w-full bg-basegray/50">
+                <div className="h-[700px] w-full bg-basegray/40">
                   <img
                     src={item.userPost}
                     alt="user-post"
