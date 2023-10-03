@@ -9,7 +9,7 @@ const LeftSidebar = () => {
   return (
     <nav
       aria-label="sidebar"
-      className="w-full h-screen hover:overflow-y-auto overflow-y-hidden overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start pb-20 transition-all duration-300"
+      className="w-full h-screen hover:overflow-y-auto overflow-y-hidden overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start pb-20 transition-all duration-500"
     >
       {!isAuthenticated ? (
         <Link
