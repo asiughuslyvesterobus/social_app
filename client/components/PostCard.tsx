@@ -52,11 +52,11 @@ const PostCard = ({ post }: IProp) => {
         voluptatibus, perspiciatis natus qui dignissimos provident
         necessitatibus ea vel maxime.
       </p>
-      <div className="max-h-[800px] w-full">
+      <div className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
         <img
           src={post.userPost}
           alt="user-post"
-          className="rounded w-full h-auto"
+          className="rounded w-full h-full"
         />
       </div>
       <div className="w-full flex flex-col items-start justify-start">
