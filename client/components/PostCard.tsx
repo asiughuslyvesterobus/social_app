@@ -52,7 +52,7 @@ const PostCard = ({ post }: IProp) => {
         voluptatibus, perspiciatis natus qui dignissimos provident
         necessitatibus ea vel maxime.
       </p>
-      <Link href={``} className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
+      <Link href={`/post/${post.id}`} className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
         <img
           src={post.userPost}
           alt="user-post"
