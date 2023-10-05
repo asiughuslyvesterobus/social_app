@@ -36,8 +36,8 @@ const FriendsPage = () => {
                 />
                 <div className="flex flex-col items-start gap-6 w-full p-4">
                     <h2 className="text-lg font-bold">Mike Williams</h2>
-                    <div className="flex flex-col items-center justify-center gap-5">
-                        <button type="button" className="w-full h-12 flex items-center justify-center bg-primary/50 text-white">Add Friend</button>
+                    <div className="flex flex-col items-center justify-center gap-5 w-full">
+                        <button type="button" className="w-full h-12 flex items-center justify-center bg-primary/30 text-primary outline-none rounded-md text-base font-bold">Add Friend</button>
                     </div>
                 </div>
               </div>
