@@ -21,6 +21,7 @@ To set up the project, follow these steps:
    with the following details in the request body:
 
 ```json
+
 {
   "firstName": "smart",
   "lastName": "sly",
@@ -34,7 +35,7 @@ To set up the project, follow these steps:
   "password": "88888888888"
 }
 ```
-````
+
  2. After signing up, an activation link will be sent to your email. click on the link to activate your account.
 
  3. Login using your username/email and password with a POST request to `api/auth/login`.
@@ -45,7 +46,7 @@ To set up the project, follow these steps:
    "password":  "22222222222"
  }
  ```
- ````
+
 
 After logging in, you'll have permission to access various features, including:
 
