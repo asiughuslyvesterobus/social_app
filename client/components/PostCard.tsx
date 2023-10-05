@@ -47,6 +47,11 @@ const PostCard = ({ post }: IProp) => {
           <HiDotsHorizontal size={20} />
         </span>
       </div>
+      <p className="text-sm font-medium md:text-base text-gray-600">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et omnis
+        voluptatibus, perspiciatis natus qui dignissimos provident
+        necessitatibus ea vel maxime.
+      </p>
       <div className="max-h-[800px] w-full">
         <img
           src={post.userPost}

@@ -108,6 +108,11 @@ const GroupPage = () => {
                     <HiDotsHorizontal size={20} />
                   </span>
                 </div>
+                <p className="text-sm font-medium md:text-base text-gray-600">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et
+                  omnis voluptatibus, perspiciatis natus qui dignissimos
+                  provident necessitatibus ea vel maxime.
+                </p>
                 <div className="h-auto tab:h-[700px] w-full bg-basegray/40">
                   <img
                     src={item.userPost}
