@@ -52,13 +52,13 @@ const PostCard = ({ post }: IProp) => {
         voluptatibus, perspiciatis natus qui dignissimos provident
         necessitatibus ea vel maxime.
       </p>
-      <div className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
+      <Link href={``} className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
         <img
           src={post.userPost}
           alt="user-post"
           className="rounded w-full h-full"
         />
-      </div>
+      </Link>
       <div className="w-full flex flex-col items-start justify-start">
         <div className="w-full flex items-center justify-between gap-3 py-3 border-b border-btngray">
           <span className="flex items-center justify-start gap-1">
