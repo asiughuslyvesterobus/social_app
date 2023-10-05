@@ -19,11 +19,11 @@ const {
 } = require("./lib/error/middleware/error-middleware");
 
 const app = express();
+
 if (!process.env.JWT_PRIVATE_KEY) {
   throw new Error("JWT private is not defined.");
 }
 
-app.use(express.json());
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
 app.use(
   cors({
@@ -40,6 +40,8 @@ app.use(
     threshold: 0
   })
 );
+
+app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", homeRouters);
