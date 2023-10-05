@@ -16,39 +16,40 @@ To set up the project, follow these steps:
 
 # usage
 
-1. signup by making a post request to 
-`/api/auth/signup`
-with the following details in the request body:
+1. signup by making a post request to
+   `/api/auth/signup`
+   with the following details in the request body:
 
 ```json
 {
-   "firstName":"smart",
-   "lastName":"sly",
-   "email":"slyvesterobus@gmail.com",
-   "profile": {
-       "userName": "smartbillions",
-       "bio": "i am a web developer",
-       "profileType": "public"
-   },
-   "phoneNumber": "091434367556372",
-   "password":"88888888888"
+  "firstName": "smart",
+  "lastName": "sly",
+  "email": "slyvesterobus@gmail.com",
+  "profile": {
+    "userName": "smartbillions",
+    "bio": "i am a web developer",
+    "profileType": "public"
+  },
+  "phoneNumber": "091434367556372",
+  "password": "88888888888"
 }
 ```
+
 ````
 
- 2. After signing up an activation link will be sent to your email. click on the link to activate your account.
+ 2. After signing up, an activation link will be sent to your email. click on the link to activate your account.
 
  3. Login using your username/email and password with a POST request to `api/auth/login`.
 
  ```json
-
  {
-   "email_or_userName":"billions",
+   "email":"billions",
    "password":"22222222222"
  }
  ```
+ ````
 
-after logging in, you'll have permission to access various features, including:
+After logging in, you'll have permission to access various features, including:
 
 # View Your Profile
 
