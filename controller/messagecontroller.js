@@ -153,12 +153,13 @@ const createGroup = async (req, res, next) => {
   // find the provided usernames
   const users = await User.find({ "profile userName": { $in: userNames } });
 
+
   // get the usernames of the profiles found
   const foundUsernames = users.map((user) => user.profile.userName);
 
   // check if there are users that were not found
   const foundUsers = userNames.filter((item) => !foundUsernames.includes(item));
-  if (foundUsers.length !== 0) {
+  if (foundUsers.length < 3) {
     res.status(404).json({ message: `Users ${foundUsers} not found` });
     return;
   }
@@ -183,9 +184,10 @@ const createGroup = async (req, res, next) => {
 const messageGroup = async (req, res, next) => {
   const userId = req.user._id;
   const query = req.params.groupId;
-  const group = await Message
-    .findById(query)
-    .populate("messages.sender", "profile.userName");
+  const group = await Message.findById(query).populate(
+    "messages.sender",
+    "profile.userName"
+  );
   if (!group) {
     throw new BadRequestError("group does not exist");
   }
