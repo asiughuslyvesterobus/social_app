@@ -1,3 +1,4 @@
+import { CustomizeInput } from "@/components";
 import MainLayout from "@/layout/MainLayout";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +32,26 @@ const Createroup = () => {
               </span>
             </div>
           </div>
+          <form className="w-full flex flex-col items-start justify-start gap-2">
+            <CustomizeInput
+              showLabel={false}
+              label={
+                <span className="text-sm font-medium">
+                  Group name <span className="text-danger">*</span>
+                </span>
+              }
+              htmlFor="groupName"
+              type="text"
+              name="groupName"
+              value=""
+              onChange={() => {}}
+              onBlur={() => {}}
+              // error={getError("groupName")}
+              id="groupName"
+              placeholder="Type your email address"
+              className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
+            />
+          </form>
         </div>
         <div className="tab:flex-grow relative w-full tab:h-screen tab:overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24"></div>
       </section>
