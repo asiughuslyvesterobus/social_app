@@ -18,11 +18,11 @@ const Createroup = () => {
           <h2 className="text-lg font-bold md:text-2xl">Create Group</h2>
           <div className="flex items-start justify-start gap-2">
             <Image
-              src=""
+              src="/img/avatar.png"
               alt="Profile-image"
               width={40}
               height={40}
-              className="rounded-full"
+              className="rounded-full border"
             />
             <div className="flex flex-col items-start justify-start">
               <h2 className="text-base font-medium text-black">Efe Starboy</h2>
