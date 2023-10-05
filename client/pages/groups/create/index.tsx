@@ -7,7 +7,7 @@ import { FiChevronRight } from "react-icons/fi";
 const Createroup = () => {
   return (
     <MainLayout title="Create Group">
-      <section className="w-full h-screen overflow-auto flex flex-col tab:flex-row items-start justify-start mt-[2px]">
+      <section className="w-full h-screen overflow-auto flex flex-col tab:flex-row items-start justify-start gap-6 mt-[2px]">
         <div className="tab:flex-shrink bg-white tab:w-[45%] w-full flex flex-col relative p-3 gap-3">
           <p className="flex items-center justify-start gap-1 text-xs font-normal">
             <Link href="/groups/feed" className="hover:underline">
@@ -32,7 +32,7 @@ const Createroup = () => {
               </span>
             </div>
           </div>
-          <form className="w-full flex flex-col items-start justify-start gap-2">
+          <div className="w-full flex flex-col items-start justify-start gap-2">
             <CustomizeInput
               showLabel={false}
               label={
@@ -48,12 +48,32 @@ const Createroup = () => {
               onBlur={() => {}}
               // error={getError("groupName")}
               id="groupName"
-              placeholder="Type your email address"
+              placeholder="Group name"
               className="bg-white border border-[#E3E5E8] h-12 w-full rounded-[5px] px-4 focus:border-[1.5px] focus:border-primary outline-none text-sm text-[#8E97A4] transition-all duration-300"
             />
-          </form>
+            <button
+              type="submit"
+              disabled={true}
+              className="w-full bg-primary h-[50px] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed outline-none mt-6"
+            >
+              Create
+            </button>
+          </div>
         </div>
-        <div className="tab:flex-grow relative w-full tab:h-screen tab:overflow-y-auto scrollbar-hide p-4 flex flex-col items-start justify-start gap-6 pb-24"></div>
+        <div className="tab:flex-grow relative w-full tab:h-[80vh] tab:overflow-y-auto scrollbar-hide pt-3 flex flex-col items-start justify-start gap-6">
+          <div className="bg-white w-[90%] h-full overflow-y-auto  pb-4 overflow-x-hidden flex flex-col items-start justify-star gap-3 rounded-lg pl-4">
+            <div className="w-full flex items-center justify-center">
+              <img
+                src="/img/connect.png"
+                alt="groupImage"
+                className="grayscale"
+              />
+            </div>
+            <h2 className="text-lg font-bold md:text-2xl tab:tex-4xl">
+              Group name
+            </h2>
+          </div>
+        </div>
       </section>
     </MainLayout>
   );
