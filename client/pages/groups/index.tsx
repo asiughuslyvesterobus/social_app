@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import MainLayout from "@/layout/MainLayout";
+import { useAuth } from "@/context/AuthContext";
 
 function GroupsPage() {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
 
   const moveToFeeds = () => {
     if (router.pathname === "/groups") {
-      router.push("/groups/feed");
+      router.push(`${isAuthenticated ? "/groups/feed" : "/login"}`);
     }
   };
   useEffect(() => {

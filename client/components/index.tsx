@@ -15,6 +15,7 @@ import CustomizeTextarea from "./form/CustomizeTextarea";
 import ProfileHeadline from "./ProfileHeadline";
 import CreatePostModal from "./modal/CreatePostModal";
 import Comments from "./Comments";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 export {
   Navbar,
@@ -34,4 +35,5 @@ export {
   ProfileHeadline,
   CreatePostModal,
   Comments,
+  ProtectedRoute,
 };
