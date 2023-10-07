@@ -1,11 +1,13 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { cardData } from "@/data";
 import { StoryProp } from "@/type";
 import { FiPlus } from "react-icons/fi";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { StoryCard } from ".";
+import { useRouter } from "next/router";
 
 const Stories = () => {
+  const router = useRouter();
   const [slideNavigate, setSlideNavigate] = useState({
     left: false,
     right: true,
@@ -64,13 +66,21 @@ const Stories = () => {
         ref={sliderRef}
         className="w-full h-full overflow-x-scroll overflow-y-hidden whitespace-nowrap scroll-smooth scrollbar-hide relative"
       >
-        <div className="relative inline-block cursor-pointer w-[200px] h-full mx-1">
-          <div className="relative top-[-57px] w-full h-full flex flex-col items-center justify-center rounded-md cursor-pointer overflow-hidden">
+        <div
+          onClick={() => router.push("/comingsoon")}
+          className="relative inline-block cursor-pointer w-[200px] h-full mx-1"
+        >
+          <div
+            className={`relative w-full h-full flex flex-col items-center justify-center rounded-md cursor-pointer overflow-hidden `}
+            // ${
+            //   cardData.length !== 0 ? "top-[-57px]" : "top-0"
+            // }`
+          >
             <div className="relative group overflow-hidden rounded-tr-md rounded-tl-md h-full">
               <img
                 src="/img/avatar.png"
                 alt="user_profile"
-                className="w-full h-full mix-blend-darken group-hover:scale-[1.08] transition-all"
+                className="w-full h-[220px] mix-blend-darken group-hover:scale-[1.08] transition-all"
               />
               <div className="absolute w-full h-full group-hover:bg-black/40 transition-all inset-0"></div>
             </div>
@@ -82,9 +92,11 @@ const Stories = () => {
             </div>
           </div>
         </div>
-        {cardData.map((item: StoryProp, i: number) => (
-          <StoryCard key={i} {...item} />
-        ))}
+        {cardData.length !== 0
+          ? null
+          : cardData.map((item: StoryProp, i: number) => (
+              <StoryCard key={i} {...item} />
+            ))}
       </div>
 
       <span
