@@ -21,7 +21,7 @@ const RightSidebar = () => {
       aria-label="sidebar"
       className="w-full h-screen overflow-y-auto overflow-x-hidden bg-white p-3 flex flex-col items-start justify-start"
     >
-      <div className="tab:w-[536px]">
+      <div className="w-full">
         <Lottie animationData={AdIcon} loop={true} />
       </div>
       {isAuthenticated && (
