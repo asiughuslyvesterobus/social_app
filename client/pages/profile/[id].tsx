@@ -2,8 +2,10 @@ import MainLayout from "@/layout/MainLayout";
 import Link from "next/link";
 import { postData } from "@/data";
 import { PostCard, ProfileHeadline } from "@/components";
+import { useAuth } from "@/context/AuthContext";
 
 const Profilepage = () => {
+  const { isAuthenticated } = useAuth();
   return (
     <MainLayout title="User Profile">
       <section className="w-full flex-col items-start justify-start gap-5 h-screen overflow-y-auto overflow-x-hidden pb-20">
@@ -19,17 +21,21 @@ const Profilepage = () => {
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Dicta,
                 </p>
-                <button className="w-full h-12 outline-none text-base font-medium bg-primary text-white mt-3 rounded-md hover:cursor-pointer hover:opacity-95 transition-all duration-300">
-                  Edit Bio
-                </button>
+                {isAuthenticated && (
+                  <button className="w-full h-12 outline-none text-base font-medium bg-primary text-white mt-3 rounded-md hover:cursor-pointer hover:opacity-95 transition-all duration-300">
+                    Edit Bio
+                  </button>
+                )}
               </div>
             </div>
             <div className="w-full bg-bodybg border shadow-boxShad rounded-lg p-3 flex flex-col items-start justify-start gap-5">
               <div className="w-full flex items-center justify-between">
                 <h2 className="text-lg font-bold md:text-2xl">Friends</h2>
-                <Link href="/" className="text-primary text-sm tab:text-base">
-                  See all friends
-                </Link>
+                {isAuthenticated && (
+                  <Link href="/" className="text-primary text-sm tab:text-base">
+                    See all friends
+                  </Link>
+                )}
               </div>
               <div className="w-full grid grid-cols-3 gap-3 items-start justify-start">
                 {[0, 1, 2.3, 4, 5, 6, 8, 9, 10].map((item, i) => (

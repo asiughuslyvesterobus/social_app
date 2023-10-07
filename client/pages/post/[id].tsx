@@ -10,8 +10,10 @@ import { BiComment } from "react-icons/bi";
 import { AiOutlineLike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
 import { Comments } from "@/components";
+import { useAuth } from "@/context/AuthContext";
 
 const PostDetail = () => {
+  const { isAuthenticated } = useAuth();
   const [dropDown, setDropDown] = useState<any>(null);
   const [deleteModal, setDeleteModal] = useState(false);
   const router = useRouter();
@@ -73,68 +75,74 @@ const PostDetail = () => {
                   </div>
                 </div>
 
-                <div className="relative">
-                  <span
-                    onClick={() =>
-                      setDropDown(dropDown !== data?.id ? data?.id : null)
-                    }
-                    className="cursor-pointer"
-                  >
-                    <BsThreeDots size={25} />
-                  </span>
-                  <motion.div
-                    animate={dropDown === data?.id ? "open" : "closed"}
-                    variants={variants}
-                    className={`w-[200px] bg-white dark:bg-gray-800 border border-gray-400 flex-col items-start rounded-xl overflow-hidden absolute right-0 z-10 ${
-                      dropDown === data?.id ? "flex" : "hidden"
-                    }`}
-                  >
-                    <div
-                      onClick={() => setDeleteModal(true)}
-                      className="flex items-center w-full gap-4 justify-start cursor-pointer p-3 text-base font-medium text-gray-600 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
+                {isAuthenticated && (
+                  <div className="relative">
+                    <span
+                      onClick={() =>
+                        setDropDown(dropDown !== data?.id ? data?.id : null)
+                      }
+                      className="cursor-pointer"
                     >
-                      <span>
-                        <BsFillTrash3Fill size={20} />
-                      </span>
-                      <span>Delete Video</span>
-                    </div>
-                  </motion.div>
-                </div>
+                      <BsThreeDots size={25} />
+                    </span>
+                    <motion.div
+                      animate={dropDown === data?.id ? "open" : "closed"}
+                      variants={variants}
+                      className={`w-[200px] bg-white dark:bg-gray-800 border border-gray-400 flex-col items-start rounded-xl overflow-hidden absolute right-0 z-10 ${
+                        dropDown === data?.id ? "flex" : "hidden"
+                      }`}
+                    >
+                      <div
+                        onClick={() => setDeleteModal(true)}
+                        className="flex items-center w-full gap-4 justify-start cursor-pointer p-3 text-base font-medium text-gray-600 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
+                      >
+                        <span>
+                          <BsFillTrash3Fill size={20} />
+                        </span>
+                        <span>Delete Post</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
               </div>
 
               <p className="px-10 text-lg text-gray-600  font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Quibusdam tenetur iure eaque, laborum et quidem.
               </p>
-              <div className="mt-5 px-10 py-2 w-full border-y">
-                <div className="flex items-center justify-between lg:justify-evenly w-full">
-                  <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
-                    <span className="text-[#888]">
-                      <AiOutlineLike className="w-4 h-4 sm:w-6 sm:h-6" />
-                    </span>
-                    <span className="text-sm sm:text-base font-medium text-basegray">
-                      Like
-                    </span>
+              {isAuthenticated && (
+                <>
+                  <div className="mt-5 px-10 py-2 w-full border-y">
+                    <div className="flex items-center justify-between lg:justify-evenly w-full">
+                      <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                        <span className="text-[#888]">
+                          <AiOutlineLike className="w-4 h-4 sm:w-6 sm:h-6" />
+                        </span>
+                        <span className="text-sm sm:text-base font-medium text-basegray">
+                          Like
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                        <span className="text-[#888]">
+                          <BiComment className="w-4 h-4 sm:w-6 sm:h-6" />
+                        </span>
+                        <span className="text-sm sm:text-base font-medium text-basegray">
+                          Comment
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+                        <span className="text-[#888]">
+                          <PiShareFatLight className="w-4 h-4 sm:w-6 sm:h-6" />
+                        </span>
+                        <span className="text-sm sm:text-base font-medium text-basegray">
+                          Share
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
-                    <span className="text-[#888]">
-                      <BiComment className="w-4 h-4 sm:w-6 sm:h-6" />
-                    </span>
-                    <span className="text-sm sm:text-base font-medium text-basegray">
-                      Comment
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
-                    <span className="text-[#888]">
-                      <PiShareFatLight className="w-4 h-4 sm:w-6 sm:h-6" />
-                    </span>
-                    <span className="text-sm sm:text-base font-medium text-basegray">
-                      Share
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <Comments />
+                  <Comments />
+                </>
+              )}
             </div>
           </div>
         </div>
