@@ -4,6 +4,7 @@ import { BiWorld, BiComment } from "react-icons/bi";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { AiOutlineLike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
+import { useRouter } from "next/router";
 
 interface PostCardProp {
   id: String | Number;
@@ -18,6 +19,8 @@ interface IProp {
 }
 
 const PostCard = ({ post }: IProp) => {
+  const router = useRouter();
+
   return (
     <div className="w-full bg-white p-3 rounded-lg flex flex-col items-start justify-start h-fit gap-4">
       <div className="w-full flex items-center justify-between gap-4">
@@ -52,7 +55,10 @@ const PostCard = ({ post }: IProp) => {
         voluptatibus, perspiciatis natus qui dignissimos provident
         necessitatibus ea vel maxime.
       </p>
-      <Link href={`/post/${post.id}`} className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover">
+      <Link
+        href={`/post/${post.id}`}
+        className="h-auto tab:h-[600px] w-full border overflow-hidden object-cover"
+      >
         <img
           src={post.userPost}
           alt="user-post"
@@ -83,8 +89,11 @@ const PostCard = ({ post }: IProp) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between lg:justify-evenly w-full">
-          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+        <div className="flex items-center justify-between lg:justify-evenly w-full pt-2">
+          <div
+            onClick={() => router.push(`/post/${post.id}`)}
+            className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer"
+          >
             <span className="text-[#888]">
               <AiOutlineLike className="w-4 h-4 sm:w-6 sm:h-6" />
             </span>
@@ -92,7 +101,10 @@ const PostCard = ({ post }: IProp) => {
               Like
             </span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+          <div
+            onClick={() => router.push(`/post/${post.id}`)}
+            className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer"
+          >
             <span className="text-[#888]">
               <BiComment className="w-4 h-4 sm:w-6 sm:h-6" />
             </span>
@@ -100,7 +112,10 @@ const PostCard = ({ post }: IProp) => {
               Comment
             </span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer">
+          <div
+            onClick={() => router.push(`/post/${post.id}`)}
+            className="flex items-center gap-2 sm:gap-4 justify-start w-fit hover:bg-bodybg transition-all py-3 px-2 sm:px-5 rounded-md cursor-pointer"
+          >
             <span className="text-[#888]">
               <PiShareFatLight className="w-4 h-4 sm:w-6 sm:h-6" />
             </span>
