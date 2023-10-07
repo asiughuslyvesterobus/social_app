@@ -60,12 +60,39 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
         className="lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4"
       >
         {!isAuthenticated ? (
-          <Link
-            href="/login"
-            className="w-[80%] mx-auto bg-primary py-2 px-4 text-center text-white text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300"
-          >
-            Sign In
-          </Link>
+          <div className="w-full flex flex-col items-start gap-8">
+            <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
+              <h3 className="text-2xl font-bold">Create Post</h3>
+              <span
+                onClick={() => {
+                  setShow(false);
+                }}
+                className="flex items-center justify-center rounded-full w-10 h-10 bg-btngray cursor-pointer"
+              >
+                <MdClose className="hover:rotate-180 transition-all duration-300 w-5 h-5" />
+              </span>
+            </div>
+            <p className="text-sm font-normal text-basegray">
+              It appears that you do not currently possess an account on
+              SmartConnect. Would you kindly consider creating one or, if you
+              already possess one, kindly proceed to sign in using the button
+              located below?
+            </p>
+            <div className="w-full flex items-center justify-start gap-2">
+              <Link
+                href="/login"
+                className="w-full mx-auto bg-primary py-2 px-4 text-center text-white text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                className="w-full mx-auto border-primary border py-2 px-4 text-center text-primary text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300"
+              >
+                Sign Up
+              </Link>
+            </div>
+          </div>
         ) : (
           <>
             <div className="w-full flex items-center justify-between gap-4 border-b pb-2">

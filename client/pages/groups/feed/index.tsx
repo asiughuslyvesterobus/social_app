@@ -1,7 +1,9 @@
+import { useAuth } from "@/context/AuthContext";
 import { postData } from "@/data";
 import MainLayout from "@/layout/MainLayout";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { AiOutlineLike } from "react-icons/ai";
 import { BiComment, BiWorld } from "react-icons/bi";
 import { BsCardHeading, BsPlus } from "react-icons/bs";
@@ -11,6 +13,13 @@ import { MdGroupOff } from "react-icons/md";
 import { PiShareFatLight } from "react-icons/pi";
 
 const GroupPage = () => {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return () => router.push("/login");
+  }
+
   return (
     <MainLayout title="Groups">
       <section className="w-full h-screen overflow-auto flex flex-col tab:flex-row items-start justify-start mt-[2px]">
