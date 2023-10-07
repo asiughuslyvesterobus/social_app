@@ -101,7 +101,7 @@ const Stories = () => {
 
       <span
         onClick={slideRight}
-        className={`absolute w-10 h-10 bg-basegray flex items-center z-10 justify-center text-white right-0 rounded-full cursor-pointer ${
+        className={`absolute w-10 h-10 bg-basegray hidden items-center z-10 justify-center text-white right-0 rounded-full cursor-pointer ${
           slideNavigate.right === true
             ? "opacity-100 scale-100"
             : "opacity-0 scale-0"
