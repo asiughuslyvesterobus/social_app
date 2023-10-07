@@ -21,7 +21,7 @@ const CreatePostCard = () => {
           onClick={() => setCreatePostOpen(true)}
           className="w-full bg-bodybg h-10 border border-bodybg transition-all duration-300 px-4 text-sm sm:text-base font-normal text-basegray rounded-full items-center flex select-none hover:cursor-pointer"
         >
-          What's on your Mind, Efe
+          What's on your Mind
         </div>
       </div>
       <div className="flex items-center justify-between lg:justify-evenly w-full pt-3">

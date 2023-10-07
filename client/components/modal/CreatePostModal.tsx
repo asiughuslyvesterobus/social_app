@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useAuth } from "@/context/AuthContext";
 
 interface ModalProp {
   show: boolean;
@@ -10,6 +11,7 @@ interface ModalProp {
 }
 
 const CreatePostModal = ({ show, setShow }: ModalProp) => {
+  const { isAuthenticated } = useAuth();
   const [content, setContent] = useState("");
   const modalRef = useRef<any>(null);
 
@@ -57,51 +59,62 @@ const CreatePostModal = ({ show, setShow }: ModalProp) => {
         variants={variants}
         className="lg:w-[450px] w-[90%] bg-white rounded-lg flex flex-col items-start justify-start gap-3 transition-all duration-300 p-4 lg:px-4"
       >
-        <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
-          <h3 className="text-2xl font-bold">Create Post</h3>
-          <span
-            onClick={() => {
-              setShow(false);
-            }}
-            className="flex items-center justify-center rounded-full w-10 h-10 bg-btngray cursor-pointer"
-          >
-            <MdClose className="hover:rotate-180 transition-all duration-300 w-5 h-5" />
-          </span>
-        </div>
-        <div className="w-full flex flex-col items-start justify-start gap-6">
+        {!isAuthenticated ? (
           <Link
-            href={`/profile/42`}
-            className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
+            href="/login"
+            className="w-[80%] mx-auto bg-primary py-2 px-4 text-center text-white text-base font-medium rounded-lg mb-4 hover:opacity-90 transition-all duration-300"
           >
-            <Image
-              src="/img/avatar.png"
-              alt="user_profile"
-              width={30}
-              height={30}
-              className="rounded-full"
-            />
-            <span className="text-base font-semibold text-black tracking-tight">
-              Efe Starboy
-            </span>
+            Sign In
           </Link>
-          <div className="w-full flex flex-col">
-            <textarea
-              name="content"
-              rows={4}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="What's on your mind Efe"
-              className="outline-none border-none h-[200px] w-full text-base md:text-2xl font-medium text-basegray resize-none"
-            ></textarea>
-            <button
-              disabled={!content}
-              onClick={handleSubmit}
-              className="text-base font-semibold bg-primary text-white transition-all duration-300 disabled:cursor-not-allowed disabled:bg-basegray/40 h-10 outline-none rounded-md"
-            >
-              Post
-            </button>
-          </div>
-        </div>
+        ) : (
+          <>
+            <div className="w-full flex items-center justify-between gap-4 border-b pb-2">
+              <h3 className="text-2xl font-bold">Create Post</h3>
+              <span
+                onClick={() => {
+                  setShow(false);
+                }}
+                className="flex items-center justify-center rounded-full w-10 h-10 bg-btngray cursor-pointer"
+              >
+                <MdClose className="hover:rotate-180 transition-all duration-300 w-5 h-5" />
+              </span>
+            </div>
+            <div className="w-full flex flex-col items-start justify-start gap-6">
+              <Link
+                href={`/profile/42`}
+                className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
+              >
+                <Image
+                  src="/img/avatar.png"
+                  alt="user_profile"
+                  width={30}
+                  height={30}
+                  className="rounded-full"
+                />
+                <span className="text-base font-semibold text-black tracking-tight">
+                  Efe Starboy
+                </span>
+              </Link>
+              <div className="w-full flex flex-col">
+                <textarea
+                  name="content"
+                  rows={4}
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="What's on your mind Efe"
+                  className="outline-none border-none h-[200px] w-full text-base md:text-2xl font-medium text-basegray resize-none"
+                ></textarea>
+                <button
+                  disabled={!content}
+                  onClick={handleSubmit}
+                  className="text-base font-semibold bg-primary text-white transition-all duration-300 disabled:cursor-not-allowed disabled:bg-basegray/40 h-10 outline-none rounded-md"
+                >
+                  Post
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </motion.div>
     </div>
   );
