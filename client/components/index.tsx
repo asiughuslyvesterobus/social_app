@@ -14,6 +14,7 @@ import CustomizeSelect from "./form/CustomizeSelect";
 import CustomizeTextarea from "./form/CustomizeTextarea";
 import ProfileHeadline from "./ProfileHeadline";
 import CreatePostModal from "./modal/CreatePostModal";
+import Comments from "./Comments";
 
 export {
   Navbar,
@@ -32,4 +33,5 @@ export {
   NotificationBox,
   ProfileHeadline,
   CreatePostModal,
+  Comments,
 };

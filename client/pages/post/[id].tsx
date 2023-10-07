@@ -9,6 +9,7 @@ import { BsFillTrash3Fill, BsThreeDots } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import { AiOutlineLike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
+import { Comments } from "@/components";
 
 const PostDetail = () => {
   const [dropDown, setDropDown] = useState<any>(null);
@@ -133,13 +134,7 @@ const PostDetail = () => {
                   </div>
                 </div>
               </div>
-              {/* <Comments
-                comment={comment}
-                setComment={setComment}
-                addComment={addComment}
-                comments={post.comments}
-                postingComment={postingComment}
-              /> */}
+              <Comments />
             </div>
           </div>
         </div>
