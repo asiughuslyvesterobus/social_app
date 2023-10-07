@@ -80,31 +80,35 @@ const Navbar = () => {
         >
           <FaBars size={20} />
         </span>
-        <span className="group relative w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
-          <BsMessenger size={20} />
-          <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
-            Messenger
-          </span>
-        </span>
-        <span
-          onClick={() => {
-            setNotificationShow(true);
-            setMobileNavOpen(false);
-            setOpenMenu(false);
-          }}
-          className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
-            notificationShow === true || activeRoute("/notification")
-              ? "bg-primary/90 text-white"
-              : "bg-btngray"
-          } transition-all duration-300`}
-        >
-          <BsBell size={20} />
-          {notificationShow === false && (
+        {isAuthenticated && (
+          <span className="group relative w-10 h-10 bg-btngray flex items-center justify-center rounded-full cursor-pointer">
+            <BsMessenger size={20} />
             <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
-              Notifications
+              Messenger
             </span>
-          )}
-        </span>
+          </span>
+        )}
+        {isAuthenticated && (
+          <span
+            onClick={() => {
+              setNotificationShow(true);
+              setMobileNavOpen(false);
+              setOpenMenu(false);
+            }}
+            className={`group relative w-10 h-10 flex items-center justify-center rounded-full cursor-pointer ${
+              notificationShow === true || activeRoute("/notification")
+                ? "bg-primary/90 text-white"
+                : "bg-btngray"
+            } transition-all duration-300`}
+          >
+            <BsBell size={20} />
+            {notificationShow === false && (
+              <span className="group-hover:opacity-100 group-hover:scale-100 group-hover:visible scale-0 invisible transition-all opacity-0 absolute top-[50px] bg-btngray py-2 px-4 rounded-xl font-semibold text-sm z-10">
+                Notifications
+              </span>
+            )}
+          </span>
+        )}
         <NotificationBox
           show={notificationShow}
           setShow={setNotificationShow}
