@@ -16,7 +16,7 @@ const Footer = () => {
           </li>
         ))}
       </ul>
-      <p className="text-basegray text-sm font-normal">&copy; {year} ConnectSmart</p>
+      <p className="text-basegray text-sm font-normal">&copy; {year} SmartConnect</p>
     </footer>
   );
 };

@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Image from "next/image";
 import Lottie from "lottie-react";
-import LoginIcon from "@/data/register.json";
+import RegisterIcon from "@/data/register.json";
 
 const Registerpage = () => {
   const router = useRouter();
@@ -94,7 +94,7 @@ const Registerpage = () => {
           </div>
           <div className="absolute w-[566px] h-[310px] bg-white bottom-[5%] rounded-full"></div>
           <div className="tab:w-[536px]">
-            <Lottie animationData={LoginIcon} loop={true} />
+            <Lottie animationData={RegisterIcon} loop={true} />
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center h-full overflow-y-auto overflow-x-hidden bg-white py-4 tab:py-0">

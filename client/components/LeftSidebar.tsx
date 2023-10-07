@@ -65,7 +65,7 @@ const LeftSidebar = () => {
           {[0, 1, 2, 3].map((item, i) => (
             <li key={i} className="w-full">
               <Link
-                href="/home"
+                href="/"
                 className="flex items-center justify-start w-full gap-2 hover:bg-bodybg py-2 px-2 rounded transition-all"
               >
                 <Image
