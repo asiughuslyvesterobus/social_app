@@ -17,7 +17,11 @@ const GroupPage = () => {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
 
-  useMemo(() => router.push("/login"), [!isAuthenticated]);
+  if (!isAuthenticated) {
+    useMemo(() => router.push("/login"), [!isAuthenticated]);
+  } else {
+    useMemo(() => router.push("/groups/feed"), [isAuthenticated]);
+  }
 
   return (
     <MainLayout title="Groups">
