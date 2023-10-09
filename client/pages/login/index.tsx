@@ -184,7 +184,7 @@ const Loginpage = () => {
                 </div>
 
                 <Link
-                  href="/recoverpassword"
+                  href="/login"
                   className="text-sm text-[#454B54] hover:text-primary transition-all duration-300 font-medium"
                 >
                   Forgot Password?
