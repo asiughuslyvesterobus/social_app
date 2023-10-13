@@ -7,12 +7,12 @@ const userSchema = new mongoose.Schema(
       minLength: 2,
       maxLength: 50,
       trim: true,
-      require: true
+      required: true
     },
     lastName: {
       type: String,
       minLength: 2,
-      maxlength: 50,
+      maxLength: 50,
       trim: true,
       required: true
     },
@@ -20,15 +20,15 @@ const userSchema = new mongoose.Schema(
       userName: {
         type: String,
         minlength: 2,
-        maxlength: 25,
+        maxLength: 25,
         trim: true,
         required: true,
         unique: true
       },
       bio: {
         type: String,
-        minlength: 3,
-        maxlength: 250
+        minLength: 3,
+        maxLength: 250
       },
       profileType: {
         type: String,
@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       trim: true,
-      maxlength: 15,
+      maxLength: 15,
       required: true,
       unique: true
     },
@@ -74,12 +74,21 @@ const userSchema = new mongoose.Schema(
       trim: true,
       default: ""
     },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+     },
     password: {
       type: String,
-      maxlength: 220,
+      maxLength: 220,
       required: true
     },
     isActivated: {
+      type: Boolean,
+      default: false
+    },
+    isAuthorizedAdmin: {
       type: Boolean,
       default: false
     },

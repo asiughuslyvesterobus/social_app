@@ -4,7 +4,8 @@ const {
   Unauthorized
 } = require("../lib/error");
 const {
-  addMessageToConversation
+  addMessageToConversation,
+  userGroupAction
 } = require("../lib/helpers.js/functions/messagefunctions");
 const {
   validateMessage,
@@ -28,12 +29,17 @@ const message = async (req, res, next) => {
 
   //   get sender and receiver
   const sender = await User.findById(userId);
+
   const receiver = await User.findById(query);
 
   if (!receiver) {
     throw new BadRequestError("User not found");
   }
 
+  const isBlocked = receiver.blockedAccounts.includes(userId);
+  if (isBlocked) {
+    throw new Unauthorized("You are blocked from messeging this account");
+  }
   const error = await validateMessage(req.body);
   if (error) {
     throw new BadRequestError(error);
@@ -50,7 +56,7 @@ const message = async (req, res, next) => {
 
   // check if recevier is in sender inbox
   const hasSeenMessage = senderInbox.profile.inbox.find(
-    (inboxItem) => String(inboxItem.user._id) === String(receiver.id)
+    (inboxItem) => String(inboxItem.user._id) === String(receiver._id)
   );
 
   //   remove receiver from sender inbox
@@ -149,11 +155,23 @@ const createGroup = async (req, res, next) => {
     throw new BadRequestError(error);
   }
   const { userNames } = req.body;
+  // if (userNames.length < 3) {
+  //   throw new BadRequestError("group cannot have less than 3 members");
+  // }
 
   // find the provided usernames
   const users = await User.find({ "profile userName": { $in: userNames } });
 
+  // check if user is blocked by any accounts
+  const isBlocked = users.filter((user) => user.blockedAccounts.includes(userId));
 
+  if (isBlocked.length !== 0) {
+    throw new Unauthorized(
+      `You have been blocked by ${isBlocked.map(
+        (item) => item.profile.userName
+      )}`
+    );
+  }
   // get the usernames of the profiles found
   const foundUsernames = users.map((user) => user.profile.userName);
 
@@ -164,6 +182,7 @@ const createGroup = async (req, res, next) => {
     return;
   }
 
+  
   // get all the user ids of the group members
   const userIds = users.map((user) => user._id);
   userIds.push(userId);
@@ -171,10 +190,12 @@ const createGroup = async (req, res, next) => {
   // fix the need to add message
   const message = new Message({
     conversers: userIds,
-    messages: [{ sender: userId }]
+    messages: [{ sender: userId }],
+    admins: [userId]
   });
 
   await message.save();
+
   res.status(200).json({ message: "Group created successfully" });
 };
 //@Method:POST /message/:groupId/message
@@ -208,18 +229,111 @@ const messageGroup = async (req, res, next) => {
   group.messages.push(message);
   await group.save();
 
+  // update group members inboxes
+  const otherConversers = group.conversers.filter(
+    (converser) => converser.toString() !== userId.toString()
+  );
+
+  const groupMembers = await User.find({ _id: { $all: otherConversers } });
+
+  await Promise.all(
+    groupMembers.map(async (groupMember) => {
+      groupMember.profile.inbox.push(query);
+      await groupMember.save();
+    })
+  );
+
   const populateGroup = await Message.findById(query).populate(
     "messages.sender",
     "profile.userName"
   );
-  const conUsernames = populateGroup.messages.map((message) => ({
+  const conversersUsernames = populateGroup.messages.map((message) => ({
     sender: message.sender.profile.userName,
     message: message.message
   }));
-  res.status(200).json({ message: "message sent", conUsernames });
+  res.status(200).json({ message: "message sent", conversersUsernames });
 };
 
+//@Method: PUT /message/:groupId/remove
+//@Desc:to remove a user from the group
+//@Access: Private
+const removeFromGroup = async (req, res, next) => {
+  const userId = req.user._id;
+  const groupId = req.params.groupId;
+
+  const { userName } = req.body;
+  if (!userName) {
+    throw new BadRequestError("Username is required");
+  }
+
+  const { group, userToManage } = await userGroupAction(
+    userId,
+    groupId,
+    userName
+  );
+  const newConversers = group.conversers.filter(
+    (converser) => converser.toString() !== userToManage._id.toString()
+  );
+
+  group.conversers = newConversers;
+  await group.save();
+  res.status(200).json({ message: `${userName}, removed from group` });
+};
+
+//@Method:PUt /message/:groupId/add
+//@Desc:to add a user to a group
+//@Access: Private
+const addToGroup = async (req, res, next) => {
+  const userId = req.user._id;
+  const groupId = req.params.groupId;
+
+  const { userName } = req.body;
+  if (!userName) {
+    throw new BadRequestError("Username is required");
+  }
+
+  const { group, userToManage } = await userGroupAction(
+    userId,
+    groupId,
+    userName
+  );
+
+  const newConversers = group.conversers.concat(userToManage._id);
+
+  group.conversers = newConversers;
+  await group.save();
+  res.status(200).json({ message: `${userName}, added to group` });
+};
+
+//@Method:PUt /message/:groupId/admin
+//@Desc:to make a user an admin
+//@Access: Private
+
+const makeAdmin = async (req, res, next) => {
+  const userId = req.user._id;
+  const groupId = req.params.groupId;
+
+  const { userName } = req.body;
+  if (!userName) {
+    throw new BadRequestError("Username is required");
+  }
+
+  const { group, userToManage } = await userGroupAction(
+    userId,
+    groupId,
+    userName
+  );
+
+  const newAdmins = group.admins.concat(userToManage._id);
+
+  group.admins = newAdmins;
+  await group.save();
+  res.status(200).json({ message: `${userName}, is now a group admin` });
+};
 module.exports.message = message;
 module.exports.getMessages = getMessages;
 module.exports.createGroup = createGroup;
 module.exports.messageGroup = messageGroup;
+module.exports.removeFromGroup = removeFromGroup;
+module.exports.addToGroup = addToGroup;
+module.exports.makeAdmin = makeAdmin;

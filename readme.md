@@ -5,7 +5,7 @@ backend of a social web application that allows users to interact by sharing pos
 
 # TABLE OF CONTENCTS
 
--[installation](#installation) -[Usage](#usage) -[configuration](#configuration) -[contact information](#contact-information)
+-[installation](#installation) -[Usage](#usage) -[API Endpoints](#api-endpoints) -[configuration](#configuration) -[Error Handling](#error-handling) -[contact information](#contact-information)
 
 # installation
 
@@ -21,7 +21,6 @@ To set up the project, follow these steps:
    with the following details in the request body:
 
 ```json
-
 {
   "firstName": "smart",
   "lastName": "sly",
@@ -36,17 +35,16 @@ To set up the project, follow these steps:
 }
 ```
 
- 2. After signing up, an activation link will be sent to your email. click on the link to activate your account.
+2.  After signing up, an activation link will be sent to your email. click on the link to activate your account.
 
- 3. Login using your username/email and password with a POST request to `api/auth/login`.
+3.  Login using your username/email and password with a POST request to `api/auth/login`.
 
- ```json
- {
-   "email": "billions",
-   "password":  "22222222222"
- }
- ```
-
+```json
+{
+  "email": "billions",
+  "password": "22222222222"
+}
+```
 
 After logging in, you'll have permission to access various features, including:
 
@@ -65,7 +63,7 @@ After logging in, you'll have permission to access various features, including:
 
 ```json
 {
- "userName": "john"
+  "userName": "john"
 }
 ```
 
@@ -90,7 +88,7 @@ After logging in, you'll have permission to access various features, including:
 
 ```json
 {
- "userName": "john"
+  "userName": "john"
 }
 ```
 
@@ -109,8 +107,8 @@ After logging in, you'll have permission to access various features, including:
 
 ```json
 {
- "username": "john",
- "action": "accept"
+  "username": "john",
+  "action": "accept"
 }
 ```
 
@@ -119,13 +117,13 @@ After logging in, you'll have permission to access various features, including:
 - **Method:** PUT
 - **Endpoint:** `/profile/edit`
 - **Access:** Private
- (put in the the name of the property you wish to change)
+  (put in the the name of the property you wish to change)
 
 To change username, use the request body:
 
 ```json
 {
- "userName": "john"
+  "userName": "john"
 }
 ```
 
@@ -133,7 +131,7 @@ To change bio, use:
 
 ```json
 {
- "bio": "this is my bio"
+  "bio": "this is my bio"
 }
 ```
 
@@ -151,7 +149,7 @@ To change bio, use:
 
 ```json
 {
- "title": "math"
+  "title": "math"
 }
 ```
 
@@ -163,13 +161,15 @@ To change bio, use:
 
 ```json
 {
- "textMessage": "hello"
+  "textMessage": "hello"
 }
 ```
+
 ### Get messages
-- **Method: GET
+
+- \*\*Method: GET
 - **Endpoint:** `/message/:messageId/view`
-- **Access:private
+- \*\*Access:private
 
 ### Create group
 
@@ -179,7 +179,7 @@ To change bio, use:
 
 ```json
 {
- "userNames": ["john", "alfred", "kevin"]
+  "userNames": ["john", "alfred", "kevin"]
 }
 ```
 
@@ -191,9 +191,27 @@ To change bio, use:
 
 ```json
 {
- "textMessage": "hello group members"
+  "textMessage": "hello group members"
 }
 ```
+
+### Make an admin
+
+- **Method:** PUT
+- **Endpoint:** `/message/:groupId/admin`
+- **Access:** Private
+
+### Remove from group
+
+- **Method:** PUT
+- **Endpoint:** `/message/:groupId/remove`
+- **Access:** Private
+
+### Add to group
+
+- **Method:** PUT
+- **Endpoint:** `/message/:groupId/add`
+- **Access:** Private
 
 ### Make a post
 
@@ -203,8 +221,8 @@ To change bio, use:
 
 ```json
 {
- "title": "education",
- "content": "testing new post schema"
+  "title": "education",
+  "content": "testing new post schema"
 }
 ```
 
@@ -222,7 +240,7 @@ To change bio, use:
 
 ```json
 {
- "message": "testing comment"
+  "message": "testing comment"
 }
 ```
 
@@ -249,16 +267,17 @@ To change bio, use:
 - **Method:** PUT
 - **Endpoint:** `/api/auth/edit`
 - **Access:** Private
- (provide the name of the property you wish to change along with your password)
+  (provide the name of the property you wish to change along with your password)
 
 ```json
 {
- "firstName": "Devin",
- "password": "1234567890"
+  "firstName": "Devin",
+  "password": "1234567890"
 }
 ```
 
 ### block account
+
 - **Method:** PUT
 - **Endpoint:** `api/auth/block-account`
 - **Access:** Private
@@ -275,17 +294,30 @@ To change bio, use:
 - **Endpoint:** `/api/auth/delete`
 - **Access:** Private
 
-```
-
-```
-
 # configuration
-To run the code you would need the following
-MONGO_URI=
-PORT =
-SMTP_HOST=
-SMTP_PORT=
-SMTP_MAIL=
-SMTP_PASSWORD=
-LIVE_CLIENT_URL=
-````
+
+To run the code, you need to configure the following environment variables:
+
+- `MONGO_URI`
+- `PORT`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_MAIL`
+- `SMTP_PASSWORD`
+- `LIVE_CLIENT_URL`
+- `JWT_PRIVATE_KEY`
+- `NODE_ENV`
+
+# Error Handling
+
+Errors are handled throughout the application. specific error codes and messages are returned for different scenarios to assist developers integrating with the API.
+
+# Contact Information
+
+for questions or support, pleasee contact
+[asiughuobukowho@gmail.com]
+(mailto:asiughuobukowho@gmail.com).
+
+```
+
+```

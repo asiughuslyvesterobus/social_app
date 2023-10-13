@@ -18,13 +18,14 @@ const post = async (req, res, next) => {
   }
 
   // implement post for private profiles
-  const { title, content } = req.body;
+  const { title, content,  } = req.body;
   const userId = req.user._id;
 
   const post = new Post({
     author: userId,
     title,
-    content
+    content,
+
   });
   await post.save();
   res.status(200).json({ success: true, message: "post made successfully" });
