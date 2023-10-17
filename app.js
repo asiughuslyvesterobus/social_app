@@ -21,9 +21,9 @@ const {
 
 const app = express();
 
-if (!process.env.JWT_PRIVATE_KEY) {
-  throw new Error("JWT private is not defined.");
-}
+// if (!process.env.JWT_PRIVATE_KEY) {
+//   throw new Error("JWT private is not defined.");
+// }
 
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
 app.use(
