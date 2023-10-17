@@ -2,6 +2,7 @@ require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const JWT = require("jsonwebtoken");
 const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
