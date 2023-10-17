@@ -17,12 +17,12 @@ const {
   notFound,
   errorHandler
 } = require("./lib/error/middleware/error-middleware");
-const { BadRequestError } = require("./lib/error");
+// const { BadRequestError } = require("./lib/error");
 
 const app = express();
 
 if (!process.env.JWT_PRIVATE_KEY) {
-  throw new BadRequestError("JWT private is not defined.");
+  throw new Error("JWT private is not defined.");
 }
 
 app.use(cookieParser(process.env.JWT_PRIVATE_KEY));
