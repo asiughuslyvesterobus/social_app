@@ -260,6 +260,7 @@ const deleteUser = async (req, res, next) => {
 //@Method:put auth/block-account
 //@Desc:blockAccount
 //@Access:Private
+
 const blockAccount = async (req, res, next) => {
   const userId = req.user._id;
   const { userName } = req.body;
