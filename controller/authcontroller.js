@@ -261,15 +261,16 @@ const deleteUser = async (req, res, next) => {
 //@Desc:blockAccount
 //@Access:Private
 const blockAccount = async (req, res, next) => {
-  const { accessToken } = res.signedCookies;
-
-  // verify is user is logged in
-  if (!accessToken) {
-    throw new Unauthorized("User must be logged in to block account");
+  const userId = req.user._id;
+  const { userName } = req.body;
+  if (!userName) {
+    throw new BadRequestError("userName required");
   }
 
-  // find and block user
-  res.user = await User.findByIdAndRemove(decoded._id);
+  const blocked = await User.findOne({ "profile.userName": userName });
+  const user = await User.findById(userId);
+  user.blockedAccounts.push(blocked._id);
+  await user.save();
   res.status(200).json({ success: true, message: "User blocked" });
 };
 

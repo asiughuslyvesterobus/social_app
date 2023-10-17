@@ -74,11 +74,11 @@ const userSchema = new mongoose.Schema(
       trim: true,
       default: ""
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user"
-     },
+    // role: {
+    //   type: String,
+    //   enum: ["user", "admin"],
+    //   default: "user"
+    // },
     password: {
       type: String,
       maxLength: 220,
@@ -88,14 +88,11 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
-    isAuthorizedAdmin: {
-      type: Boolean,
-      default: false
-    },
     AccountactivativationToken: String,
     AccountTokenExpires: Date,
     passwordRestToken: String,
-    passwordRestExpired: Date
+    passwordRestExpired: Date,
+    blockedAccounts: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
   },
   { timestamps: true }
 );

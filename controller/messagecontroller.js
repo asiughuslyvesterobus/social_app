@@ -163,7 +163,9 @@ const createGroup = async (req, res, next) => {
   const users = await User.find({ "profile userName": { $in: userNames } });
 
   // check if user is blocked by any accounts
-  const isBlocked = users.filter((user) => user.blockedAccounts.includes(userId));
+  const isBlocked = users.filter((user) =>
+    user.blockedAccounts.includes(userId)
+  );
 
   if (isBlocked.length !== 0) {
     throw new Unauthorized(
@@ -182,7 +184,6 @@ const createGroup = async (req, res, next) => {
     return;
   }
 
-  
   // get all the user ids of the group members
   const userIds = users.map((user) => user._id);
   userIds.push(userId);
@@ -210,14 +211,14 @@ const messageGroup = async (req, res, next) => {
     "profile.userName"
   );
   if (!group) {
-    throw new BadRequestError("group does not exist");
+    throw new NotFoundError("Group does not exist");
   }
+
   // check if user is a member of the group
   const aMember = group.conversers.includes(userId);
   if (!aMember) {
-    throw new Unauthorized("You are not a member of this group");
+    throw new Unauthorized("You are not a member of these group");
   }
-
   const { textMessage } = req.body;
   // create message object
   const message = {
@@ -230,11 +231,10 @@ const messageGroup = async (req, res, next) => {
   await group.save();
 
   // update group members inboxes
-  const otherConversers = group.conversers.filter(
+  const OtherConversers = group.conversers.filter(
     (converser) => converser.toString() !== userId.toString()
   );
-
-  const groupMembers = await User.find({ _id: { $all: otherConversers } });
+  const groupMembers = await User.find({ _id: { $all: OtherConversers } });
 
   await Promise.all(
     groupMembers.map(async (groupMember) => {
@@ -242,16 +242,19 @@ const messageGroup = async (req, res, next) => {
       await groupMember.save();
     })
   );
-
   const populateGroup = await Message.findById(query).populate(
     "messages.sender",
     "profile.userName"
   );
+  
   const conversersUsernames = populateGroup.messages.map((message) => ({
-    sender: message.sender.profile.userName,
+    sender: {
+      userId: message.sender._id,
+      userName: message.sender.profile.userName
+    },
     message: message.message
   }));
-  res.status(200).json({ message: "message sent", conversersUsernames });
+  res.status(200).json({ message: "Message sent", conversersUsernames });
 };
 
 //@Method: PUT /message/:groupId/remove

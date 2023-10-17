@@ -315,7 +315,7 @@ Errors are handled throughout the application. specific error codes and messages
 # Contact Information
 
 for questions or support, pleasee contact
-<!-- [asiughuobukowho@gmail.com] -->
+[asiughuobukowho@gmail.com]
 (mailto:asiughuobukowho@gmail.com).
 
 ```
