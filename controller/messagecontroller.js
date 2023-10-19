@@ -206,12 +206,14 @@ const createGroup = async (req, res, next) => {
 const messageGroup = async (req, res, next) => {
   const userId = req.user._id;
   const query = req.params.groupId;
+
   const group = await Message.findById(query).populate(
     "messages.sender",
     "profile.userName"
   );
+
   if (!group) {
-    throw new NotFoundError("Group does not exist");
+    return res.status(404).json({ error: "Group does not exist" });
   }
 
   // check if user is a member of the group
@@ -246,7 +248,7 @@ const messageGroup = async (req, res, next) => {
     "messages.sender",
     "profile.userName"
   );
-  
+
   const conversersUsernames = populateGroup.messages.map((message) => ({
     sender: {
       userId: message.sender._id,
@@ -260,6 +262,7 @@ const messageGroup = async (req, res, next) => {
 //@Method: PUT /message/:groupId/remove
 //@Desc:to remove a user from the group
 //@Access: Private
+
 const removeFromGroup = async (req, res, next) => {
   const userId = req.user._id;
   const groupId = req.params.groupId;

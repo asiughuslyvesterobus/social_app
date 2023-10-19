@@ -5,22 +5,21 @@ const messageSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
-    }
+      required: true,
+    },
   ],
   messages: [
     {
       sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
       },
-      message: { type: String, minLength: 1 },
-
-      timestamp: { type: Date, default: Date.now }
-    }
+      message: { type: String, minlength: 1 },
+      timestamp: { type: Date, default: Date.now },
+    },
   ],
-  admins: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
+  admins: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 messageSchema.pre("save", function (next) {
@@ -28,6 +27,6 @@ messageSchema.pre("save", function (next) {
   next();
 });
 
-const Message = mongoose.model("mesage", messageSchema);
-
+const Message = mongoose.model("Message", messageSchema);
 module.exports = Message;
+
