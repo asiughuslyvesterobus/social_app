@@ -113,7 +113,7 @@ const Login = async (req, res) => {
   if (!valid) {
     throw new BadRequestError("invalid email or password");
   }
-
+  
   //check if user is activated
   if (!user.isActivated) {
     const response = await checkValidation(user, email);
@@ -127,11 +127,6 @@ const Login = async (req, res) => {
 
   const token = jwt.sign(payload, process.env.JWT_PRIVATE_KEY);
   const oneDay = 24 * 60 * 60 * 1000;
-
-  if (process.env.NODE_ENV === "production") {
-    isSecureCookie = true;
-    sameSiteCookie = "None";
-  }
 
   res.cookie("accessToken", token, {
     httpOnly: true,
