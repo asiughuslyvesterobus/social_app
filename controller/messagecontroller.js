@@ -13,6 +13,7 @@ const {
 } = require("../lib/validation/messagevalidation");
 const User = require("../models/user");
 const Message = require("../models/messages");
+const Post = require("../models/post");
 
 //@Method: POST /message/:userid
 //@Desc:to send a message to another profile
@@ -315,7 +316,7 @@ const addToGroup = async (req, res, next) => {
 //@Desc:to make a user an admin
 //@Access: Private
 
-const makeAdmin = async (req, res, next) => {
+const makeAdmin = async (req, res) => {
   const userId = req.user._id;
   const groupId = req.params.groupId;
 
@@ -329,12 +330,107 @@ const makeAdmin = async (req, res, next) => {
     groupId,
     userName
   );
+  if (group.admins.includes(userToManage._id)) {
+    const newAdmins = group.admins.pull(userToManage._id);
 
+    group.admins = newAdmins;
+    await group.save();
+
+    res.status(200).json({ message: `${userName}, is no longer an admin` });
+  }
   const newAdmins = group.admins.concat(userToManage._id);
 
   group.admins = newAdmins;
   await group.save();
   res.status(200).json({ message: `${userName}, is now a group admin` });
+};
+//@Method:DELETE /message/:groupId/exit
+//@Desc:to leave a group
+//@Access: Private
+
+const leaveGroup = async (req, res) => {
+  const userId = req.user._id;
+  const groupId = req.params.groupId;
+
+  const group = await Message.findById(groupId);
+  if (!group) {
+    throw new BadRequestError("Group not found");
+  }
+  if (!group.conversers.includes(userId)) {
+    throw new Unauthorized("You are not a member of this group");
+  }
+
+  const newConversers = group.conversers.filter(
+    (converser) => converser.toString() !== userId.toString()
+  );
+  group.conversers = newConversers;
+
+  await group.save();
+  res.status(200).json({ message: "You have exited this group" });
+};
+
+//@Method:PUt /message/:messageId/share
+//@Desc:to share a post
+//@Access: Private
+const sharePost = async (req, res, next) => {
+  const userId = req.user._id;
+  const messageId = req.params.messageId;
+  const { postId } = req.body;
+  if (!postId) {
+    throw new BadRequestError("Must Provide post id");
+  }
+
+  const conversation = await Message.findById(messageId);
+  if (!conversation) {
+    throw new NotFoundError("Conversation not found");
+  }
+
+  const post = await Post.findById(postId).select("title content");
+  if (!post) {
+    throw new BadRequestError("Post not found");
+  }
+  if (!conversation.conversers.includes(userId)) {
+    throw new Unauthorized("You are not able to send this message");
+  }
+
+  const message = {
+    sender: userId,
+    message: post
+  };
+  conversation.messages.push(message);
+  await conversation.save();
+
+  res.status(200).json({ message: "Post sent successfully" });
+};
+
+//@Method:DELETE /message/:messageId/:conversationId
+//@Desc:to delete a message
+//@Access: Private
+
+const deleteMessage = async (req, res, next) => {
+  const userId = req.user._id;
+  const messageId = req.params.messageId;
+  const conversationId = req.params.conversationId;
+
+  const conversation = await Message.findById(conversationId);
+  if (!conversation) {
+    throw new BadRequestError("Conversation not found");
+  }
+  if (!conversation.conversers.includes(userId)) {
+    throw new Unauthorized("You are not authorized to see the message");
+  }
+
+  const messageExists = conversation.messages.find(
+    (message) => message._id.toString() === messageId.toString()
+  );
+  if (!messageExists) {
+    throw new BadRequestError("Message not found");
+  }
+  await Message.findOneAndUpdate(
+    { _id: conversationId },
+    { $pull: { message: { _id: messageId } } }
+  );
+  res.status(200).json({ message: "message deleted successfully" });
 };
 module.exports.message = message;
 module.exports.getMessages = getMessages;
@@ -343,3 +439,6 @@ module.exports.messageGroup = messageGroup;
 module.exports.removeFromGroup = removeFromGroup;
 module.exports.addToGroup = addToGroup;
 module.exports.makeAdmin = makeAdmin;
+module.exports.leaveGroup = leaveGroup;
+module.exports.sharePost = sharePost;
+module.exports.deleteMessage = deleteMessage

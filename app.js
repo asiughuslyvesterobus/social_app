@@ -2,7 +2,6 @@ require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const JWT = require("jsonwebtoken");
 const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -11,7 +10,8 @@ const {
   homeRouters,
   profileRouters,
   messageRouters,
-  postRouters
+  postRouters,
+  adminRoutes
 } = require("./routers");
 const { dbConnect } = require("./lib/dbconnect");
 const {
@@ -45,6 +45,7 @@ app.use(
 
 app.use(express.json());
 
+app.use("/api/admin", adminRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", homeRouters);
 app.use("/api/profile", profileRouters);

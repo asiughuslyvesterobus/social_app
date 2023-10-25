@@ -54,7 +54,7 @@ After logging in, you'll have permission to access various features, including:
 - **Endpoint:** `/profile/profile`
 - **Access:** Private
 
-#Follow a Profile/ Unfollow a profile
+# Follow a Profile/ Unfollow a profile
 
 - **Method:** POST
 - **Endpoint:** `/profile/follow`
@@ -92,13 +92,13 @@ After logging in, you'll have permission to access various features, including:
 }
 ```
 
-### View Follow Requests (for accounts with profileType = private)
+# View Follow Requests (for accounts with profileType = private)
 
 - **Method:** GET
 - **Endpoint:** `/profile/follow-requests`
 - **Access:** Private
 
-### Manage Follow Requests (for accounts with profileType = private)
+# Manage Follow Requests (for accounts with profileType = private)
 
 - **Method:** POST
 - **Endpoint:** `/profile/follow-requests/action`
@@ -135,13 +135,13 @@ To change bio, use:
 }
 ```
 
-### Home Page
+# Home Page
 
 - **Method:** GET
 - **Endpoint:** `/users/home`
 - **Access:** Private
 
-### Filter posts by topic ( Home Page)
+# Filter posts by topic ( Home Page)
 
 - **Method:** POST
 - **Endpoint:** `/users/home/search`
@@ -153,7 +153,7 @@ To change bio, use:
 }
 ```
 
-### Send message
+# Send message
 
 - **Method:** POST
 - **Endpoint:** `/message/:userId`
@@ -165,13 +165,13 @@ To change bio, use:
 }
 ```
 
-### Get messages
+# Get messages
 
-- \*\*Method: GET
+- **Method:** GET
 - **Endpoint:** `/message/:messageId/view`
-- \*\*Access:private
+- **Access:** private
 
-### Create group
+# Create group
 
 - **Method:** POST
 - **Endpoint:** `/message/create/group`
@@ -183,7 +183,7 @@ To change bio, use:
 }
 ```
 
-### Message group
+# Message group
 
 - **Method:** POST
 - **Endpoint:** `/message/:groupId/message`
@@ -195,25 +195,38 @@ To change bio, use:
 }
 ```
 
-### Make an admin
+# Delete message
+
+- **Method:** DELETE
+- **Endpoint:** `/message/:messageId/:conversationId`
+- **Access:** Private
+
+# Make an admin
 
 - **Method:** PUT
 - **Endpoint:** `/message/:groupId/admin`
 - **Access:** Private
 
-### Remove from group
+
+# Leave group
+
+- **Method:** DELETE
+- **Endpoint:** `/message/:groupId/exit`
+- **Access:** Private
+
+# Remove from group
 
 - **Method:** PUT
 - **Endpoint:** `/message/:groupId/remove`
 - **Access:** Private
 
-### Add to group
+# Add to group
 
 - **Method:** PUT
 - **Endpoint:** `/message/:groupId/add`
 - **Access:** Private
 
-### Make a post
+# Make a post
 
 - **Method:** POST
 - **Endpoint:** `/api/post`
@@ -226,7 +239,19 @@ To change bio, use:
 }
 ```
 
-### Like a post/unlike a post
+# Share a post
+
+- **Method:** PUT
+- **Endpoint:** `/message/:messageId/share`
+- **Access:** Private
+
+```json
+{
+  "postId": "6512ac704675281c228648a1"
+}
+```
+
+# Like a post/unlike a post
 
 - **Method:** PUT
 - **Endpoint:** `/api/post/:postId/like`
