@@ -32,11 +32,13 @@ const homePage = async (req, res) => {
     const startingIndex = (page - 1) * 10;
     const lastIndex = startingIndex + 10;
     const homePostsByPage = homePosts.slice(startingIndex, lastIndex);
-    res.status(200).json({ message: "WELCOME TO  SMART SOCIAL APP" });
+    res
+      .status(200)
+      .json({ message: "WELCOME TO  SMART SOCIAL APP", homePostsByPage });
     return;
   }
 
-  res.json({ msg: "WELCOME TO THE SOCIAL_ APP", homePosts });
+  res.json({ message: "WELCOME TO THE SOCIAL_ APP", homePosts });
 };
 
 //@Method: GET user/home
@@ -64,7 +66,7 @@ const viewPostByTopic = async (req, res, next) => {
     .populate("author", "profile.userName")
     .sort({ dateCreated: -1 });
 
-  if (posts.length == 0) {
+  if (posts.length === 0) {
     res.status(404).json({ message: "there are no post under this topic" });
     return;
   }
@@ -74,7 +76,9 @@ const viewPostByTopic = async (req, res, next) => {
     const startingIndex = (page - 1) * 10;
     const lastIndex = startingIndex + 10;
     const homePostsByPage = homePosts.slice(startingIndex, lastIndex);
-    res.status(200).json({ message: "WELCOME TO  SMART SOCIAL APP" });
+    res
+      .status(200)
+      .json({ message: "WELCOME TO  SMART SOCIAL APP", homePostsByPage });
     return;
   }
   res.status(200).json(homePosts);

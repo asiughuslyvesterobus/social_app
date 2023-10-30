@@ -1,7 +1,8 @@
 const {
   BadRequestError,
   NotFoundError,
-  Unauthorized
+  Unauthorized,
+  
 } = require("../lib/error");
 const {
   addMessageToConversation,
@@ -356,9 +357,9 @@ const leaveGroup = async (req, res) => {
   if (!group) {
     throw new BadRequestError("Group not found");
   }
-  if (!group.conversers.includes(userId)) {
-    throw new Unauthorized("You are not a member of this group");
-  }
+  // if (!group.conversers.includes(userId)) {
+  //   throw new Unauthorized("You are not a member of this group");
+  // }
 
   const newConversers = group.conversers.filter(
     (converser) => converser.toString() !== userId.toString()
@@ -390,7 +391,7 @@ const sharePost = async (req, res, next) => {
     throw new BadRequestError("Post not found");
   }
   if (!conversation.conversers.includes(userId)) {
-    throw new Unauthorized("You are not able to send this message");
+    //   throw new Unauthorized("You are not able to send this message");
   }
 
   const message = {
@@ -416,9 +417,9 @@ const deleteMessage = async (req, res, next) => {
   if (!conversation) {
     throw new BadRequestError("Conversation not found");
   }
-  if (!conversation.conversers.includes(userId)) {
-    throw new Unauthorized("You are not authorized to see the message");
-  }
+  // if (!conversation.conversers.includes(userId)) {
+  //   //   throw new Unauthorized("You are not authorized to see the message");
+  // }
 
   const messageExists = conversation.messages.find(
     (message) => message._id.toString() === messageId.toString()
@@ -441,4 +442,4 @@ module.exports.addToGroup = addToGroup;
 module.exports.makeAdmin = makeAdmin;
 module.exports.leaveGroup = leaveGroup;
 module.exports.sharePost = sharePost;
-module.exports.deleteMessage = deleteMessage
+module.exports.deleteMessage = deleteMessage;

@@ -1,5 +1,5 @@
 const express = require("express");
-const isLogin = require("../lib/error/middleware/auth-middleware");
+const { isLogin } = require("../lib/error/middleware/auth-middleware");
 const {
   post,
   commentPost,
@@ -7,15 +7,13 @@ const {
   deletePost,
   deleteComment
 } = require("../controller/postcontroller");
-const isAdmin = require("../lib/error/middleware/auth-middleware");
 
 const router = express.Router();
 
-router.post("/post", isLogin,isAdmin, post);
+router.post("/post", isLogin, post);
 router.put("/:postId/like", isLogin, likePost);
 router.post("/:postId/comment", isLogin, commentPost);
 router.delete("/:postId/delete", isLogin, deletePost);
 router.delete("/delete/:commentId", isLogin, deleteComment);
-
 
 module.exports = router;

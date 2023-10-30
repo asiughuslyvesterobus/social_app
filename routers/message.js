@@ -1,5 +1,5 @@
 const express = require("express");
-const isLogin = require("../lib/error/middleware/auth-middleware");
+const { isLogin } = require("../lib/error/middleware/auth-middleware");
 
 const {
   message,
@@ -26,6 +26,5 @@ router.put("/:groupId/admin", isLogin, makeAdmin);
 router.put("/:messageId/share", isLogin, sharePost);
 router.delete("/:groupId/group/exit", isLogin, leaveGroup);
 router.delete("/:messageId/:conversationId", isLogin, deleteMessage);
-
 
 module.exports = router;

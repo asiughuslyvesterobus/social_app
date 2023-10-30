@@ -84,9 +84,20 @@ const userSchema = new mongoose.Schema(
       maxLength: 220,
       required: true
     },
+  
     isActivated: {
       type: Boolean,
       default: false
+    },
+    accountStatus: {
+      type: String,
+      enum: ["suspended", "active"],
+      default: "active"
+    },
+    accountRole: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user"
     },
     AccountactivativationToken: String,
     AccountTokenExpires: Date,

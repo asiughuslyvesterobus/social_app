@@ -1,5 +1,5 @@
 const express = require("express");
-const isLogin = require("../lib/error/middleware/auth-middleware");
+const { isLogin } = require("../lib/error/middleware/auth-middleware");
 const {
   followProfile,
   viewFollowing,
